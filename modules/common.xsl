@@ -35,7 +35,15 @@
     <xsl:if test="@dir">
       <xsl:attribute name="dir" select="@dir"/>
     </xsl:if>
+    
+    <xsl:if test="@href">
+      <xsl:sequence select="df:message(('@href attribute not yet implemented.'), 'warning')"/>
+    </xsl:if>
 
+    <xsl:if test="@status">
+      <xsl:sequence select="df:message(('@status attribute not yet implemented.'), 'warning')"/>
+    </xsl:if>
+    
     <xsl:if test="@xml:lang">
       <xsl:choose>
         <xsl:when test="$output.type eq 'xml'">
@@ -54,10 +62,12 @@
     <xsl:if test="@xml:id">
       <xsl:attribute name="id" select="@xml:id"/>
     </xsl:if>
-    <xsl:if test="@xml:base">
+    
+    <xsl:if test="@xml:base and $output.type eq 'xml'">
       <xsl:attribute name="xml:base" select="@xml:base"/>
     </xsl:if>
   </xsl:template>
+
   <xsl:template name="common.attributes.and.children">
     <xsl:call-template name="common.attributes"/>
     <xsl:call-template name="common.children"/>
