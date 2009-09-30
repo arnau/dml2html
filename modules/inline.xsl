@@ -24,11 +24,41 @@
     </dml:list>
   </dml:note>
   
+  <xsl:template match="dml:abbr">
+    <abbr>
+      <xsl:if test="@about">
+        <xsl:sequence select="df:message(('abbr[@about] not fully implemented'), 'warning')"/>
+      </xsl:if>
+      <xsl:if test="@content or @about">
+        <xsl:attribute name="title" select="
+          if (@content) then
+            @content
+          else if (unparsed-text-available(@about)) then
+            unparsed-text(@about)
+          else
+            df:message(('Source problems in abbr[@about] attribute'), 'fail')
+        "/>
+      </xsl:if>
+      <xsl:call-template name="common.attributes.and.children"/>
+    </abbr>
+  </xsl:template>
+  
   <xsl:template match="dml:em">
     <xsl:variable name="element.name" select="if (@role) then 'strong' else 'em'"/>
     <xsl:element name="{$element.name}">
       <xsl:call-template name="common.attributes.and.children"/>
     </xsl:element>
   </xsl:template>
-  
+
+  <xsl:template match="dml:span">
+    <xsl:sequence select="df:message((name(), 'not yet implemented.'), 'warning')"/>
+  </xsl:template>
+
+  <xsl:template match="dml:sub">
+    <xsl:sequence select="df:message((name(), 'not yet implemented.'), 'warning')"/>
+  </xsl:template>
+
+  <xsl:template match="dml:sup">
+    <xsl:sequence select="df:message((name(), 'not yet implemented.'), 'warning')"/>
+  </xsl:template>
 </xsl:stylesheet>

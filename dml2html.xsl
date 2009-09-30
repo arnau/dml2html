@@ -20,7 +20,7 @@
     <dml:list>
       <dml:item property="dct:creator">Arnau Siches</dml:item>
       <dml:item property="dct:issued">2009-09-28</dml:item>
-      <dml:item property="dct:modified">2009-09-29</dml:item>
+      <dml:item property="dct:modified">2009-09-30</dml:item>
       <dml:item property="dct:description">
         <p>Transforms a DML source to HTML.</p>
       </dml:item>
@@ -55,7 +55,7 @@
   </xsl:template>
   <xsl:template name="body">
     <body>
-      <!-- <xsl:apply-templates select="dml:section"/> -->
+      <!-- <xsl:apply-templates mode="toc"/> -->
       <xsl:apply-templates/>
     </body>
   </xsl:template>
@@ -148,4 +148,14 @@
     </div>
   </xsl:template>
 
+
+  <xsl:template match="dml:citation">
+    <xsl:sequence select="df:message((name(), 'not yet implemented.'), 'warning')"/>
+  </xsl:template>
+  <xsl:template match="dml:object">
+    <xsl:sequence select="df:message((name(), 'not yet implemented.'), 'warning')"/>
+  </xsl:template>
+  <xsl:template match="dml:quote">
+    <xsl:sequence select="df:message((name(), 'not yet implemented.'), 'warning')"/>
+  </xsl:template>
 </xsl:stylesheet>
