@@ -26,16 +26,17 @@
   </dml:note>
 
   <xsl:function name="df:message">
-    <xsl:param name="message"/>
-    <xsl:param name="level"/>
-    <xsl:variable name="levels" select="( 'info', 'warning', 'resource' )"/>
+    <xsl:param name="message" as="item()+"/>
+    <xsl:param name="level" as="xs:string"/>
+    <xsl:variable name="message" select="string-join($message, ' ')"/>
+    <xsl:variable name="levels" select="('info', 'warning', 'resource')"/>
     <xsl:variable name="condition" select="some $i in $levels satisfies $i eq $level"/>
-    <xsl:message terminate="{ if ( $condition ) then 'no' else 'yes' }">
+    <xsl:message terminate="{if ($condition) then 'no' else 'yes'}">
       <xsl:value-of select="
-        if ( $condition ) then
-          ( upper-case( $level ), $message )
+        if ($condition) then
+          (upper-case( $level ), $message)
         else
-          ( 'FATAL ERROR', $message )
+          ('FATAL ERROR', $message)
       " separator=": "/>
     </xsl:message>
   </xsl:function>
