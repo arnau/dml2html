@@ -51,7 +51,10 @@
   </xsl:template>
 
   <xsl:template match="dml:span">
-    <xsl:sequence select="df:message((name(), 'not yet implemented.'), 'warning')"/>
+    <xsl:variable name="element.name" select="if (@href) then 'a' else 'span'"/>
+    <xsl:element name="{$element.name}">
+      <xsl:call-template name="common.attributes.and.children"/>
+    </xsl:element>
   </xsl:template>
 
   <xsl:template match="dml:sub">
