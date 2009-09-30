@@ -14,7 +14,7 @@
     <dml:list>
       <dml:item property="dct:creator">Arnau Siches</dml:item>
       <dml:item property="dct:issued">2009-09-29</dml:item>
-      <dml:item property="dct:modified">2009-09-29</dml:item>
+      <dml:item property="dct:modified">2009-09-30</dml:item>
       <dml:item property="dct:description">
         <p>Inline templates for dml2html.</p>
       </dml:item>
@@ -58,10 +58,10 @@
   </xsl:template>
 
   <xsl:template match="dml:sub">
-    <xsl:sequence select="df:message((name(), 'not yet implemented.'), 'warning')"/>
+    <sub><xsl:call-template name="common.attributes.and.children"/></sub>
   </xsl:template>
 
   <xsl:template match="dml:sup">
-    <xsl:sequence select="df:message((name(), 'not yet implemented.'), 'warning')"/>
+    <sup><xsl:call-template name="common.attributes.and.children"/></sup>
   </xsl:template>
 </xsl:stylesheet>
