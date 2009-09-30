@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dml xml:lang="en"
+  xmlns="http://purl.oclc.org/NET/dml/1.0/"
+  xmlns:dct="http://purl.org/dc/terms/">
+  <title>List structure</title>
+  <list>
+    <item xml:id="consecteur">@about correct</item>
+    <item>lorem</item>
+  </list>
+</dml>

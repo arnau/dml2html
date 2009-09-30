@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<dml xmlns="http://purl.oclc.org/NET/dml/1.0/" xml:id="abbr-element" xml:lang="en">
+  <title>abbr element</title>
+  <p><abbr>Lorem</abbr> ipsum <abbr content="@content attribute">dolor</abbr> sit amet, <abbr about="glossary.xml#consecteur">consectetur</abbr> adipisicing <abbr about="glossary.xml#elit">elit</abbr>, sed do <abbr about="glossary.dml">eiusmod</abbr> tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+</dml>

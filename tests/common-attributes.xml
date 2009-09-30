@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <dml xmlns="http://purl.oclc.org/NET/dml/1.0/" xml:id="common-attributes" xml:lang="en">
+  <title>Common attributes</title>
   <section xml:id="simple-section">
     <title>Simple Section</title>
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
@@ -13,4 +14,4 @@
       <p>This example has an attribute @class="x y" with addition of @class="example" through XSL</p>
     </example>
   </section>
-</section>
+</dml>
