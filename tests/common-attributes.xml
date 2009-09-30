@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<dml xmlns="http://purl.oclc.org/NET/dml/1.0/" xml:id="common-attributes" xml:lang="en">
+  <section xml:id="simple-section">
+    <title>Simple Section</title>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+    <p class="a b">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    <example xml:id="ex-1">
+      <title>First example</title>
+      <p>foo</p>
+    </example>
+    <example xml:id="ex-2" class="x y">
+      <title>Second example</title>
+      <p>This example has an attribute @class="x y" with addition of @class="example" through XSL</p>
+    </example>
+  </section>
+</section>
