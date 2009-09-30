@@ -32,7 +32,7 @@
     </xsl:if>
     <xsl:variable name="language" select="if (@language) then @language else ()"/>
     <xsl:choose>
-      <xsl:when test="parent::*[self::dml:dml, self::dml:section, self::dml:example, self::dml:item[dml:example, dml:figure, dml:p, dml:title]]">
+      <xsl:when test="parent::dml:dml, parent::dml:section, parent::dml:example, parent::dml:item[dml:example, dml:figure, dml:p, dml:title, dml:note], parent::dml:note">
         <pre>
           <xsl:call-template name="code.template">
             <xsl:with-param name="class.attribute" tunnel="yes" select="$language"/>
