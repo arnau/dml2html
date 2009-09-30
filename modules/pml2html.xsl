@@ -27,6 +27,27 @@
   <xsl:strip-space elements="pml:node pml:value"/>
 
   <xsl:template match="pml:code">
+    <xsl:if test="@language">
+      <xsl:sequence select="df:message(('highlighting for', @language , 'code not yet implemented.'), 'warning')"/>
+    </xsl:if>
+    <xsl:variable name="language" select="if (@language) then @language else ()"/>
+    <xsl:choose>
+      <xsl:when test="parent::*[self::dml:dml, self::dml:section, self::dml:example, self::dml:item[dml:example, dml:figure, dml:p, dml:title]]">
+        <pre>
+          <xsl:call-template name="code.template">
+            <xsl:with-param name="class.attribute" tunnel="yes" select="$language"/>
+          </xsl:call-template>
+        </pre>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:call-template name="code.template">
+          <xsl:with-param name="class.attribute" tunnel="yes" select="$language"/>
+        </xsl:call-template>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+
+  <xsl:template name="code.template">
     <code>
       <xsl:call-template name="common.attributes"/>
       <!-- <xsl:call-template name="code.languages"/> -->
@@ -34,17 +55,20 @@
     </code>
   </xsl:template>
 
-   <!-- <xsl:template match="*[(self::dml:dml, self::dml:section, self::dml:example, self::dml:item[dml:example | dml:figure | dml:p | dml:title])]/pml:code"> -->
-  <xsl:template match="*[self::dml:dml, self::dml:section, self::dml:example]/pml:code">
-    <xsl:variable name="language" select="if (@language) then @language else ()"/>
-    <pre><code>
-      <xsl:call-template name="common.attributes">
-        <xsl:with-param name="class.attribute" tunnel="yes" select="$language"/>
-      </xsl:call-template>
-<!-- <xsl:call-template name="code.languages"/> -->
-<xsl:call-template name="common.children"/>
-    </code></pre>
+  <xsl:template match="pml:node">
+    <xsl:sequence select="df:message((name(), 'not yet implemented.'), 'warning')"/>
   </xsl:template>
+  <xsl:template match="pml:value">
+    <xsl:sequence select="df:message((name(), 'not yet implemented.'), 'warning')"/>
+  </xsl:template>
+  <xsl:template match="pml:variable">
+    <xsl:sequence select="df:message((name(), 'not yet implemented.'), 'warning')"/>
+  </xsl:template>
+  <xsl:template match="pml:param">
+    <xsl:sequence select="df:message((name(), 'not yet implemented.'), 'warning')"/>
+  </xsl:template>
+
+
 <!--
   <xsl:template name="code.languages">
     <xsl:choose>
