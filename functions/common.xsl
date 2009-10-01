@@ -28,7 +28,7 @@
   <xsl:function name="df:message">
     <xsl:param name="message" as="item()+"/>
     <xsl:param name="level" as="xs:string"/>
-    <xsl:variable name="message" select="string-join($message, ' ')"/>
+    <xsl:variable name="message" select="string-join(for $i in $message return string($i), ' ')"/>
     <xsl:variable name="levels" select="('info', 'warning', 'resource')"/>
     <xsl:variable name="condition" select="some $i in $levels satisfies $i eq $level"/>
     <xsl:message terminate="{if ($condition) then 'no' else 'yes'}">
