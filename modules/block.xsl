@@ -118,17 +118,10 @@
         parent::dml:item[dml:example | dml:figure | dml:p | dml:title | dml:note]
       ) then
         'blockquote'
-      else if (dml:example | dml:figure | dml:list | dml:note | dml:p | dml:title | dml:section | dml:table) then
-        df:message(('Invalid', name(), 'element. Wrong parent or children.'), 'fail')
-      else
+      else if (not(dml:example | dml:figure | dml:list | dml:note | dml:p | dml:title | dml:section | dml:table)) then
         'q'
-    "/>
-    <xsl:variable name="inline.ancestors.count" select="
-      count(
-        ancestor-or-self::dml:quote[not(parent::dml:dml | parent::example | parent::dml:figure |
-        parent::dml:note | parent::dml:section |
-        parent::dml:item[dml:example | dml:figure | dml:p | dml:title | dml:note])]
-      )
+      else
+        df:message(('Invalid', name(), 'element. Wrong parent or children.'), 'fail')
     "/>
 
     <xsl:element name="{$element.name}">
