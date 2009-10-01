@@ -135,22 +135,9 @@
       <xsl:if test="@about">
         <xsl:attribute name="cite" select="@about"/>
       </xsl:if>
-      <xsl:call-template name="common.attributes"/>
-      <xsl:value-of select="
-        if ($element.name eq 'q') then 
-          df:quotes(., 'open', $inline.ancestors.count)
-        else 
-          ()
-      "/>
-      <xsl:call-template name="common.children">
+      <xsl:call-template name="common.attributes.and.children">
         <xsl:with-param name="quote.type" tunnel="yes" select="$element.name"/>
       </xsl:call-template>
-      <xsl:value-of select="
-        if ($element.name eq 'q') then 
-          df:quotes(., 'close', $inline.ancestors.count)
-        else 
-          ()
-      "/>
     </xsl:element>
   </xsl:template>
   

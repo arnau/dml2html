@@ -13,6 +13,7 @@
   <xsl:import href="functions/common.xsl"/>
   <xsl:import href="modules/common.xsl"/>
   <xsl:import href="modules/inline.xsl"/>
+  <xsl:import href="modules/block.xsl"/>
   <xsl:import href="modules/pml2html.xsl"/>
 
   <xsl:import href="config.xsl"/>
