@@ -57,11 +57,9 @@
     </xsl:element>
   </xsl:template>
 
-  <xsl:template match="dml:sub">
-    <sub><xsl:call-template name="common.attributes.and.children"/></sub>
-  </xsl:template>
-
-  <xsl:template match="dml:sup">
-    <sup><xsl:call-template name="common.attributes.and.children"/></sup>
+  <xsl:template match="dml:sub | dml:sup">
+    <xsl:element name="{local-name()}">
+      <xsl:call-template name="common.attributes.and.children"/>
+    </xsl:element>
   </xsl:template>
 </xsl:stylesheet>
