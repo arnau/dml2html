@@ -17,7 +17,7 @@
     <dml:list>
       <dml:item property="dct:creator">Arnau Siches</dml:item>
       <dml:item property="dct:issued">2009-09-30</dml:item>
-      <dml:item property="dct:modified">2009-09-30</dml:item>
+      <dml:item property="dct:modified">2009-10-01</dml:item>
       <dml:item property="dct:description">Common functions</dml:item>
       <dml:item property="dct:license">
         <!-- todo -->
@@ -73,6 +73,5 @@
         $quote.variant[$position[2]]
     "/>
   </xsl:function>
-
 
 </xsl:stylesheet>
