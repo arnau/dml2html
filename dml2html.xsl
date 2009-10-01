@@ -10,17 +10,18 @@
   xmlns:df="dml:functions"
   exclude-result-prefixes="xs dml pml df">
   
-  <xsl:import href="config.xsl"/>
   <xsl:import href="functions/common.xsl"/>
   <xsl:import href="modules/common.xsl"/>
   <xsl:import href="modules/inline.xsl"/>
   <xsl:import href="modules/pml2html.xsl"/>
+
+  <xsl:import href="config.xsl"/>
   
   <dml:note>
     <dml:list>
       <dml:item property="dct:creator">Arnau Siches</dml:item>
       <dml:item property="dct:issued">2009-09-28</dml:item>
-      <dml:item property="dct:modified">2009-09-30</dml:item>
+      <dml:item property="dct:modified">2009-10-01</dml:item>
       <dml:item property="dct:description">
         <p>Transforms a DML source to HTML.</p>
       </dml:item>
@@ -29,6 +30,7 @@
       </dml:item>
     </dml:list>
   </dml:note>
+
   <xsl:output 
     method="xhtml" 
     version="1.0" 
@@ -38,6 +40,8 @@
     omit-xml-declaration="no" 
     doctype-public="-//W3C//DTD XHTML+RDFa 1.0//EN" 
     doctype-system="http://www.w3.org/MarkUp/DTD/xhtml-rdfa-1.dtd"/>
+
+  <xsl:strip-space elements="dml:*"/>
 
   <xsl:template match="/dml:dml | /dml:note">
     <html>
@@ -149,13 +153,62 @@
   </xsl:template>
 
 
-  <xsl:template match="dml:citation">
-    <xsl:sequence select="df:message((name(), 'not yet implemented.'), 'warning')"/>
-  </xsl:template>
   <xsl:template match="dml:object">
     <xsl:sequence select="df:message((name(), 'not yet implemented.'), 'warning')"/>
   </xsl:template>
+
   <xsl:template match="dml:quote">
-    <xsl:sequence select="df:message((name(), 'not yet implemented.'), 'warning')"/>
+    <xsl:variable name="element.name" select="
+      if (
+        parent::dml:cell | parent::dml:dml | parent::dml:example | parent::dml:figure |
+        parent::dml:note | parent::dml:section |
+        parent::dml:item[dml:example | dml:figure | dml:p | dml:title | dml:note]
+      ) then
+        'blockquote'
+      else if (dml:example | dml:figure | dml:list | dml:note | dml:p | dml:title | dml:section | dml:table) then
+        df:message(('Invalid', name(), 'element. Wrong parent or children.'), 'fail')
+      else
+        'q'
+    "/>
+    <xsl:variable name="inline.ancestors.count" select="
+      count(
+        ancestor-or-self::dml:quote[not(parent::dml:dml | parent::example | parent::dml:figure |
+        parent::dml:note | parent::dml:section |
+        parent::dml:item[dml:example | dml:figure | dml:p | dml:title | dml:note])]
+      )
+    "/>
+
+    <xsl:element name="{$element.name}">
+      <xsl:if test="@about">
+        <xsl:attribute name="cite" select="@about"/>
+      </xsl:if>
+      <xsl:call-template name="common.attributes"/>
+      <xsl:value-of select="
+        if ($element.name eq 'q') then 
+          df:quotes(., 'open', $inline.ancestors.count)
+        else 
+          ()
+      "/>
+      <xsl:call-template name="common.children">
+        <xsl:with-param name="quote.type" tunnel="yes" select="$element.name"/>
+      </xsl:call-template>
+      <xsl:value-of select="
+        if ($element.name eq 'q') then 
+          df:quotes(., 'close', $inline.ancestors.count)
+        else 
+          ()
+      "/>
+    </xsl:element>
   </xsl:template>
+  
+  <xsl:template match="dml:citation">
+    <xsl:param name="quote.type" as="xs:string" tunnel="yes"/>
+    <xsl:variable name="element.name" select="if ($quote.type eq 'blockquote') then 'p' else 'span'"/>
+    <xsl:element name="{$element.name}">
+      <xsl:call-template name="common.attributes.and.children">
+        <xsl:with-param name="class.attribute" tunnel="yes" select="local-name()"/>
+      </xsl:call-template>
+    </xsl:element>
+  </xsl:template>
+
 </xsl:stylesheet>

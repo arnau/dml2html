@@ -41,4 +41,38 @@
     </xsl:message>
   </xsl:function>
 
+  <xsl:function name="df:quotes">
+    <xsl:param name="context" as="item()"/>
+    <xsl:param name="type" as="xs:string"/>
+    <xsl:param name="ancestors" as="xs:integer"/>
+    
+    <xsl:variable name="position" select="
+      if ($type eq 'open') then 
+        (1, 3)
+      else if ($type eq 'close') then
+        (2, 4)
+      else
+        df:message(('df:quotes() $type only allow values `open` and `close`'), 'fail')
+    "/>
+    <xsl:variable name="quote.variant" select="
+      if (lang('ca', $context)) then
+        $ca.quote.variant
+      else if (lang('es', $context)) then
+        $es.quote.variant
+      else if (lang('ja', $context)) then
+        $ja.quote.variant
+      else if (lang('en', $context)) then
+        $en.quote.variant
+      else
+        $default.quote.variant
+    "/>
+    <xsl:sequence select="
+      if (($ancestors = 1) or empty($quote.variant[$position[1]]) or empty($quote.variant[$position[2]])) then
+          $quote.variant[$position[1]]
+      else
+        $quote.variant[$position[2]]
+    "/>
+  </xsl:function>
+
+
 </xsl:stylesheet>
