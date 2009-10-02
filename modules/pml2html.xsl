@@ -74,12 +74,19 @@
     </span>
   </xsl:template>
   
-  <xsl:template match="pml:variable | pml:param">
-    <em>
+  <xsl:template match="pml:variable">
+    <var>
+      <xsl:call-template name="common.attributes.and.children"/>
+    </var>
+  </xsl:template>
+
+  <xsl:template match="pml:param">
+    <var>
       <xsl:call-template name="common.attributes.and.children">
         <xsl:with-param name="class.attribute" tunnel="yes" select="local-name()"/>
       </xsl:call-template>
-    </em>
+      <xsl:value-of select="if (@type eq 'optional') then concat(' (', $literals/literals/param.optional.label , ')') else ()"/>
+    </var>
   </xsl:template>
 
   <xsl:template match="pml:value">
@@ -134,16 +141,6 @@
       <xsl:call-template name="get.node.prefix"/>
     </xsl:variable>
     <xsl:value-of select="$node.prefix"/><xsl:apply-templates/>
-  </xsl:template>
-
-
-  <xsl:template match="pml:value">
-    <fo:inline xsl:use-attribute-sets="code.value">
-      <xsl:call-template name="common.attributes"/>
-      <xsl:value-of select="$value.prefix"/>
-      <xsl:call-template name="common.children"/>
-      <xsl:value-of select="$value.suffix"/>
-    </fo:inline>
   </xsl:template>
 
   <xsl:template match="pml:param">

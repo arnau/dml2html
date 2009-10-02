@@ -44,6 +44,8 @@
 
   <xsl:strip-space elements="dml:*"/>
 
+  <xsl:variable name="literals" select="document( concat( 'literals/', /dml:dml/@xml:lang, '.xml' ) )"/>
+
   <xsl:template match="/dml:dml | /dml:note">
     <html>
       <xsl:call-template name="common.attributes"/>
