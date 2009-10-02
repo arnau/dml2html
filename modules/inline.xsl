@@ -51,10 +51,16 @@
   </xsl:template>
 
   <xsl:template match="dml:span">
-    <xsl:variable name="element.name" select="if (@href) then 'a' else 'span'"/>
-    <xsl:element name="{$element.name}">
-      <xsl:call-template name="common.attributes.and.children"/>
-    </xsl:element>
+    <xsl:choose>
+      <xsl:when test="@href">
+        <xsl:call-template name="common.attributes.and.children"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <span>
+          <xsl:call-template name="common.attributes.and.children"/>
+        </span>
+      </xsl:otherwise>
+    </xsl:choose>
   </xsl:template>
 
   <xsl:template match="dml:sub | dml:sup">

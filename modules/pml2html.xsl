@@ -74,6 +74,14 @@
     </span>
   </xsl:template>
   
+  <xsl:template match="pml:datatype">
+    <code>
+      <xsl:call-template name="common.attributes.and.children">
+        <xsl:with-param name="class.attribute" tunnel="yes" select="local-name()"/>
+      </xsl:call-template>
+    </code>
+  </xsl:template>
+
   <xsl:template match="pml:variable">
     <var>
       <xsl:call-template name="common.attributes.and.children"/>
@@ -91,20 +99,19 @@
 
   <xsl:template match="pml:value">
     <xsl:variable name="quotes" select="tokenize($value.quotes, ',')"/>
-    <span>
+    <code>
       <xsl:call-template name="common.attributes">
         <xsl:with-param name="class.attribute" tunnel="yes" select="local-name()"/>
       </xsl:call-template>
       <xsl:value-of select="if ($quotes[1]) then $quotes[1] else ()"/>
       <xsl:call-template name="common.children"/>
       <xsl:value-of select="if ($quotes[2]) then $quotes[2] else ()"/>
-    </span>
+    </code>
   </xsl:template>
 
 
-<!--
   <xsl:template name="code.languages">
-    <xsl:choose>
+    <!-- <xsl:choose>
       <xsl:when test="@language='xml'">
         <xsl:copy-of select="fnc:xml( ., xs:integer( $code.linelength ) )"/>
       </xsl:when>
@@ -123,48 +130,7 @@
         </xsl:variable>
         <xsl:copy-of select="replace( $context, '(.+)\s*$', '$1' )"/>
       </xsl:otherwise>
-    </xsl:choose>
+    </xsl:choose> -->
   </xsl:template>
-
-  <xsl:template match="pml:node" mode="toc">
-    (!- - prevent duplicate IDs in ToC - -)
-    <xsl:variable name="node.prefix">
-      <xsl:call-template name="get.node.prefix"/>
-    </xsl:variable>
-    <fo:inline xsl:use-attribute-sets="code.node">
-      <xsl:if test="$node.prefix ne ''"><fo:character character="{$node.prefix}"/></xsl:if><xsl:apply-templates/>
-    </fo:inline>
-  </xsl:template>
-  <xsl:template match="pml:node" mode="bookmark">
-    (!- - prevent duplicate IDs in bookmarks - -)
-    <xsl:variable name="node.prefix">
-      <xsl:call-template name="get.node.prefix"/>
-    </xsl:variable>
-    <xsl:value-of select="$node.prefix"/><xsl:apply-templates/>
-  </xsl:template>
-
-  <xsl:template match="pml:param">
-    <fo:inline xsl:use-attribute-sets="code.param">
-      <xsl:call-template name="common.attributes.and.children"/>
-    </fo:inline>
-    <xsl:if test="@type eq 'optional'">
-      <fo:inline xsl:use-attribute-sets="em">
-        <xsl:value-of select="concat( ' (', $literals/literals/param.optional.label, ')' )"/>
-      </fo:inline>
-    </xsl:if>
-
-  </xsl:template>
-
-  <xsl:template match="pml:variable">
-    <fo:inline xsl:use-attribute-sets="code.variable">
-      <xsl:call-template name="common.attributes.and.children"/>
-    </fo:inline>
-  </xsl:template>
-  <xsl:template match="pml:datatype">
-    <fo:inline xsl:use-attribute-sets="code.datatype">
-      <xsl:call-template name="common.attributes.and.children"/>
-    </fo:inline>
-  </xsl:template>
- -->
 
 </xsl:stylesheet>
