@@ -29,7 +29,7 @@
     <xsl:param name="message" as="item()+"/>
     <xsl:param name="level" as="xs:string"/>
     <xsl:variable name="message" select="string-join(for $i in $message return string($i), ' ')"/>
-    <xsl:variable name="levels" select="('info', 'warning', 'resource')"/>
+    <xsl:variable name="levels" select="('info', 'warning', 'fallback', 'resource')"/>
     <xsl:variable name="condition" select="some $i in $levels satisfies $i eq $level"/>
     <xsl:message terminate="{if ($condition) then 'no' else 'yes'}">
       <xsl:value-of select="
@@ -42,9 +42,6 @@
   </xsl:function>
 
 
-
-
-  <!-- Unused functions -->
   <xsl:param name="ca.quote.variant" select="('«', '»', '“', '”')"/>
   <xsl:param name="es.quote.variant" select="$ca.quote.variant"/>
   <xsl:param name="ja.quote.variant" select="('「', '」', '『', '』')"/>

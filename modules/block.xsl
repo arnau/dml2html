@@ -16,13 +16,15 @@
       <dml:item property="dct:issued">2009-10-01</dml:item>
       <dml:item property="dct:modified">2009-10-01</dml:item>
       <dml:item property="dct:description">
-        <p>Transforms a DML source to HTML.</p>
+        <p>Block templates for dml2html.</p>
       </dml:item>
       <dml:item property="dct:license">
         <!-- todo -->
       </dml:item>
     </dml:list>
   </dml:note>
+  
+  <xsl:param name="quote.marks">false</xsl:param> <!-- (true, false) -->
   
   <xsl:template match="dml:dml/dml:title" mode="metadata">
     <title><xsl:call-template name="common.attributes.and.children"/></title>
@@ -123,17 +125,57 @@
       else
         df:message(('Invalid', name(), 'element. Wrong parent or children.'), 'fail')
     "/>
-
     <xsl:element name="{$element.name}">
       <xsl:if test="@about">
         <xsl:attribute name="cite" select="@about"/>
       </xsl:if>
-      <xsl:call-template name="common.attributes.and.children">
-        <xsl:with-param name="quote.type" tunnel="yes" select="$element.name"/>
-      </xsl:call-template>
+      <xsl:sequence select="
+        if (not(function-available('df:quotes'))) then
+          df:message(('df:quotes(item(), xs:string, xs:integer) is not available.'), 'fallback')
+        else
+          ()
+      "/>
+      <xsl:choose>
+        <xsl:when test="$quote.marks eq 'true' and function-available('df:quotes')">
+          <xsl:call-template name="quote.marks">
+            <xsl:with-param name="quote.type" tunnel="yes" select="$element.name"/>
+          </xsl:call-template>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:call-template name="common.attributes.and.children">
+            <xsl:with-param name="quote.type" tunnel="yes" select="$element.name"/>
+          </xsl:call-template>
+        </xsl:otherwise>
+      </xsl:choose>
     </xsl:element>
   </xsl:template>
   
+  <xsl:template name="quote.marks">
+    <xsl:param name="quote.type" as="xs:string" tunnel="yes"/>
+    <xsl:variable name="inline.ancestors.count" select="
+      count(
+        ancestor-or-self::dml:quote[not(parent::dml:dml | parent::example | parent::dml:figure |
+        parent::dml:note | parent::dml:section |
+        parent::dml:item[dml:example | dml:figure | dml:p | dml:title | dml:note])]
+      )
+    "/>
+
+    <xsl:call-template name="common.attributes"/>
+    <xsl:value-of select="
+      if ($quote.type eq 'q') then 
+        df:quotes(., 'open', $inline.ancestors.count)
+      else 
+        ()
+    " use-when="function-available('df:quotes')"/>
+    <xsl:call-template name="common.children"/>
+    <xsl:value-of select="
+      if ($quote.type eq 'q' and function-available('df:quotes')) then 
+        df:quotes(., 'close', $inline.ancestors.count)
+      else 
+        ()
+    " use-when="function-available('df:quotes')"/>
+  </xsl:template>
+
   <xsl:template match="dml:citation">
     <xsl:param name="quote.type" as="xs:string" tunnel="yes"/>
     <xsl:variable name="element.name" select="if ($quote.type eq 'blockquote') then 'p' else 'span'"/>

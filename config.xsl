@@ -23,4 +23,8 @@
   <xsl:param name="link.stylesheet.all" as="xs:anyURI">../styles/original.css</xsl:param> <!-- xs:anyURI -->
   <xsl:param name="output.type" as="xs:string">xml</xsl:param> <!-- (xml | xhtml | html) -->
 
+
+  <xsl:param name="node.element.prefix"/>
+  <xsl:param name="node.attribute.prefix">@</xsl:param>
+
 </xsl:stylesheet>
