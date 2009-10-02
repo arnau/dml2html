@@ -57,16 +57,15 @@
     "/>
     <xsl:variable name="quote.variant" select="
       if (lang('ca', $context)) then
-        (:tokenize($ca.quote.variant, ','):)
-        $ca.quote.variant
+        tokenize($ca.quote.variant, ',')
       else if (lang('es', $context)) then
-        $es.quote.variant
+        tokenize($es.quote.variant, ',')
       else if (lang('ja', $context)) then
-        $ja.quote.variant
+        tokenize($ja.quote.variant, ',')
       else if (lang('en', $context)) then
-        $en.quote.variant
+        tokenize($en.quote.variant, ',')
       else
-        $default.quote.variant
+        tokenize($default.quote.variant, ',')
     "/>
     <xsl:sequence select="
       if (($ancestors = 1) or empty($quote.variant[$position[1]]) or empty($quote.variant[$position[2]])) then
