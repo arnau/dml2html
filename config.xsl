@@ -23,8 +23,21 @@
   <xsl:param name="link.stylesheet.all" as="xs:anyURI">../styles/original.css</xsl:param> <!-- xs:anyURI -->
   <xsl:param name="output.type" as="xs:string">xml</xsl:param> <!-- (xml | xhtml | html) -->
 
+  <!-- modules/block.xsl -->
+  <xsl:param name="quote.marks">true</xsl:param> <!-- (true, false) -->
 
+  <!-- modules/pml2html-xsl -->
   <xsl:param name="node.element.prefix"/>
   <xsl:param name="node.attribute.prefix">@</xsl:param>
+
+  <xsl:param name="value.quotes">","</xsl:param>
+
+  <!-- functions/common.xsl -->
+  <xsl:param name="ca.quote.variant" select="('«', '»', '“', '”')"/>
+  <!-- <xsl:param name="ca.quote.variant">«,»,“,”</xsl:param> -->
+  <xsl:param name="es.quote.variant" select="$ca.quote.variant"/>
+  <xsl:param name="ja.quote.variant" select="('「', '」', '『', '』')"/>
+  <xsl:param name="en.quote.variant" select="('“', '”', '‘', '’')"/>
+  <xsl:param name="default.quote.variant" select="$en.quote.variant"/>
 
 </xsl:stylesheet>

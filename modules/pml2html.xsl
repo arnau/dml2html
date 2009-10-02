@@ -74,11 +74,23 @@
     </span>
   </xsl:template>
   
-  <xsl:template match="pml:value | pml:variable | pml:param">
-    <span>
+  <xsl:template match="pml:variable | pml:param">
+    <em>
       <xsl:call-template name="common.attributes.and.children">
-        <xsl:with-param name="class.element" tunnel="yes" select="local-name()"/>
+        <xsl:with-param name="class.attribute" tunnel="yes" select="local-name()"/>
       </xsl:call-template>
+    </em>
+  </xsl:template>
+
+  <xsl:template match="pml:value">
+    <xsl:variable name="quotes" select="tokenize($value.quotes, ',')"/>
+    <span>
+      <xsl:call-template name="common.attributes">
+        <xsl:with-param name="class.attribute" tunnel="yes" select="local-name()"/>
+      </xsl:call-template>
+      <xsl:value-of select="if ($quotes[1]) then $quotes[1] else ()"/>
+      <xsl:call-template name="common.children"/>
+      <xsl:value-of select="if ($quotes[2]) then $quotes[2] else ()"/>
     </span>
   </xsl:template>
 
@@ -124,16 +136,6 @@
     <xsl:value-of select="$node.prefix"/><xsl:apply-templates/>
   </xsl:template>
 
-  <xsl:template name="get.node.prefix">
-    <xsl:value-of select="
-      if ( @role eq 'element' ) 
-        then $node.element.prefix 
-      else 
-        if ( @role eq 'attribute' ) 
-          then $node.attribute.prefix 
-        else ' '
-    "/>
-  </xsl:template>
 
   <xsl:template match="pml:value">
     <fo:inline xsl:use-attribute-sets="code.value">
