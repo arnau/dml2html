@@ -14,7 +14,7 @@
     <dml:list>
       <dml:item property="dct:creator">Arnau Siches</dml:item>
       <dml:item property="dct:issued">2009-10-01</dml:item>
-      <dml:item property="dct:modified">2009-10-01</dml:item>
+      <dml:item property="dct:modified">2009-10-02</dml:item>
       <dml:item property="dct:description">
         <p>Block templates for dml2html.</p>
       </dml:item>
@@ -23,8 +23,6 @@
       </dml:item>
     </dml:list>
   </dml:note>
-  
-  <xsl:param name="quote.marks">false</xsl:param> <!-- (true, false) -->
   
   <xsl:template match="dml:dml/dml:title" mode="metadata">
     <title><xsl:call-template name="common.attributes.and.children"/></title>
@@ -129,14 +127,8 @@
       <xsl:if test="@about">
         <xsl:attribute name="cite" select="@about"/>
       </xsl:if>
-      <xsl:sequence select="
-        if (not(function-available('df:quotes'))) then
-          df:message(('df:quotes(item(), xs:string, xs:integer) is not available.'), 'fallback')
-        else
-          ()
-      "/>
       <xsl:choose>
-        <xsl:when test="$quote.marks eq 'true' and function-available('df:quotes')">
+        <xsl:when test="$quote.marks eq 'true'">
           <xsl:call-template name="quote.marks">
             <xsl:with-param name="quote.type" tunnel="yes" select="$element.name"/>
           </xsl:call-template>
@@ -166,14 +158,14 @@
         df:quotes(., 'open', $inline.ancestors.count)
       else 
         ()
-    " use-when="function-available('df:quotes')"/>
+    "/>
     <xsl:call-template name="common.children"/>
     <xsl:value-of select="
       if ($quote.type eq 'q' and function-available('df:quotes')) then 
         df:quotes(., 'close', $inline.ancestors.count)
       else 
         ()
-    " use-when="function-available('df:quotes')"/>
+    "/>
   </xsl:template>
 
   <xsl:template match="dml:citation">

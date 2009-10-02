@@ -42,12 +42,6 @@
   </xsl:function>
 
 
-  <xsl:param name="ca.quote.variant" select="('«', '»', '“', '”')"/>
-  <xsl:param name="es.quote.variant" select="$ca.quote.variant"/>
-  <xsl:param name="ja.quote.variant" select="('「', '」', '『', '』')"/>
-  <xsl:param name="en.quote.variant" select="('“', '”', '‘', '’')"/>
-  <xsl:param name="default.quote.variant" select="$en.quote.variant"/>
-
   <xsl:function name="df:quotes">
     <xsl:param name="context" as="item()"/>
     <xsl:param name="type" as="xs:string"/>
@@ -63,6 +57,7 @@
     "/>
     <xsl:variable name="quote.variant" select="
       if (lang('ca', $context)) then
+        (:tokenize($ca.quote.variant, ','):)
         $ca.quote.variant
       else if (lang('es', $context)) then
         $es.quote.variant
