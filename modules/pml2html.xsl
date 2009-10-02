@@ -14,7 +14,7 @@
     <dml:list>
       <dml:item property="dct:creator">Arnau Siches</dml:item>
       <dml:item property="dct:issued">2009-09-30</dml:item>
-      <dml:item property="dct:modified">2009-09-30</dml:item>
+      <dml:item property="dct:modified">2009-10-02</dml:item>
       <dml:item property="dct:description">
         <p>Templates for pml2html.</p>
       </dml:item>
@@ -24,7 +24,8 @@
     </dml:list>
   </dml:note>
   
-  <xsl:strip-space elements="pml:node pml:value"/>
+  <!-- <xsl:strip-space elements="pml:node pml:value"/> -->
+  <xsl:strip-space elements="pml:*"/>
 
   <xsl:template match="pml:code">
     <xsl:if test="@language">
@@ -56,16 +57,29 @@
   </xsl:template>
 
   <xsl:template match="pml:node">
-    <xsl:sequence select="df:message((name(), 'not yet implemented.'), 'warning')"/>
+    <xsl:variable name="role" select="@role"/>
+    <span>
+      <xsl:call-template name="common.attributes">
+        <xsl:with-param name="class.attribute" tunnel="yes" select="if ($role ne '') then $role else ()"/>
+      </xsl:call-template>
+      <xsl:value-of select="
+        if ($role eq 'element') then
+          $node.element.prefix
+        else if ($role eq 'attribute') then
+          $node.attribute.prefix
+        else
+          ()
+      "/>
+      <xsl:call-template name="common.children"/>
+    </span>
   </xsl:template>
-  <xsl:template match="pml:value">
-    <xsl:sequence select="df:message((name(), 'not yet implemented.'), 'warning')"/>
-  </xsl:template>
-  <xsl:template match="pml:variable">
-    <xsl:sequence select="df:message((name(), 'not yet implemented.'), 'warning')"/>
-  </xsl:template>
-  <xsl:template match="pml:param">
-    <xsl:sequence select="df:message((name(), 'not yet implemented.'), 'warning')"/>
+  
+  <xsl:template match="pml:value | pml:variable | pml:param">
+    <span>
+      <xsl:call-template name="common.attributes.and.children">
+        <xsl:with-param name="class.element" tunnel="yes" select="local-name()"/>
+      </xsl:call-template>
+    </span>
   </xsl:template>
 
 
@@ -91,16 +105,6 @@
         <xsl:copy-of select="replace( $context, '(.+)\s*$', '$1' )"/>
       </xsl:otherwise>
     </xsl:choose>
-  </xsl:template>
-
-  <xsl:template match="pml:node">
-    <xsl:variable name="node.prefix">
-      <xsl:call-template name="get.node.prefix"/>
-    </xsl:variable>
-    <fo:inline xsl:use-attribute-sets="code.node">
-      <xsl:call-template name="common.attributes"/>
-      <xsl:if test="$node.prefix ne ''"><fo:character character="{$node.prefix}"/></xsl:if><xsl:call-template name="common.children"/>
-    </fo:inline>
   </xsl:template>
 
   <xsl:template match="pml:node" mode="toc">
