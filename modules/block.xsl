@@ -161,7 +161,7 @@
     "/>
     <xsl:call-template name="common.children"/>
     <xsl:value-of select="
-      if ($quote.type eq 'q' and function-available('df:quotes')) then 
+      if ($quote.type eq 'q') then 
         df:quotes(., 'close', $inline.ancestors.count)
       else 
         ()

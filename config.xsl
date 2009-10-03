@@ -37,8 +37,7 @@
   <xsl:param name="value.quotes">","</xsl:param>
 
   <!-- functions/common.xsl -->
-  <xsl:param name="ca.quote.variant"/>
-  <!-- <xsl:param name="ca.quote.variant">«,»,“,”</xsl:param> -->
+  <xsl:param name="ca.quote.variant">«,»,“,”</xsl:param>
   <xsl:param name="es.quote.variant" select="$ca.quote.variant"/>
   <xsl:param name="ja.quote.variant">「,」,『,』</xsl:param>
   <xsl:param name="en.quote.variant">“,”,‘,’</xsl:param>
