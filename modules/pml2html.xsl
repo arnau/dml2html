@@ -14,7 +14,7 @@
     <dml:list>
       <dml:item property="dct:creator">Arnau Siches</dml:item>
       <dml:item property="dct:issued">2009-09-30</dml:item>
-      <dml:item property="dct:modified">2009-10-02</dml:item>
+      <dml:item property="dct:modified">2009-10-04</dml:item>
       <dml:item property="dct:description">
         <p>Templates for pml2html.</p>
       </dml:item>
@@ -28,9 +28,6 @@
   <xsl:strip-space elements="pml:*"/>
 
   <xsl:template match="pml:code">
-    <xsl:if test="@language">
-      <xsl:sequence select="df:message(('highlighting for', @language , 'code not yet implemented.'), 'warning')"/>
-    </xsl:if>
     <xsl:variable name="language" select="if (@language) then @language else ()"/>
     <xsl:choose>
       <xsl:when test="parent::dml:dml, parent::dml:section, parent::dml:example, parent::dml:item[dml:example, dml:figure, dml:p, dml:title, dml:note], parent::dml:note">
@@ -51,8 +48,8 @@
   <xsl:template name="code.template">
     <code>
       <xsl:call-template name="common.attributes"/>
-      <!-- <xsl:call-template name="code.languages"/> -->
-      <xsl:call-template name="common.children"/>
+      <xsl:call-template name="code.languages"/>
+      <!-- <xsl:call-template name="common.children"/> -->
     </code>
   </xsl:template>
 
@@ -111,22 +108,33 @@
 
 
   <xsl:template name="code.languages">
+    <xsl:choose>
+      <xsl:when test="@language eq 'xml'">
+        <xsl:copy-of select="df:xml( ., xs:integer( $code.linelength ) )"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:if test="@language">
+          <xsl:sequence select="df:message(('highlighting for', @language , 'code not yet implemented.'), 'warning')"/>
+        </xsl:if>
+        <xsl:copy-of select="."/>
+      </xsl:otherwise>
+    </xsl:choose>
     <!-- <xsl:choose>
       <xsl:when test="@language='xml'">
-        <xsl:copy-of select="fnc:xml( ., xs:integer( $code.linelength ) )"/>
+        <xsl:copy-of select="df:xml( ., xs:integer( $code.linelength ) )"/>
       </xsl:when>
       <xsl:when test="@language='css'">
-        <xsl:copy-of select="fnc:css( ., xs:integer( $code.linelength ) )"/>
+        <xsl:copy-of select="df:css( ., xs:integer( $code.linelength ) )"/>
       </xsl:when>
       <xsl:when test="@language='ebnf'">
-        <xsl:copy-of select="fnc:ebnf( ., xs:integer( $code.linelength ) )"/>
+        <xsl:copy-of select="df:ebnf( ., xs:integer( $code.linelength ) )"/>
       </xsl:when>
       <xsl:when test="@language='xpath'">
-        <xsl:copy-of select="fnc:xpath( ., xs:integer( $code.linelength ) )"/>
+        <xsl:copy-of select="df:xpath( ., xs:integer( $code.linelength ) )"/>
       </xsl:when>
       <xsl:otherwise>
         <xsl:variable name="context">
-          <xsl:value-of select="fnc:linelength( ., xs:integer( $code.linelength ) )"/>
+          <xsl:value-of select="df:linelength( ., xs:integer( $code.linelength ) )"/>
         </xsl:variable>
         <xsl:copy-of select="replace( $context, '(.+)\s*$', '$1' )"/>
       </xsl:otherwise>

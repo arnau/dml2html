@@ -22,25 +22,25 @@
     </dml:list>
   </dml:note>
 
-  <!-- <dml:note about="#highlight.xml">
+  
+  <dml:note about="#highlight.xml">
     <dml:list>
       <dml:item property="dct:creator">Arnau Siches</dml:item>
-      <dml:item property="dct:issued">2008-10-20</dml:item>
+      <dml:item property="dct:issued">2009-10-04</dml:item>
+      <dml:item property="dct:modified">2009-10-04</dml:item>
       <dml:item property="dct:description">Highlighting XML code</dml:item>
     </dml:list>
   </dml:note>
   <xsl:function name="df:xml" xml:id="highlight.xml">
     <xsl:param name="context"/>
     <xsl:param name="limit" as="xs:integer"/>
-    -->
+
     <xsl:variable name="comment" as="xs:string">&lt;!--[\w\W-[&lt;&gt;]]*--></xsl:variable>
-    <!--
-    <xsl:variable name="tag" as="xs:string">(&lt;/?)([a-zA-Z]+:)?([\w\W-[&lt;&gt;]]+?)(&gt;)</xsl:variable>
+    <xsl:variable name="tag" as="xs:string">(&lt;/?)([a-zA-Z]+:)?([\w\W-[&lt;>]]+?)(>)</xsl:variable>
 
     <xsl:variable name="context.formatted">
       <xsl:value-of select="df:linelength( $context, $limit )" separator=""/>
     </xsl:variable>
-
     <xsl:analyze-string select="
       if ( $limit ) then 
         (: strip last &#xA; :)
@@ -48,23 +48,23 @@
       else $context
     " regex="{$comment}">
       <xsl:matching-substring>
-        <fo:inline xsl:use-attribute-sets="xml.comment">
+        <span class="comment">
           <xsl:copy-of select="."/>
-        </fo:inline>
+        </span>
       </xsl:matching-substring>
       <xsl:non-matching-substring>
         <xsl:analyze-string select="." regex="{$tag}">
           <xsl:matching-substring>
-            <fo:inline xsl:use-attribute-sets="xml.tag">
+            <span class="tag">
               <xsl:value-of select="regex-group(1)"/>
               <xsl:if test="regex-group(1)">
-                <fo:inline xsl:use-attribute-sets="xml.ns">
+                <span class="ns">
                   <xsl:value-of select="regex-group(2)"/>
-                </fo:inline>
+                </span>
               </xsl:if>
               <xsl:copy-of select="df:xml.attribute( regex-group(3) )"/>
               <xsl:value-of select="regex-group(4)"/>
-            </fo:inline>
+            </span>
           </xsl:matching-substring>
           <xsl:non-matching-substring>
             <xsl:copy-of select="df:xml.attribute(.)"/>
@@ -73,37 +73,35 @@
       </xsl:non-matching-substring>
     </xsl:analyze-string>
   </xsl:function>
-  
+
   <xsl:function name="df:xml.attribute">
     <xsl:param name="context"/>
     <xsl:variable name="attribute" as="xs:string">([a-zA-Z]+:)?([a-z\-]+=&#34;)([\w\W-[&#34;]]*)(&#34;)</xsl:variable>
     <xsl:analyze-string select="$context" regex="{$attribute}">
       <xsl:matching-substring>
-        <fo:inline xsl:use-attribute-sets="xml.attribute">
+        <span class="attribute">
           <xsl:if test="regex-group(1)">
-            <fo:inline xsl:use-attribute-sets="xml.attribute.ns">
+            <span class="ns">
               <xsl:value-of select="regex-group(1)"/>
-            </fo:inline>
+            </span>
           </xsl:if>
           <xsl:value-of select="regex-group(2)"/>
           <xsl:if test="regex-group(3)">
-            <fo:inline xsl:use-attribute-sets="xml.attribute.value">
-              (: attempt to control mixin sintax :)
-
-              <xsl:choose>
+            <span class="value">
+              <!-- attempt to control mixin sintax -->
+              <!-- <xsl:choose>
                 <xsl:when test="matches( regex-group(2), '(match|select)' )">
                   <xsl:copy-of select="df:xpath( regex-group(3) )"/>
                 </xsl:when>
                 <xsl:otherwise>
                   <xsl:value-of select="regex-group(3)"/>
                 </xsl:otherwise>
-              </xsl:choose>
-
+              </xsl:choose> -->
               <xsl:value-of select="regex-group(3)"/>
-            </fo:inline>
+            </span>
           </xsl:if>
           <xsl:value-of select="regex-group(4)"/>
-        </fo:inline>
+        </span>
       </xsl:matching-substring>
       <xsl:non-matching-substring>
         <xsl:copy-of select="."/>
@@ -111,7 +109,7 @@
     </xsl:analyze-string>
   </xsl:function>
   
-
+<!--
   <xsl:function name="df:xpath">
     <xsl:param name="context"/>
     <xsl:param name="limit" as="xs:integer"/>

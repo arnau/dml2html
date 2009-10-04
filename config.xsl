@@ -9,7 +9,8 @@
   <dml:note>
     <dml:list>
       <dml:item property="dct:creator">Arnau Siches</dml:item>
-      <dml:item property="dct:issued">2008-12-27</dml:item>
+      <dml:item property="dct:issued">2009-09-28</dml:item>
+      <dml:item property="dct:issued">2009-10-04</dml:item>
       <dml:item property="dct:description">
         <p>Basic parameters and attribute set definitions for dml2html.xsl</p>
       </dml:item>
@@ -30,7 +31,7 @@
   <!-- modules/block.xsl -->
   <xsl:param name="quote.marks">true</xsl:param> <!-- (true, false) -->
 
-  <!-- modules/pml2html-xsl -->
+  <!-- modules/pml2html.xsl -->
   <xsl:param name="node.element.prefix"/>
   <xsl:param name="node.attribute.prefix">@</xsl:param>
 
@@ -42,5 +43,8 @@
   <xsl:param name="ja.quote.variant">「,」,『,』</xsl:param>
   <xsl:param name="en.quote.variant">“,”,‘,’</xsl:param>
   <xsl:param name="default.quote.variant" select="$en.quote.variant"/>
+
+  <!-- functions/string.xsl -->
+  <xsl:param name="code.linelength">80</xsl:param>
 
 </xsl:stylesheet>

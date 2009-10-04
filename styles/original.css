@@ -1,4 +1,11 @@
 @charset "utf-8";
+/*
+@prefix dct: <http://purl.org/dc/terms/> .
+<> dct:creator "Arnau Siches" ;
+  dct:issued "2009-09-28" ;
+  dct:modified "2009-10-04" ;
+  dct:description "Basic stylesheet for dml2html HTML output" ;
+*/
 
 .note {
   margin: 1em;
@@ -6,4 +13,24 @@
 }
 .sidebar {
   border: 3px solid #000;
+}
+
+.xml {
+  
+}
+
+.xml .tag {
+  color: blue;
+}
+.xml .attribute {
+  color: green;
+}
+.xml .value {
+  color: #950;
+}
+.xml .ns {
+  color: #005;
+}
+.xml .attribute .ns {
+  color: #050;
 }
