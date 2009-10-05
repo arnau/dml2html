@@ -106,6 +106,18 @@
   </xsl:template>
 
   <xsl:template match="dml:object">
+    <xsl:if test="@type">
+      <xsl:sequence select="df:message(('@type attribute not yet implemented.'), 'warning')"/>
+    </xsl:if>
+    <xsl:variable name="image.mime.types" select="('image/png', 'image/gif', 'image/jpg', 'image/tiff', 'image/bmp')"/>
+    <xsl:variable name="type" select="
+      if (empty(@type)) then
+        ''
+      else if (some $i in $mime.types satisfies @type) then
+        replace(@type, 'image/(.+)', '$1')
+      else
+        'image'(:'object' when @type will be implemented:)
+    "/>
     <xsl:variable name="src.attribute" select="
       if (matches(@src, $fallback.pattern)) then
         (
@@ -125,15 +137,16 @@
       else
         normalize-space()
     "/>
-    <xsl:sequence select="df:message(('dml:object has output only as an img element.'), 'warning')"/>
-    <xsl:if test="@type">
-      <xsl:sequence select="df:message(('@type attribute not yet implemented.'), 'warning')"/>
-    </xsl:if>
-
-    <img src="{$src.attribute}">
-      <xsl:attribute name="alt"><xsl:value-of select="$alt.attribute"/></xsl:attribute>
-    </img>
-    
+    <xsl:choose>
+      <xsl:when test="$type eq 'object'">
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:sequence select="df:message(('dml:object has output only as an img element.'), 'warning')"/>
+        <img src="{$src.attribute}">
+          <xsl:attribute name="alt"><xsl:value-of select="$alt.attribute"/></xsl:attribute>
+        </img>
+      </xsl:otherwise>
+    </xsl:choose>
   </xsl:template>
 
   <xsl:template match="dml:quote">
