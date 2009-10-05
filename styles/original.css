@@ -15,8 +15,8 @@
   border: 3px solid #000;
 }
 
-.xml {
-  
+q {
+  quotes: none;
 }
 
 .xml .tag {
@@ -33,4 +33,19 @@
 }
 .xml .attribute .ns {
   color: #050;
+}
+
+.css .rule {}
+.css .selector {
+  color: #056;
+}
+.css .property {
+  color: #900;
+}
+.css .value {
+  color: #090;
+}
+.css .important {
+  color: #f00;
+  font-weight: bold;
 }

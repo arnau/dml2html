@@ -27,7 +27,7 @@
     <dml:list>
       <dml:item property="dct:creator">Arnau Siches</dml:item>
       <dml:item property="dct:issued">2009-10-04</dml:item>
-      <dml:item property="dct:modified">2009-10-04</dml:item>
+      <dml:item property="dct:modified">2009-10-05</dml:item>
       <dml:item property="dct:description">Highlighting XML code</dml:item>
     </dml:list>
   </dml:note>
@@ -199,7 +199,7 @@
       </xsl:non-matching-substring>
     </xsl:analyze-string>
   </xsl:function>
-
+-->
   <xsl:function name="df:css">
     <xsl:param name="context"/>
     <xsl:param name="limit" as="xs:integer"/>
@@ -218,40 +218,40 @@
       else $context
     " regex="{$rule}">
       <xsl:matching-substring>
-        <fo:inline xsl:use-attribute-sets="css.rule">
-          <fo:inline xsl:use-attribute-sets="css.selector">
+        <span class="rule">
+          <span class="selector">
             <xsl:value-of select="regex-group(1)"/>
-          </fo:inline>
+          </span>
           <xsl:value-of select="regex-group(2)"/>
           <xsl:analyze-string select="regex-group(3)" regex="{$property}">
             <xsl:matching-substring>
-              <fo:inline xsl:use-attribute-sets="css.property">
+              <span class="property">
                 <xsl:value-of select="regex-group(1)"/>
-              </fo:inline>
-              <fo:inline xsl:use-attribute-sets="css.value">
+              </span>
+              <span class="value">
                 <xsl:value-of select="regex-group(2)"/>
-              </fo:inline>
+              </span>
               <xsl:if test="regex-group(3)">
-                <fo:inline xsl:use-attribute-sets="css.important">
+                <span class="important">
                   <xsl:value-of select="regex-group(3)"/>
-                </fo:inline>
+                </span>
               </xsl:if>
               <xsl:value-of select="regex-group(4)"/>
             </xsl:matching-substring>
           </xsl:analyze-string>
           <xsl:value-of select="regex-group(4)"/>
-        </fo:inline>
+        </span>
       </xsl:matching-substring>
       <xsl:non-matching-substring>
         <xsl:analyze-string select="." regex="{$arroba-rule}">
           <xsl:matching-substring>
-            <fo:inline xsl:use-attribute-sets="css.selector">
+            <span class="selector">
               <xsl:value-of select="regex-group(1)"/>
-              <fo:inline xsl:use-attribute-sets="css.value">
+              <span class="value">
                 <xsl:value-of select="regex-group(2)"/>
-              </fo:inline>
+              </span>
               <xsl:value-of select="regex-group(3)"/>
-            </fo:inline>
+            </span>
           </xsl:matching-substring>
           <xsl:non-matching-substring>
             <xsl:copy-of select="."/>
@@ -259,9 +259,8 @@
         </xsl:analyze-string>
       </xsl:non-matching-substring>
     </xsl:analyze-string>
-
   </xsl:function>
-
+<!--
   <xsl:function name="df:ebnf">
     <xsl:param name="context"/>
     <xsl:param name="limit" as="xs:integer"/>
