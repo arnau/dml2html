@@ -14,7 +14,7 @@
     <dml:list>
       <dml:item property="dct:creator">Arnau Siches</dml:item>
       <dml:item property="dct:issued">2009-09-28</dml:item>
-      <dml:item property="dct:modified">2009-09-29</dml:item>
+      <dml:item property="dct:modified">2009-10-05</dml:item>
       <dml:item property="dct:description">
         <p>Common templates library for dml2html.</p>
       </dml:item>
@@ -70,6 +70,7 @@
     </xsl:if>
     
     <xsl:if test="@xml:base and $output.type eq 'xml'">
+      <xsl:sequence select="df:message('@xml:base attribute is a non-tested feature.','warning')"/>
       <xsl:attribute name="xml:base" select="@xml:base"/>
     </xsl:if>
   </xsl:template>
