@@ -10,7 +10,7 @@
     <dml:list>
       <dml:item property="dct:creator">Arnau Siches</dml:item>
       <dml:item property="dct:issued">2009-09-28</dml:item>
-      <dml:item property="dct:issued">2009-10-04</dml:item>
+      <dml:item property="dct:issued">2009-10-05</dml:item>
       <dml:item property="dct:description">
         <p>Basic parameters and attribute set definitions for dml2html.xsl</p>
       </dml:item>
@@ -30,7 +30,9 @@
 
   <!-- modules/block.xsl -->
   <xsl:param name="quote.marks">true</xsl:param> <!-- (true, false) -->
-
+  <xsl:param name="fallback.pattern">\.svg$</xsl:param>
+  <xsl:param name="fallback.pattern.replace">/png$1.png</xsl:param>
+  
   <!-- modules/pml2html.xsl -->
   <xsl:param name="node.element.prefix"/>
   <xsl:param name="node.attribute.prefix">@</xsl:param>

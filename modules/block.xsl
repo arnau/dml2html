@@ -14,7 +14,7 @@
     <dml:list>
       <dml:item property="dct:creator">Arnau Siches</dml:item>
       <dml:item property="dct:issued">2009-10-01</dml:item>
-      <dml:item property="dct:modified">2009-10-02</dml:item>
+      <dml:item property="dct:modified">2009-10-05</dml:item>
       <dml:item property="dct:description">
         <p>Block templates for dml2html.</p>
       </dml:item>
@@ -105,9 +105,35 @@
     </div>
   </xsl:template>
 
-
   <xsl:template match="dml:object">
-    <xsl:sequence select="df:message((name(), 'not yet implemented.'), 'warning')"/>
+    <xsl:variable name="src.attribute" select="
+      if (matches(@src, $fallback.pattern)) then
+        (
+          replace(@src, '(/.+)\.svg$', 
+          $fallback.pattern.replace), df:message(('SVG fallback to PNG.'), 'warning')
+        )
+      else
+        @src
+    "/>
+    <xsl:variable name="child.elements" select="concat('(', string-join(for $i in child::* return $i/name(), ','), ')')"/>
+    <xsl:variable name="alt.attribute" select="
+      if (some $i in . satisfies element()) then
+        (
+          normalize-space(),
+          df:message(('Cleaned the element nodes found as alternate content of dml:object element.', $child.elements, '.'), 'info')
+        )
+      else
+        normalize-space()
+    "/>
+    <xsl:sequence select="df:message(('dml:object has output only as an img element.'), 'warning')"/>
+    <xsl:if test="@type">
+      <xsl:sequence select="df:message(('@type attribute not yet implemented.'), 'warning')"/>
+    </xsl:if>
+
+    <img src="{$src.attribute}">
+      <xsl:attribute name="alt"><xsl:value-of select="$alt.attribute"/></xsl:attribute>
+    </img>
+    
   </xsl:template>
 
   <xsl:template match="dml:quote">
