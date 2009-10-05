@@ -27,7 +27,9 @@
   <xsl:template name="common.children">
     <xsl:choose>
       <xsl:when test="@href">
-        <xsl:call-template name="href.controller"/>
+        <xsl:call-template name="href.controller">
+          <xsl:with-param name="href.attribute" tunnel="yes" select="@href"/>
+        </xsl:call-template>
       </xsl:when>
       <xsl:otherwise>
         <xsl:apply-templates/>
@@ -73,9 +75,9 @@
   </xsl:template>
   
   <xsl:template name="href.controller">
-    <xsl:variable name="href" select="@href"/>
-    <xsl:variable name="first.char" select="substring( $href, 1, 1 )"/>
-    <xsl:variable name="idref" select="substring-after( $href, '#' )"/>
+    <xsl:param name="href.attribute" tunnel="yes" as="xs:anyURI"/>
+    <xsl:variable name="first.char" select="substring( $href.attribute, 1, 1 )"/>
+    <xsl:variable name="idref" select="substring-after( $href.attribute, '#' )"/>
     
     <xsl:choose>
       <xsl:when test="dml:cell | dml:dml | dml:example | dml:figure | dml:group | dml:item | dml:list | dml:note | dml:p | dml:section | dml:summary | dml:table | dml:title">
@@ -94,7 +96,7 @@
         </xsl:choose>
       </xsl:when>
       <xsl:otherwise>
-        <a href="{$href}">
+        <a href="{$href.attribute}">
           <xsl:apply-templates/>
         </a>
       </xsl:otherwise>
