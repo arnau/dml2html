@@ -65,15 +65,16 @@
       </xsl:choose>
     </xsl:if>
 
-    <!-- <xsl:if test="@xml:id">
-      <xsl:attribute name="id" select="@xml:id"/>
-    </xsl:if> -->
-    
-    <xsl:if test="self::dml:section">
-      <xsl:call-template name="set.id">
-        <xsl:with-param name="id.attribute" tunnel="yes" select="@xml:id"/>
-      </xsl:call-template>
-    </xsl:if>
+    <xsl:choose>
+      <xsl:when test="self::dml:section">
+        <xsl:call-template name="set.id">
+          <xsl:with-param name="id.attribute" tunnel="yes" select="@xml:id"/>
+        </xsl:call-template>
+      </xsl:when>
+      <xsl:when test="@xml:id">
+        <xsl:attribute name="id" select="@xml:id"/>
+      </xsl:when>
+    </xsl:choose>
     
     <xsl:if test="@xml:base and $output.type eq 'xml'">
       <xsl:sequence select="df:message('@xml:base attribute is a non-tested feature.','warning')"/>
