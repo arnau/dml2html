@@ -167,7 +167,7 @@
         <xsl:attribute name="cite" select="@about"/>
       </xsl:if>
       <xsl:choose>
-        <xsl:when test="$quote.marks eq 'true'">
+        <xsl:when test="xs:boolean($quote.marks)">
           <xsl:call-template name="quote.marks">
             <xsl:with-param name="quote.type" tunnel="yes" select="$element.name"/>
           </xsl:call-template>

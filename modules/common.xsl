@@ -65,8 +65,14 @@
       </xsl:choose>
     </xsl:if>
 
-    <xsl:if test="@xml:id">
+    <!-- <xsl:if test="@xml:id">
       <xsl:attribute name="id" select="@xml:id"/>
+    </xsl:if> -->
+    
+    <xsl:if test="self::dml:section">
+      <xsl:call-template name="set.id">
+        <xsl:with-param name="id.attribute" tunnel="yes" select="@xml:id"/>
+      </xsl:call-template>
     </xsl:if>
     
     <xsl:if test="@xml:base and $output.type eq 'xml'">
@@ -108,4 +114,27 @@
     <xsl:call-template name="common.attributes"/>
     <xsl:call-template name="common.children"/>
   </xsl:template>
+
+
+  <xsl:template name="get.id">
+    <xsl:param name="id.attribute" tunnel="yes" as="xs:string?"/>
+    <xsl:value-of select="
+      if (empty($id.attribute)) then 
+        generate-id() 
+      else 
+        $id.attribute
+    "/>
+  </xsl:template>
+  <xsl:template name="set.id">
+    <xsl:attribute name="id">
+      <xsl:call-template name="get.id"/>
+    </xsl:attribute>
+  </xsl:template>
+  <xsl:template name="get.idref">
+    <xsl:variable name="id">
+      <xsl:call-template name="get.id"/>
+    </xsl:variable>
+    <xsl:value-of select="concat('#', $id)"/>
+  </xsl:template>
+
 </xsl:stylesheet>

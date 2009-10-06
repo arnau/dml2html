@@ -10,7 +10,7 @@
     <dml:list>
       <dml:item property="dct:creator">Arnau Siches</dml:item>
       <dml:item property="dct:issued">2009-09-28</dml:item>
-      <dml:item property="dct:issued">2009-10-05</dml:item>
+      <dml:item property="dct:issued">2009-10-06</dml:item>
       <dml:item property="dct:description">
         <p>Basic parameters and attribute set definitions for dml2html.xsl</p>
       </dml:item>
@@ -27,6 +27,16 @@
 
   <xsl:param name="link.stylesheet.all" as="xs:anyURI">../styles/original.css</xsl:param> <!-- xs:anyURI -->
   <xsl:param name="output.type" as="xs:string">xml</xsl:param> <!-- (xml | xhtml | html) -->
+
+  <!-- modules/toc.xsl -->
+  <!-- $toc: true | false -->
+  <xsl:param name="toc">true</xsl:param>
+  <!-- $toc.depth: integer-->
+  <xsl:param name="toc.depth">3</xsl:param>
+  <!-- $toc.skipped.sections: integer -->
+  <xsl:param name="toc.skipped.sections">1</xsl:param>
+  <!-- $toc.position: -1 | 0 | 1 (-1 puts ToC after all content, 0 puts ToC before all content and 1 puts ToC before first non $toc.skipped.sections) -->
+  <xsl:param name="toc.position">1</xsl:param>
 
   <!-- modules/block.xsl -->
   <xsl:param name="quote.marks">true</xsl:param> <!-- (true, false) -->

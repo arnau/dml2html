@@ -14,6 +14,7 @@
   <xsl:import href="modules/common.xsl"/>
   <xsl:import href="modules/inline.xsl"/>
   <xsl:import href="modules/block.xsl"/>
+  <xsl:import href="modules/toc.xsl"/>
   <xsl:import href="modules/pml2html.xsl"/>
 
   <xsl:import href="config.xsl"/>
@@ -22,7 +23,7 @@
     <dml:list>
       <dml:item property="dct:creator">Arnau Siches</dml:item>
       <dml:item property="dct:issued">2009-09-28</dml:item>
-      <dml:item property="dct:modified">2009-10-01</dml:item>
+      <dml:item property="dct:modified">2009-10-06</dml:item>
       <dml:item property="dct:description">
         <p>Transforms a DML source to HTML.</p>
       </dml:item>
@@ -62,7 +63,9 @@
   </xsl:template>
   <xsl:template name="body">
     <body>
-      <!-- <xsl:apply-templates mode="toc"/> -->
+      <xsl:if test="xs:boolean($toc)">
+        <xsl:call-template name="toc"/>
+      </xsl:if>
       <xsl:apply-templates/>
     </body>
   </xsl:template>
