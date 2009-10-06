@@ -14,7 +14,7 @@
     <dml:list>
       <dml:item property="dct:creator">Arnau Siches</dml:item>
       <dml:item property="dct:issued">2009-10-01</dml:item>
-      <dml:item property="dct:modified">2009-10-05</dml:item>
+      <dml:item property="dct:modified">2009-10-06</dml:item>
       <dml:item property="dct:description">
         <p>Block templates for dml2html.</p>
       </dml:item>
@@ -116,8 +116,7 @@
       else if (some $i in $image.mime.types satisfies @type) then
         replace(@type, 'image/(.+)', '$1')
       else
-        'image'
-        (:'object' when @type will be implemented:)
+        'object'
     "/>
     <xsl:variable name="src.attribute" select="
       if (matches(@src, $fallback.pattern)) then
@@ -140,9 +139,9 @@
     "/>
     <xsl:choose>
       <xsl:when test="$type eq 'object'">
+        <xsl:sequence select="df:message(('dml:object has no output yet as html:object.'), 'fail')"/>
       </xsl:when>
       <xsl:otherwise>
-        <xsl:sequence select="df:message(('dml:object has output only as an img element.'), 'warning')"/>
         <img src="{$src.attribute}">
           <xsl:attribute name="alt"><xsl:value-of select="$alt.attribute"/></xsl:attribute>
         </img>
