@@ -113,10 +113,11 @@
     <xsl:variable name="type" select="
       if (empty(@type)) then
         ''
-      else if (some $i in $mime.types satisfies @type) then
+      else if (some $i in $image.mime.types satisfies @type) then
         replace(@type, 'image/(.+)', '$1')
       else
-        'image'(:'object' when @type will be implemented:)
+        'image'
+        (:'object' when @type will be implemented:)
     "/>
     <xsl:variable name="src.attribute" select="
       if (matches(@src, $fallback.pattern)) then
