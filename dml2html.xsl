@@ -23,7 +23,7 @@
     <dml:list>
       <dml:item property="dct:creator">Arnau Siches</dml:item>
       <dml:item property="dct:issued">2009-09-28</dml:item>
-      <dml:item property="dct:modified">2009-10-06</dml:item>
+      <dml:item property="dct:modified">2009-10-07</dml:item>
       <dml:item property="dct:description">
         <p>Transforms a DML source to HTML.</p>
       </dml:item>
@@ -45,7 +45,7 @@
 
   <xsl:strip-space elements="dml:*"/>
 
-  <xsl:variable name="literals" select="document( concat( 'literals/', /dml:dml/@xml:lang, '.xml' ) )"/>
+  <xsl:variable name="literals" select="document(concat('literals/', /dml:dml/@xml:lang, '.xml'))"/>
 
   <xsl:template match="/dml:dml | /dml:note">
     <html>
@@ -63,10 +63,13 @@
   </xsl:template>
   <xsl:template name="body">
     <body>
-      <xsl:if test="xs:boolean($toc)">
+      <xsl:if test="xs:boolean($toc) and (xs:integer($toc.position) eq -1)">
         <xsl:call-template name="toc"/>
       </xsl:if>
       <xsl:apply-templates/>
+      <xsl:if test="xs:boolean($toc) and (xs:integer($toc.position) eq 1)">
+        <xsl:call-template name="toc"/>
+      </xsl:if>
     </body>
   </xsl:template>
   

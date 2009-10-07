@@ -14,7 +14,7 @@
     <dml:list>
       <dml:item property="dct:creator">Arnau Siches</dml:item>
       <dml:item property="dct:issued">2009-10-01</dml:item>
-      <dml:item property="dct:modified">2009-10-06</dml:item>
+      <dml:item property="dct:modified">2009-10-07</dml:item>
       <dml:item property="dct:description">
         <p>Block templates for dml2html.</p>
       </dml:item>
@@ -40,6 +40,16 @@
   </xsl:template>
 
   <xsl:template match="dml:section">
+    <xsl:if test="count(/dml:dml/dml:section) le xs:integer($toc.skipped.sections)">
+      <xsl:sequence select="df:message(('$toc.skipped.sections is out of range. This document has only', count(/dml:dml/dml:section), 'sections.'), 'fail')"/>
+    </xsl:if>
+    <xsl:if test="
+      xs:boolean($toc) and
+      parent::dml:dml and (xs:integer($toc.position) eq 0) and
+      (count(preceding-sibling::dml:section) eq xs:integer($toc.skipped.sections))
+    ">
+      <xsl:call-template name="toc"/>
+    </xsl:if>
     <div>
       <xsl:call-template name="common.attributes.and.children"/>
     </div>
