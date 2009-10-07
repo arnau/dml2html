@@ -14,7 +14,7 @@
     <dml:list>
       <dml:item property="dct:creator">Arnau Siches</dml:item>
       <dml:item property="dct:issued">2009-09-28</dml:item>
-      <dml:item property="dct:modified">2009-10-05</dml:item>
+      <dml:item property="dct:modified">2009-10-06</dml:item>
       <dml:item property="dct:description">
         <p>Common templates library for dml2html.</p>
       </dml:item>
@@ -84,16 +84,16 @@
   
   <xsl:template name="href.controller">
     <xsl:param name="href.attribute" tunnel="yes" as="xs:anyURI"/>
-    <xsl:variable name="first.char" select="substring( $href.attribute, 1, 1 )"/>
-    <xsl:variable name="idref" select="substring-after( $href.attribute, '#' )"/>
+    <xsl:variable name="first.char" select="substring($href.attribute, 1, 1)"/>
+    <xsl:variable name="idref" select="substring-after($href.attribute, '#')"/>
     
     <xsl:choose>
       <xsl:when test="dml:cell | dml:dml | dml:example | dml:figure | dml:group | dml:item | dml:list | dml:note | dml:p | dml:section | dml:summary | dml:table | dml:title">
         <xsl:sequence select="df:message(('Block elements cannot be child of', name(), 'element when it has @href attribute.'),'fail')"/>
       </xsl:when>
-      <xsl:when test="($first.char eq '#') and not( id( $idref ) )">
+      <xsl:when test="($first.char eq '#') and not(id($idref))">
         <xsl:choose>
-          <xsl:when test="xs:boolean( $debug )">
+          <xsl:when test="xs:boolean($debug)">
             <span class="xref.error">
               <xsl:apply-templates/> (xref error)
             </span>

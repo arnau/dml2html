@@ -39,12 +39,12 @@
     <xsl:variable name="tag" as="xs:string">(&lt;/?)([a-zA-Z]+:)?([\w\W-[&lt;>]]+?)(>)</xsl:variable>
 
     <xsl:variable name="context.formatted">
-      <xsl:value-of select="df:linelength( $context, $limit )" separator=""/>
+      <xsl:value-of select="df:linelength($context, $limit)" separator=""/>
     </xsl:variable>
     <xsl:analyze-string select="
-      if ( $limit ) then 
+      if ($limit) then 
         (: strip last &#xA; :)
-        replace( $context.formatted, '(.+)\s*$', '$1' )
+        replace($context.formatted, '(.+)\s*$', '$1')
       else $context
     " regex="{$comment}">
       <xsl:matching-substring>
@@ -62,7 +62,7 @@
                   <xsl:value-of select="regex-group(2)"/>
                 </span>
               </xsl:if>
-              <xsl:copy-of select="df:xml.attribute( regex-group(3) )"/>
+              <xsl:copy-of select="df:xml.attribute(regex-group(3))"/>
               <xsl:value-of select="regex-group(4)"/>
             </span>
           </xsl:matching-substring>
@@ -90,8 +90,8 @@
             <span class="value">
               <!-- attempt to control mixin sintax -->
               <!-- <xsl:choose>
-                <xsl:when test="matches( regex-group(2), '(match|select)' )">
-                  <xsl:copy-of select="df:xpath( regex-group(3) )"/>
+                <xsl:when test="matches(regex-group(2), '(match|select)')">
+                  <xsl:copy-of select="df:xpath(regex-group(3))"/>
                 </xsl:when>
                 <xsl:otherwise>
                   <xsl:value-of select="regex-group(3)"/>
@@ -124,12 +124,12 @@
     <xsl:variable name="node">(@?\i\c*)</xsl:variable>
 
     <xsl:variable name="context.formatted">
-      <xsl:value-of select="df:linelength( $context, $limit )" separator=""/>
+      <xsl:value-of select="df:linelength($context, $limit)" separator=""/>
     </xsl:variable>
     <xsl:analyze-string select="
-      if ( $limit ) then
+      if ($limit) then
         (: strip last &#xA; :)
-        replace( $context.formatted, '(.+)\s*$', '$1' )
+        replace($context.formatted, '(.+)\s*$', '$1')
       else $context
     " regex="{$comment}">
       <xsl:matching-substring>
@@ -208,13 +208,13 @@
     <xsl:variable name="arroba-rule" as="xs:string">(\s*@[\w\W-[""\n]]+\s+?)([\w\W]+?)(;\s*)</xsl:variable>
 
     <xsl:variable name="context.formatted">
-      <xsl:value-of select="df:linelength( $context, $limit )"/>
+      <xsl:value-of select="df:linelength($context, $limit)"/>
     </xsl:variable>
 
     <xsl:analyze-string select="
-      if ( $limit ) then 
+      if ($limit) then 
         (: strip last &#xA; :)
-        replace( $context.formatted, '(.+)\s*$', '$1' )
+        replace($context.formatted, '(.+)\s*$', '$1')
       else $context
     " regex="{$rule}">
       <xsl:matching-substring>
@@ -270,13 +270,13 @@
 
   <xsl:template match="dml:span" mode="code">
     <xsl:variable name="href" select="@href"/>
-    <xsl:variable name="first.char" select="substring( $href, 1, 1 )"/>
-    <xsl:variable name="idref" select="substring-after( $href, '#' )"/>
-    <xsl:variable name="element.name" select="id( $idref )/local-name()"/>
+    <xsl:variable name="first.char" select="substring($href, 1, 1)"/>
+    <xsl:variable name="idref" select="substring-after($href, '#')"/>
+    <xsl:variable name="element.name" select="id($idref)/local-name()"/>
     <xsl:choose>
-      <xsl:when test="not( id( $idref ) ) and $first.char eq '#'">
+      <xsl:when test="not(id($idref)) and $first.char eq '#'">
         <xsl:choose>
-          <xsl:when test="xs:boolean( $debug )">
+          <xsl:when test="xs:boolean($debug)">
             <fo:inline xsl:use-attribute-sets="xref.error">
               <xsl:apply-templates/> (xref error)
             </fo:inline>

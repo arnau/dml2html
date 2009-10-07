@@ -71,11 +71,11 @@
             <xsl:choose>
               <xsl:when test="not(matches(normalize-space($first.part.line), '\s')) or matches($last.char, '\s')">
                 <xsl:value-of select="
-                  ( 
+                  (
                     $first.part.line,
                     '&#xA;',
                     $indent.spaces.line,
-                    df:linelength( $second.part.line, $original.limit - string-length( $indent.spaces.line ) )
+                    df:linelength($second.part.line, $original.limit - string-length($indent.spaces.line))
                   )" separator=""/>
 
               </xsl:when>

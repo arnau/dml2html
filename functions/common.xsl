@@ -34,7 +34,7 @@
     <xsl:message terminate="{if ($condition) then 'no' else 'yes'}">
       <xsl:value-of select="
         if ($condition) then
-          (upper-case( $level ), $message)
+          (upper-case($level), $message)
         else
           ('FATAL ERROR', $message)
       " separator=": "/>
