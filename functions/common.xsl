@@ -41,6 +41,27 @@
     </xsl:message>
   </xsl:function>
 
+  <xsl:function name="df:param.constructor">
+    <xsl:param name="param.name" as="xs:string"/>
+    
+    <xsl:variable name="values" select="$params//*[@rdf:ID eq $param.name]/rdf:value"/>
+    <xsl:sequence select="$values"/>
+  </xsl:function>
+
+  <xsl:function name="df:param.constructor">
+    <xsl:param name="param.name" as="xs:string"/>
+    <xsl:param name="lang" as="xs:string"/>
+    
+    <xsl:sequence select="
+      if (string-length($lang) != 2) then
+        df:message(concat('$lang of df:param.constructor(''', $param.name ,''', $lang) needs a valid ISO 639-1 language code'), 'fail')
+      else
+        ()
+    "/>
+    <xsl:variable name="values" select="$params//*[@rdf:ID eq $param.name]/rdf:value[lang($lang)]"/>
+    <xsl:sequence select="$values"/>
+  </xsl:function>
+
 
   <xsl:function name="df:quotes">
     <xsl:param name="context" as="item()"/>

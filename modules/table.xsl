@@ -14,7 +14,7 @@
     <dml:list>
       <dml:item property="dct:creator">Arnau Siches</dml:item>
       <dml:item property="dct:issued">2009-09-30</dml:item>
-      <dml:item property="dct:modified">2009-09-30</dml:item>
+      <dml:item property="dct:modified">2009-10-07</dml:item>
       <dml:item property="dct:description">
         <p>Table templates for dml2html.</p>
       </dml:item>
@@ -23,18 +23,69 @@
       </dml:item>
     </dml:list>
   </dml:note>
-  
-  <xsl:template match="dml:cell">
-    <xsl:sequence select="df:message((name(), 'not yet implemented.'), 'warning')"/>
-  </xsl:template>
-  <xsl:template match="dml:group">
-    <xsl:sequence select="df:message((name(), 'not yet implemented.'), 'warning')"/>
-  </xsl:template>
+
   <xsl:template match="dml:table">
-    <xsl:sequence select="df:message((name(), 'not yet implemented.'), 'warning')"/>
+    <table>
+      <xsl:sequence select="
+        if (@scope) then
+          df:message('@scope attribute is not yet implemented. Fallback to @scope=row', 'warning')
+        else
+          df:message('@scope attribute is required for dml:table element. Fallback to @scope=row', 'warning')
+      "/>
+      <xsl:call-template name="set.summary"/>
+      <xsl:call-template name="common.attributes.and.children"/>
+    </table>
   </xsl:template>
-  <xsl:template match="dml:summary">
-    <xsl:sequence select="df:message((name(), 'not yet implemented.'), 'warning')"/>
+
+  <xsl:template name="set.summary">
+    <xsl:if test="dml:summary">
+      <xsl:variable name="child.elements" select="concat('(', string-join(for $i in dml:summary/* return $i/name(), ','), ')')"/>
+      <xsl:attribute name="summary" select="
+        if (some $i in dml:summary/* satisfies element()) then
+          (
+            normalize-space(dml:summary),
+            df:message(('Cleaned the children element nodes found in dml:summary element.', $child.elements, '.'), 'info')
+          )
+        else
+          normalize-space(dml:summary)
+      "/>
+    </xsl:if>
+  </xsl:template>
+  <xsl:template match="dml:summary"/>
+
+  <xsl:template match="dml:table/dml:title">
+    <caption>
+      <xsl:call-template name="common.attributes.and.children"/>
+    </caption>
   </xsl:template>
   
+  <xsl:template match="dml:group">
+    <xsl:choose>
+      <xsl:when test="@role eq 'header'">
+        <thead><xsl:call-template name="common.attributes.and.children"/></thead>
+      </xsl:when>
+      <xsl:when test="@role eq 'footer'">
+        <tfoot><xsl:call-template name="common.attributes.and.children"/></tfoot>
+      </xsl:when>
+      <xsl:when test="parent::dml:table">
+        <tbody><xsl:call-template name="common.attributes.and.children"/></tbody>
+      </xsl:when>
+      <xsl:otherwise>
+        <tr><xsl:call-template name="common.attributes.and.children"/></tr>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+
+  <xsl:template match="dml:group/dml:title">
+    <th>
+      <xsl:call-template name="common.attributes.and.children"/>
+    </th>
+  </xsl:template>
+
+  <xsl:template match="dml:cell">
+    <td>
+      <xsl:call-template name="common.attributes.and.children"/>
+    </td>
+  </xsl:template>
+
 </xsl:stylesheet>

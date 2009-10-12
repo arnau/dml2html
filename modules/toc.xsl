@@ -29,7 +29,7 @@
       <h2><xsl:value-of select="$literals/literals/toc.title"/></h2>
       <ul>
         <xsl:apply-templates select="
-          if (xs:boolean($debug)) then
+          if ($debug) then
             /dml:dml/dml:section[(position() gt xs:integer($toc.skipped.sections))]
           else 
             /dml:dml/dml:section[(position() gt xs:integer($toc.skipped.sections)) and 
@@ -52,7 +52,7 @@
       <xsl:if test="dml:section and (count(ancestor::dml:section) + 1 lt xs:integer($toc.depth))">
         <ul>
           <xsl:apply-templates select="
-            if (xs:boolean($debug)) then
+            if ($debug) then
               dml:section
             else
               dml:section[not(some $i in $status.hidden.values satisfies @status)]

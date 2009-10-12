@@ -27,7 +27,7 @@
   <xsl:template match="dml:dml/dml:title" mode="metadata">
     <title><xsl:call-template name="common.attributes.and.children"/></title>
   </xsl:template>
-  <xsl:template match="*[self::dml:example, self::dml:figure]/dml:title">
+  <xsl:template match="dml:example/dml:title | dml:figure/dml:title">
     <p property="dct:title">
       <xsl:call-template name="common.attributes.and.children"/>
     </p>

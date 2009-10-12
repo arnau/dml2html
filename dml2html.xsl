@@ -11,19 +11,19 @@
   exclude-result-prefixes="xs dml pml df">
   
   <xsl:import href="functions/common.xsl"/>
+  <xsl:import href="modules/params.xsl"/>
   <xsl:import href="modules/common.xsl"/>
   <xsl:import href="modules/inline.xsl"/>
   <xsl:import href="modules/block.xsl"/>
+  <xsl:import href="modules/table.xsl"/>
   <xsl:import href="modules/toc.xsl"/>
   <xsl:import href="modules/pml2html.xsl"/>
 
-  <xsl:import href="config.xsl"/>
-  
   <dml:note>
     <dml:list>
       <dml:item property="dct:creator">Arnau Siches</dml:item>
       <dml:item property="dct:issued">2009-09-28</dml:item>
-      <dml:item property="dct:modified">2009-10-07</dml:item>
+      <dml:item property="dct:modified">2009-10-12</dml:item>
       <dml:item property="dct:description">
         <p>Transforms a DML source to HTML.</p>
       </dml:item>
@@ -54,7 +54,7 @@
       <xsl:call-template name="body"/>
     </html>
   </xsl:template>
-
+  
   <xsl:template name="head">
     <head>
       <xsl:apply-templates select="dml:title" mode="metadata"/>

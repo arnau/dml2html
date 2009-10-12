@@ -3,7 +3,7 @@
 @prefix dct: <http://purl.org/dc/terms/> .
 <> dct:creator "Arnau Siches" ;
   dct:issued "2009-09-28" ;
-  dct:modified "2009-10-04" ;
+  dct:modified "2009-10-07" ;
   dct:description "Basic stylesheet for dml2html HTML output" ;
 */
 
@@ -17,6 +17,31 @@
 
 q {
   quotes: none;
+}
+
+table {
+  border-collapse: collapse;
+  margin: auto;
+  width: 100%;
+}
+table.w30 {
+  width: 30em;
+}
+table.w40 {
+  width: 40em;
+}
+table.center th,
+table.center td {
+  text-align: center;
+}
+
+th {
+  border-top: 3px solid #000;
+  border-bottom: 3px solid #000;
+}
+
+.element, .attribute, .value {
+  color: #590;
 }
 
 .xml .tag {

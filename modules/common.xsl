@@ -93,7 +93,7 @@
       </xsl:when>
       <xsl:when test="($first.char eq '#') and not(id($idref))">
         <xsl:choose>
-          <xsl:when test="xs:boolean($debug)">
+          <xsl:when test="$debug">
             <span class="xref.error">
               <xsl:apply-templates/> (xref error)
             </span>

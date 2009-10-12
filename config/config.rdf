@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF
+  xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+  xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+  xmlns:dct="http://purl.org/dc/terms/"
+  xmlns:foaf="http://xmlns.com/foaf/0.1/"
+  xmlns:dml="http://purl.oclc.org/NET/dml/1.0/"
+  xmlns:pml="http://purl.oclc.org/NET/pml/1.0/">
+
+  <rdf:Description rdf:about="">
+    <dct:title xml:lang="en">Params for dml2html</dct:title>
+    <dct:creator>Arnau Siches</dct:creator>
+    <dct:issued>2009-10-09</dct:issued>
+    <dct:modified>2009-10-12</dct:modified>
+    <dct:description rdf:parseType="Literal" xml:lang="en">
+      <dml:note>
+        <p>Basic parameters and attribute set definitions for dml2html.</p>
+      </dml:note>
+    </dct:description>
+    <dct:license>
+      (: todo :)
+    </dct:license>
+  </rdf:Description>
+  
+  <rdf:Description rdf:ID="debug">
+    <dct:title xml:lang="en">Debug</dct:title>
+    <dct:description rdf:parseType="Literal" xml:lang="en">
+      <dml:note>
+        <p><pml:param>debug</pml:param> param is typed as <pml:type>xs:boolean</pml:type>.</p>
+        <p>It toggles debug mode.</p>
+      </dml:note>
+    </dct:description>
+    
+    <rdf:value rdf:datatype="http://www.w3.org/TR/xmlschema-2/#boolean">true</rdf:value>
+  </rdf:Description>
+
+  <rdf:Description rdf:ID="status.hidden.values">
+    <dct:title xml:lang="en">Status hidden values</dct:title>
+    <dct:description rdf:parseType="Literal" xml:lang="en">
+      <dml:note>
+        <p><pml:param>status.hidden.values</pml:param> param is typed as <pml:type>xs:NMTOKEN</pml:type>.</p>
+        <p>It defines the values of <pml:node role="attribute">status</pml:node> attribute should be output if and only if <pml:param>debug</pml:param> is <pml:value>true</pml:value>.</p>
+      </dml:note>
+    </dct:description>
+    
+    <rdf:value rdf:datatype="http://www.w3.org/TR/xmlschema-2/#NMTOKEN">deleted</rdf:value>
+    <rdf:value rdf:datatype="http://www.w3.org/TR/xmlschema-2/#NMTOKEN">draft</rdf:value>
+  </rdf:Description>
+
+  <rdf:Description rdf:ID="link.stylesheet.all">
+    <dct:title xml:lang="en">Cascading Style Sheet for all media</dct:title>
+    <dct:description rdf:parseType="Literal" xml:lang="en">
+      <dml:note>
+        <p><pml:param>link.stylesheet.all</pml:param> param is typed as <pml:type>xs:anyURI</pml:type>.</p>
+        <p>It defines the URI of CSS applied to output HTML.</p>
+      </dml:note>
+    </dct:description>
+    
+    <rdf:value rdf:datatype="http://www.w3.org/TR/xmlschema-2/#anyURI">../styles/original.css</rdf:value>
+  </rdf:Description>
+
+  <rdf:Description rdf:ID="output.type">
+    <dct:title xml:lang="en">Output media type</dct:title>
+    <dct:description rdf:parseType="Literal" xml:lang="en">
+      <dml:note>
+        <p><pml:param>output.type</pml:param> param is typed as <pml:type>xs:NMTOKEN</pml:type>.</p>
+        <p>It defines the type of HTML output. This param is used to control output like <pml:node role="attribute">lang</pml:node> and <pml:node role="attribute">xml:lang</pml:node> in every context (xml, xhtml and html).</p>
+      </dml:note>
+    </dct:description>
+    
+    <rdf:value rdf:datatype="http://www.w3.org/TR/xmlschema-2/#NMTOKEN">xml</rdf:value>
+  </rdf:Description>
+  <rdf:Description rdf:ID="output.types">
+    <dct:title xml:lang="en">Output media types</dct:title>
+    <dct:description rdf:parseType="Literal" xml:lang="en">
+      <dml:note>
+        <p><pml:param>output.types</pml:param> param is typed as <pml:type>xs:NMTOKENS</pml:type></p>
+        <p>It defines the possible types of HTML output.</p>
+      </dml:note>
+    </dct:description>
+    
+    <rdf:value rdf:datatype="http://www.w3.org/TR/xmlschema-2/#NMTOKEN">xml</rdf:value>
+    <rdf:value rdf:datatype="http://www.w3.org/TR/xmlschema-2/#NMTOKEN">xhtml</rdf:value>
+    <rdf:value rdf:datatype="http://www.w3.org/TR/xmlschema-2/#NMTOKEN">html</rdf:value>
+  </rdf:Description>
+
+  <rdf:Description rdf:ID="toc">
+    <dct:title xml:lang="en">ToC Toggle</dct:title>
+    <dct:description rdf:parseType="Literal" xml:lang="en">
+      <dml:note>
+        <p><pml:param>toc</pml:param> param is typed as <pml:type>xs:boolean</pml:type>.</p>
+        <p>It toggles ToC generation.</p>
+      </dml:note>
+    </dct:description>
+    
+    <rdf:value rdf:datatype="http://www.w3.org/TR/xmlschema-2/#boolean">true</rdf:value>
+  </rdf:Description>
+
+  <rdf:Description rdf:ID="toc.depth">
+    <dct:title xml:lang="en">ToC depth</dct:title>
+    <dct:description rdf:parseType="Literal" xml:lang="en">
+      <dml:note>
+        <p><pml:param>toc.depth</pml:param> param is typed as <pml:type>xs:nonNegativeInteger</pml:type>.</p>
+        <p>It defines which depth sections are reflected in ToC.</p>
+      </dml:note>
+    </dct:description>
+    
+    <rdf:value rdf:datatype="http://www.w3.org/TR/xmlschema-2/#nonNegativeInteger">3</rdf:value>
+  </rdf:Description>
+
+  <rdf:Description rdf:ID="toc.skipped.sections">
+    <dct:title xml:lang="en">ToC skipped sections</dct:title>
+    <dct:description rdf:parseType="Literal" xml:lang="en">
+      <dml:note>
+        <p><pml:param>toc.skipped.sections</pml:param> param is typed as <pml:type>xs:nonNegativeInteger</pml:type>.</p>
+        <p>It defines how many sections are skipped in ToC.</p>
+      </dml:note>
+    </dct:description>
+    
+    <rdf:value rdf:datatype="http://www.w3.org/TR/xmlschema-2/#nonNegativeInteger">1</rdf:value>
+  </rdf:Description>
+
+  <rdf:Description rdf:ID="toc.position">
+    <dct:title xml:lang="en">ToC position</dct:title>
+    <dct:description rdf:parseType="Literal" xml:lang="en">
+      <dml:note>
+        <p><pml:param>toc.position</pml:param> param is typed as <pml:type>xs:integer</pml:type> but restricted to {-1, 0, 1}.</p>
+        <p>It defines the place of ToC. <pml:value>-1</pml:value> puts ToC before all content, <pml:value>0</pml:value> puts ToC before first non <pml:param>toc.skipped.sections</pml:param> and <pml:value>1</pml:value> puts ToC after all content</p>
+      </dml:note>
+    </dct:description>
+    
+    <rdf:value rdf:datatype="http://www.w3.org/TR/xmlschema-2/#integer">0</rdf:value>
+  </rdf:Description>
+
+  <rdf:Description rdf:ID="quote.marks">
+    <dct:title xml:lang="en">Quote marks</dct:title>
+    <dct:description rdf:parseType="Literal" xml:lang="en">
+      <dml:note>
+        <p><pml:param>quote.makrs</pml:param> param is typed as <pml:type>xs:boolean</pml:type>.</p>
+        <p>It toggle generation of quotes in inline <pml:node role="element">quote</pml:node> element.</p>
+      </dml:note>
+    </dct:description>
+    
+    <rdf:value rdf:datatype="http://www.w3.org/TR/xmlschema-2/#boolean">true</rdf:value>
+  </rdf:Description>
+
+  <rdf:Description rdf:ID="fallback.pattern">
+    <dct:title xml:lang="en">Fallback pattern</dct:title>
+    <dct:description rdf:parseType="Literal" xml:lang="en">
+      <dml:note>
+        <p><pml:param>fallback.pattern</pml:param> param is typed as <pml:type>xs:string</pml:type> but contains a valid regular expression.</p>
+        <p>It matches image path pattern.</p>
+      </dml:note>
+    </dct:description>
+    
+    <rdf:value rdf:datatype="http://www.w3.org/TR/xmlschema-2/#string">\.svg$</rdf:value>
+  </rdf:Description>
+
+  <rdf:Description rdf:ID="fallback.pattern.replace">
+    <dct:title xml:lang="en">Fallback pattern replace</dct:title>
+    <dct:description rdf:parseType="Literal" xml:lang="en">
+      <dml:note>
+        <p><pml:param>fallback.pattern.replace</pml:param> param is typed as <pml:type>xs:string</pml:type> but contains a valid regular expression.</p>
+        <p>It replaces <pml:param>fallback.pattern</pml:param> match.</p>
+      </dml:note>
+    </dct:description>
+    
+    <rdf:value rdf:datatype="http://www.w3.org/TR/xmlschema-2/#string">/png$1.png</rdf:value>
+  </rdf:Description>
+
+  <rdf:Description rdf:ID="node.element.prefix">
+    <dct:title xml:lang="en">Node element prefix</dct:title>
+    <dct:description rdf:parseType="Literal" xml:lang="en">
+      <dml:note>
+        <p><pml:param>node.element.prefix</pml:param> param is typed as <pml:type>xs:token</pml:type>.</p>
+
+      </dml:note>
+    </dct:description>
+    
+    <rdf:value rdf:datatype="http://www.w3.org/TR/xmlschema-2/#token"/>
+  </rdf:Description>
+
+  <rdf:Description rdf:ID="node.attribute.prefix">
+    <dct:title xml:lang="en">Node attribute prefix</dct:title>
+    <dct:description rdf:parseType="Literal" xml:lang="en">
+      <dml:note>
+        <p><pml:param>node.attribute.prefix</pml:param> param is typed as <pml:type>xs:token</pml:type>.</p>
+
+      </dml:note>
+    </dct:description>
+    
+    <rdf:value rdf:datatype="http://www.w3.org/TR/xmlschema-2/#token">@</rdf:value>
+  </rdf:Description>
+
+  <rdf:Description rdf:ID="value.quotes">
+    <dct:title xml:lang="en">Value quotes</dct:title>
+    <dct:description rdf:parseType="Literal" xml:lang="en">
+      <dml:note>
+        <p><pml:param>value.quotes</pml:param> param is typed as <pml:type>xs:token</pml:type> separated by comma (,).</p>
+
+      </dml:note>
+    </dct:description>
+    
+    <rdf:value rdf:datatype="http://www.w3.org/TR/xmlschema-2/#token">","</rdf:value>
+  </rdf:Description>
+
+  <rdf:Description rdf:ID="code.linelength">
+    <dct:title xml:lang="en">Code linelength</dct:title>
+    <dct:description rdf:parseType="Literal" xml:lang="en">
+      <dml:note>
+        <p><pml:param>code.linelength</pml:param> param is typed as <pml:type>xs:nonNegativeInteger</pml:type>.</p>
+
+      </dml:note>
+    </dct:description>
+
+    <rdf:value rdf:datatype="http://www.w3.org/TR/xmlschema-2/#nonNegativeInteger">80</rdf:value>
+  </rdf:Description>
+
+  <rdf:Description rdf:ID="quote.variant">
+    <dct:title xml:lang="en">Quote variant</dct:title>
+    <dct:description rdf:parseType="Literal" xml:lang="en">
+      <dml:note>
+        <p><pml:param>quote.variant</pml:param> param is typed as <pml:type>xs:token</pml:type> separated by comma (,).</p>
+
+      </dml:note>
+    </dct:description>
+
+    <rdf:value rdf:datatype="http://www.w3.org/TR/xmlschema-2/#token" xml:lang="ca">«,»,“,”</rdf:value>
+    <rdf:value rdf:datatype="http://www.w3.org/TR/xmlschema-2/#token" xml:lang="en">“,”,‘,’</rdf:value>
+    <rdf:value rdf:datatype="http://www.w3.org/TR/xmlschema-2/#token" xml:lang="es">«,»,“,”</rdf:value>
+    <rdf:value rdf:datatype="http://www.w3.org/TR/xmlschema-2/#token" xml:lang="ja">「,」,『,』</rdf:value>
+  </rdf:Description>
+
+</rdf:RDF>

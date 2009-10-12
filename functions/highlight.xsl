@@ -276,7 +276,7 @@
     <xsl:choose>
       <xsl:when test="not(id($idref)) and $first.char eq '#'">
         <xsl:choose>
-          <xsl:when test="xs:boolean($debug)">
+          <xsl:when test="$debug">
             <fo:inline xsl:use-attribute-sets="xref.error">
               <xsl:apply-templates/> (xref error)
             </fo:inline>
