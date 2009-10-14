@@ -14,7 +14,7 @@
     <dml:list>
       <dml:item property="dct:creator">Arnau Siches</dml:item>
       <dml:item property="dct:issued">2009-09-28</dml:item>
-      <dml:item property="dct:modified">2009-10-13</dml:item>
+      <dml:item property="dct:modified">2009-10-14</dml:item>
       <dml:item property="dct:description">
         <p>Common templates library for dml2html.</p>
       </dml:item>
@@ -41,6 +41,9 @@
     <xsl:choose>
       <xsl:when test="not(boolean($href.attribute))">
         <xsl:apply-templates mode="self"/>
+      </xsl:when>
+      <xsl:when test="*[@href]">
+        <xsl:sequence select="df:message('Elements with @href attributes cannot has children with @href attribute.','fail')"/>
       </xsl:when>
       <xsl:when test="dml:cell | dml:dml | dml:example | dml:figure | dml:group | dml:item | dml:list | dml:note | dml:p | dml:section | dml:summary | dml:table | dml:title">
         <xsl:sequence select="df:message(('Block elements cannot be child of', name(), 'element when it has @href attribute.'),'fail')"/>
