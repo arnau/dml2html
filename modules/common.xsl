@@ -14,7 +14,7 @@
     <dml:list>
       <dml:item property="dct:creator">Arnau Siches</dml:item>
       <dml:item property="dct:issued">2009-09-28</dml:item>
-      <dml:item property="dct:modified">2009-10-06</dml:item>
+      <dml:item property="dct:modified">2009-10-13</dml:item>
       <dml:item property="dct:description">
         <p>Common templates library for dml2html.</p>
       </dml:item>
@@ -24,19 +24,47 @@
     </dml:list>
   </dml:note>
   
+  <xsl:template match="*" mode="self">
+    <xsl:apply-templates select="
+      if ($debug) then
+        self::node()
+      else
+        self::node()[not(some $i in $status.hidden.values satisfies @status)]
+    "/>
+  </xsl:template>
+
   <xsl:template name="common.children">
+    <xsl:variable name="href.attribute" select="@href"/>
+    <xsl:variable name="first.char" select="substring($href.attribute, 1, 1)"/>
+    <xsl:variable name="idref" select="substring-after($href.attribute, '#')"/>
+
     <xsl:choose>
-      <xsl:when test="@href">
-        <xsl:call-template name="href.controller">
-          <xsl:with-param name="href.attribute" tunnel="yes" select="@href"/>
-        </xsl:call-template>
+      <xsl:when test="not(boolean($href.attribute))">
+        <xsl:apply-templates mode="self"/>
+      </xsl:when>
+      <xsl:when test="dml:cell | dml:dml | dml:example | dml:figure | dml:group | dml:item | dml:list | dml:note | dml:p | dml:section | dml:summary | dml:table | dml:title">
+        <xsl:sequence select="df:message(('Block elements cannot be child of', name(), 'element when it has @href attribute.'),'fail')"/>
+      </xsl:when>
+      <xsl:when test="($first.char eq '#') and not(id($idref))">
+        <xsl:choose>
+          <xsl:when test="$debug">
+            <span class="xref.error">
+              <xsl:apply-templates mode="self"/> (xref error)
+            </span>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:apply-templates mode="self"/>
+          </xsl:otherwise>
+        </xsl:choose>
       </xsl:when>
       <xsl:otherwise>
-        <xsl:apply-templates/>
+        <a href="{$href.attribute}">
+          <xsl:apply-templates mode="self"/>
+        </a>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
-  
+
   <xsl:template name="common.attributes">
     <xsl:param name="class.attribute" as="xs:string?" tunnel="yes"/>
     <xsl:if test="@class or $class.attribute">
@@ -80,35 +108,6 @@
       <xsl:sequence select="df:message('@xml:base attribute is a non-tested feature.','warning')"/>
       <xsl:attribute name="xml:base" select="@xml:base"/>
     </xsl:if>
-  </xsl:template>
-  
-  <xsl:template name="href.controller">
-    <xsl:param name="href.attribute" tunnel="yes" as="xs:anyURI"/>
-    <xsl:variable name="first.char" select="substring($href.attribute, 1, 1)"/>
-    <xsl:variable name="idref" select="substring-after($href.attribute, '#')"/>
-    
-    <xsl:choose>
-      <xsl:when test="dml:cell | dml:dml | dml:example | dml:figure | dml:group | dml:item | dml:list | dml:note | dml:p | dml:section | dml:summary | dml:table | dml:title">
-        <xsl:sequence select="df:message(('Block elements cannot be child of', name(), 'element when it has @href attribute.'),'fail')"/>
-      </xsl:when>
-      <xsl:when test="($first.char eq '#') and not(id($idref))">
-        <xsl:choose>
-          <xsl:when test="$debug">
-            <span class="xref.error">
-              <xsl:apply-templates/> (xref error)
-            </span>
-          </xsl:when>
-          <xsl:otherwise>
-            <xsl:apply-templates/>
-          </xsl:otherwise>
-        </xsl:choose>
-      </xsl:when>
-      <xsl:otherwise>
-        <a href="{$href.attribute}">
-          <xsl:apply-templates/>
-        </a>
-      </xsl:otherwise>
-    </xsl:choose>
   </xsl:template>
   
   <xsl:template name="common.attributes.and.children">

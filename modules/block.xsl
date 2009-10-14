@@ -14,7 +14,7 @@
     <dml:list>
       <dml:item property="dct:creator">Arnau Siches</dml:item>
       <dml:item property="dct:issued">2009-10-01</dml:item>
-      <dml:item property="dct:modified">2009-10-07</dml:item>
+      <dml:item property="dct:modified">2009-10-13</dml:item>
       <dml:item property="dct:description">
         <p>Block templates for dml2html.</p>
       </dml:item>
@@ -70,26 +70,31 @@
       else 'ul'
     "/>
 
-    <xsl:apply-templates select="dml:title"/>
+    <xsl:apply-templates select="dml:title" mode="self"/>
+    
     <xsl:element name="{$element.name}">
       <xsl:call-template name="common.attributes"/>
-      <xsl:apply-templates select="* except dml:title"/>
+      <xsl:apply-templates select="node() except dml:title" mode="self"/>
     </xsl:element>
   </xsl:template>
+  
   <xsl:template match="dml:item">
     <xsl:choose>
       <xsl:when test="dml:title">
-        <dt>
-          <xsl:call-template name="common.attributes"/>
-          <xsl:apply-templates select="dml:title/node()"/>
-        </dt>
-        <dd><xsl:apply-templates select="* except dml:title"/></dd>
+        <xsl:apply-templates select="dml:title" mode="self"/>
+        <dd><xsl:apply-templates select="node() except dml:title" mode="self"/></dd>
       </xsl:when>
       <xsl:otherwise>
         <li><xsl:call-template name="common.attributes.and.children"/></li>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
+
+  <xsl:template match="dml:item/dml:title">
+    <dt><xsl:call-template name="common.attributes.and.children"/></dt>
+  </xsl:template>
+
+
 
   <xsl:template match="dml:example | dml:figure">
     <div>
