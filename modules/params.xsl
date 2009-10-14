@@ -12,7 +12,7 @@
     <dml:list>
       <dml:item property="dct:creator">Arnau Siches</dml:item>
       <dml:item property="dct:issued">2009-09-28</dml:item>
-      <dml:item property="dct:issued">2009-10-12</dml:item>
+      <dml:item property="dct:issued">2009-10-14</dml:item>
       <dml:item property="dct:description">
         <p>Basic parameters and attribute set definitions for dml2html.xsl</p>
       </dml:item>
@@ -22,7 +22,8 @@
     </dml:list>
   </dml:note>
 
-  <xsl:variable name="params" select="document('../config/config.rdf')"/>
+  <xsl:param name="params.path" as="xs:string">../config/config.rdf</xsl:param>
+  <xsl:variable name="params" select="document($params.path)"/>
 
   <xsl:param name="debug" select="df:param.constructor('debug')" as="xs:boolean"/>
   <xsl:param name="status.hidden.values" select="df:param.constructor('status.hidden.values')" as="item()*"/>
