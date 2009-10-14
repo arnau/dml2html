@@ -22,7 +22,7 @@
     </dml:list>
   </dml:note>
 
-  <xsl:param name="params.path" as="xs:string">../config/config.rdf</xsl:param>
+  <xsl:param name="params.path" as="xs:anyURI">../config/config.rdf</xsl:param>
   <xsl:variable name="params" select="document($params.path)"/>
 
   <xsl:param name="debug" select="df:param.constructor('debug')" as="xs:boolean"/>

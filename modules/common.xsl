@@ -70,15 +70,17 @@
 
   <xsl:template name="common.attributes">
     <xsl:param name="class.attribute" as="xs:string?" tunnel="yes"/>
-    <xsl:if test="@class or $class.attribute">
-      <xsl:attribute name="class" select="(@class, if ($class.attribute) then $class.attribute else ())"/>
+    <xsl:if test="@class or $class.attribute or @status">
+      <xsl:attribute name="class" select="
+        (
+          if (@class) then @class else (), 
+          if ($class.attribute) then $class.attribute else (),
+          if (@status) then @status else ()
+        )
+      "/>
     </xsl:if>
     <xsl:if test="@dir">
       <xsl:attribute name="dir" select="@dir"/>
-    </xsl:if>
-    
-    <xsl:if test="@status">
-      <xsl:sequence select="df:message(('@status attribute not yet implemented.'), 'warning')"/>
     </xsl:if>
     
     <xsl:if test="@xml:lang">
@@ -111,6 +113,34 @@
       <xsl:sequence select="df:message('@xml:base attribute is a non-tested feature.','warning')"/>
       <xsl:attribute name="xml:base" select="@xml:base"/>
     </xsl:if>
+    
+    <xsl:if test="@status">
+      <xsl:call-template name="set.status"/>
+    </xsl:if>
+  </xsl:template>
+  
+  <xsl:template name="set.status">
+    <xsl:choose>
+      <xsl:when test="self::*[dml:group | dml:list | dml:summary | dml:table | dml:object]">
+        <xsl:sequence select="df:message(('@status for', name(), 'element not fully implemented'), 'warning')"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:choose>
+          <xsl:when test="@status eq 'draft'">
+            <small>(<xsl:value-of select="$literals/literals/debug.draft"/>)</small>
+          </xsl:when>
+          <xsl:when test="@status eq 'review'">
+            <small>(<xsl:value-of select="$literals/literals/debug.review"/>)</small>
+          </xsl:when>
+          <xsl:when test="@status eq 'added'">
+            <small>(<xsl:value-of select="$literals/literals/debug.added"/>)</small>
+          </xsl:when>
+          <xsl:when test="@status eq 'deleted'">
+            <small>(<xsl:value-of select="$literals/literals/debug.deleted"/>)</small>
+          </xsl:when>
+        </xsl:choose>
+      </xsl:otherwise>
+    </xsl:choose>
   </xsl:template>
   
   <xsl:template name="common.attributes.and.children">

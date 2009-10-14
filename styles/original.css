@@ -74,3 +74,17 @@ th {
   color: #f00;
   font-weight: bold;
 }
+
+
+.draft {
+  background: #FFE862;
+}
+.review {
+  background: #6CF;
+}
+.added {
+  background: #DFD;
+}
+.deleted {
+  background: #FDD;
+}
