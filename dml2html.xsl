@@ -45,7 +45,11 @@
 
   <xsl:strip-space elements="dml:*"/>
 
-  <xsl:template match="/dml:dml | /dml:note">
+  <xsl:template match="/">
+    <xsl:apply-templates/>
+  </xsl:template>
+
+  <xsl:template match="dml:dml | dml:note">
     <html>
       <xsl:call-template name="common.attributes"/>
       <xsl:call-template name="head"/>

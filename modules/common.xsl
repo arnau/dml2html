@@ -29,7 +29,7 @@
       if ($debug) then
         self::node()
       else
-        self::node()[not(some $i in $status.hidden.values satisfies @status)]
+        self::node()[not(some $i in $status.hidden.values satisfies $i eq @status)]
     "/>
   </xsl:template>
 
@@ -75,7 +75,7 @@
         (
           if (@class) then @class else (), 
           if ($class.attribute) then $class.attribute else (),
-          if (@status) then @status else ()
+          if (@status and $debug) then @status else ()
         )
       "/>
     </xsl:if>
@@ -114,7 +114,7 @@
       <xsl:attribute name="xml:base" select="@xml:base"/>
     </xsl:if>
     
-    <xsl:if test="@status">
+    <xsl:if test="@status and $debug">
       <xsl:call-template name="set.status"/>
     </xsl:if>
   </xsl:template>
