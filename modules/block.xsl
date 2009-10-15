@@ -40,13 +40,13 @@
   </xsl:template>
 
   <xsl:template match="dml:section">
-    <xsl:if test="count(/dml:dml/dml:section) le xs:integer($toc.skipped.sections)">
+    <xsl:if test="count(/dml:dml/dml:section) le $toc.skipped.sections">
       <xsl:sequence select="df:message(('$toc.skipped.sections is out of range. This document has only', count(/dml:dml/dml:section), 'sections.'), 'fail')"/>
     </xsl:if>
     <xsl:if test="
       xs:boolean($toc) and
-      parent::dml:dml and (xs:integer($toc.position) eq 0) and
-      (count(preceding-sibling::dml:section) eq xs:integer($toc.skipped.sections))
+      parent::dml:dml and ($toc.position eq 0) and
+      (count(preceding-sibling::dml:section) eq $toc.skipped.sections)
     ">
       <xsl:call-template name="toc"/>
     </xsl:if>

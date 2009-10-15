@@ -65,11 +65,11 @@
   </xsl:template>
   <xsl:template name="body">
     <body>
-      <xsl:if test="xs:boolean($toc) and (xs:integer($toc.position) eq -1)">
+      <xsl:if test="xs:boolean($toc) and ($toc.position eq -1)">
         <xsl:call-template name="toc"/>
       </xsl:if>
       <xsl:apply-templates mode="self"/>
-      <xsl:if test="xs:boolean($toc) and (xs:integer($toc.position) eq 1)">
+      <xsl:if test="xs:boolean($toc) and ($toc.position eq 1)">
         <xsl:call-template name="toc"/>
       </xsl:if>
     </body>

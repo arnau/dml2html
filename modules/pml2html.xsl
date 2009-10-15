@@ -114,17 +114,17 @@
   <xsl:template name="code.languages">
     <xsl:choose>
       <xsl:when test="@language eq 'xml'">
-        <xsl:copy-of select="df:xml(., xs:integer($code.linelength))"/>
+        <xsl:copy-of select="df:xml(., $code.linelength)"/>
       </xsl:when>
       <xsl:when test="@language eq 'css'">
-        <xsl:copy-of select="df:css(., xs:integer($code.linelength))"/>
+        <xsl:copy-of select="df:css(., $code.linelength)"/>
       </xsl:when>
       <xsl:otherwise>
         <xsl:if test="@language">
           <xsl:sequence select="df:message(('highlighting for', @language , 'code not yet implemented.'), 'warning')"/>
         </xsl:if>
         <!-- <xsl:variable name="context">
-          <xsl:value-of select="df:linelength(., xs:integer($code.linelength))"/>
+          <xsl:value-of select="df:linelength(., $code.linelength)"/>
         </xsl:variable>
         <xsl:copy-of select="replace($context, '(.+)\s*$', '$1')"/> -->
         <xsl:value-of select="."/>
@@ -132,14 +132,14 @@
     </xsl:choose>
     <!-- <xsl:choose>
       <xsl:when test="@language='ebnf'">
-        <xsl:copy-of select="df:ebnf(., xs:integer($code.linelength))"/>
+        <xsl:copy-of select="df:ebnf(., $code.linelength)"/>
       </xsl:when>
       <xsl:when test="@language='xpath'">
-        <xsl:copy-of select="df:xpath(., xs:integer($code.linelength))"/>
+        <xsl:copy-of select="df:xpath(., $code.linelength)"/>
       </xsl:when>
       <xsl:otherwise>
         <xsl:variable name="context">
-          <xsl:value-of select="df:linelength(., xs:integer($code.linelength))"/>
+          <xsl:value-of select="df:linelength(., $code.linelength)"/>
         </xsl:variable>
         <xsl:copy-of select="replace($context, '(.+)\s*$', '$1')"/>
       </xsl:otherwise>

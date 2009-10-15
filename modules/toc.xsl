@@ -30,9 +30,9 @@
       <ul>
         <xsl:apply-templates select="
           if ($debug) then
-            /dml:dml/dml:section[(position() gt xs:integer($toc.skipped.sections))]
+            /dml:dml/dml:section[(position() gt $toc.skipped.sections)]
           else 
-            /dml:dml/dml:section[(position() gt xs:integer($toc.skipped.sections)) and 
+            /dml:dml/dml:section[(position() gt $toc.skipped.sections) and 
             not(some $i in $status.hidden.values satisfies @status)]
         " mode="toc"/>
       </ul>
@@ -49,7 +49,7 @@
       <xsl:apply-templates select="dml:title" mode="toc">
         <xsl:with-param name="href.attribute" tunnel="yes" select="$idref"/>
       </xsl:apply-templates>
-      <xsl:if test="dml:section and (count(ancestor::dml:section) + 1 lt xs:integer($toc.depth))">
+      <xsl:if test="dml:section and (count(ancestor::dml:section) + 1 lt $toc.depth)">
         <ul>
           <xsl:apply-templates select="
             if ($debug) then
@@ -100,7 +100,7 @@
               <xsl:call-template name="get.id"/>
             </xsl:attribute>
           </fo:page-number-citation>
-          <xsl:if test="dml:section and ( count( ancestor::dml:section ) + 1 lt xs:integer( $toc.depth ) )">
+          <xsl:if test="dml:section and ( count( ancestor::dml:section ) + 1 lt $toc.depth )">
             <xsl:choose>
               <xsl:when test="not( xs:boolean( $debug ) ) and dml:section[not( @status = $status.hidden.values )] and dml:section[@status = $status.hidden.values]">
                 <fo:list-block xsl:use-attribute-sets="list.nested toc.number">
