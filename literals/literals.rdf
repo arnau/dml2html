@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF
+  xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+  xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+  xmlns:dct="http://purl.org/dc/terms/"
+  xmlns:foaf="http://xmlns.com/foaf/0.1/"
+  xmlns:dml="http://purl.oclc.org/NET/dml/1.0/"
+  xmlns:pml="http://purl.oclc.org/NET/pml/1.0/">
+
+  <rdf:Description rdf:about="">
+    <dct:title xml:lang="en">Literals for dml2html</dct:title>
+    <dct:creator>Arnau Siches</dct:creator>
+    <dct:issued>2009-10-15</dct:issued>
+    <dct:modified>2009-10-15</dct:modified>
+    <dct:description rdf:parseType="Literal" xml:lang="en">
+      <dml:note>
+        <p>Literal strings for dml2html.</p>
+      </dml:note>
+    </dct:description>
+    <dct:license>
+      <!-- todo -->
+    </dct:license>
+  </rdf:Description>
+
+  <!--
+  <date.preposition>del</date.preposition>
+  -->
+  
+  <rdf:Description rdf:ID="param.optional.label">
+    <dct:title xml:lang="en">Param optional label</dct:title>
+
+    <rdf:value xml:lang="ca">Opcional</rdf:value>
+    <rdf:value xml:lang="en">Optional</rdf:value>
+    <rdf:value xml:lang="es">Opcional</rdf:value>
+  </rdf:Description>
+
+  <rdf:Description rdf:ID="warning.label">
+    <dct:title xml:lang="en">Warning label</dct:title>
+
+    <rdf:value xml:lang="ca">Alerta</rdf:value>
+    <rdf:value xml:lang="en">Warning</rdf:value>
+    <rdf:value xml:lang="es">Alerta</rdf:value>
+  </rdf:Description>
+
+  <rdf:Description rdf:ID="example.label">
+    <dct:title xml:lang="en">Example label</dct:title>
+
+    <rdf:value xml:lang="ca">Exemple</rdf:value>
+    <rdf:value xml:lang="en">Example</rdf:value>
+    <rdf:value xml:lang="es">Ejemplo</rdf:value>
+  </rdf:Description>
+
+  <rdf:Description rdf:ID="table.label">
+    <dct:title xml:lang="en">Table label</dct:title>
+
+    <rdf:value xml:lang="ca">Taula</rdf:value>
+    <rdf:value xml:lang="en">Table</rdf:value>
+    <rdf:value xml:lang="es">Tabla</rdf:value>
+  </rdf:Description>
+
+  <rdf:Description rdf:ID="figure.label">
+    <dct:title xml:lang="en">Figure label</dct:title>
+
+    <rdf:value xml:lang="ca">Figura</rdf:value>
+    <rdf:value xml:lang="en">Figure</rdf:value>
+    <rdf:value xml:lang="es">Figura</rdf:value>
+  </rdf:Description>
+
+  <rdf:Description rdf:ID="section.label">
+    <dct:title xml:lang="en">Section label</dct:title>
+
+    <rdf:value xml:lang="ca">Secció</rdf:value>
+    <rdf:value xml:lang="en">Section</rdf:value>
+    <rdf:value xml:lang="es">Sección</rdf:value>
+  </rdf:Description>
+
+  <rdf:Description rdf:ID="appendix.prefix">
+    <dct:title xml:lang="en">Appendix prefix</dct:title>
+
+    <rdf:value xml:lang="ca">Apèndix</rdf:value>
+    <rdf:value xml:lang="en">Appendix</rdf:value>
+    <rdf:value xml:lang="es">Apéndice</rdf:value>
+  </rdf:Description>
+
+  <rdf:Description rdf:ID="toc.title">
+    <dct:title xml:lang="en">ToC title</dct:title>
+
+    <rdf:value xml:lang="ca">Sumari</rdf:value>
+    <rdf:value xml:lang="en">Table of Contents</rdf:value>
+    <rdf:value xml:lang="es">Tabla de contenidos</rdf:value>
+  </rdf:Description>
+
+  <rdf:Description rdf:ID="day.monday">
+    <dct:title xml:lang="en">Monday day</dct:title>
+
+    <rdf:value xml:lang="ca">Dilluns</rdf:value>
+    <rdf:value xml:lang="en">Monday</rdf:value>
+    <rdf:value xml:lang="es">Lunes</rdf:value>
+  </rdf:Description>
+  <rdf:Description rdf:ID="day.tuesday">
+    <dct:title xml:lang="en">Tuesday day</dct:title>
+
+    <rdf:value xml:lang="ca">Dimarts</rdf:value>
+    <rdf:value xml:lang="en">Tuesday</rdf:value>
+    <rdf:value xml:lang="es">Martes</rdf:value>
+  </rdf:Description>
+  <rdf:Description rdf:ID="day.wednesday">
+    <dct:title xml:lang="en">Wednesday day</dct:title>
+
+    <rdf:value xml:lang="ca">Dimecres</rdf:value>
+    <rdf:value xml:lang="en">Wednesday</rdf:value>
+    <rdf:value xml:lang="es">Miercoles</rdf:value>
+  </rdf:Description>
+  <rdf:Description rdf:ID="day.thursday">
+    <dct:title xml:lang="en">Thursday day</dct:title>
+
+    <rdf:value xml:lang="ca">Dijous</rdf:value>
+    <rdf:value xml:lang="en">Thursday</rdf:value>
+    <rdf:value xml:lang="es">Jueves</rdf:value>
+  </rdf:Description>
+  <rdf:Description rdf:ID="day.friday">
+    <dct:title xml:lang="en">Friday day</dct:title>
+
+    <rdf:value xml:lang="ca">Divendres</rdf:value>
+    <rdf:value xml:lang="en">Friday</rdf:value>
+    <rdf:value xml:lang="es">Viernes</rdf:value>
+  </rdf:Description>
+  <rdf:Description rdf:ID="day.saturday">
+    <dct:title xml:lang="en">Saturday day</dct:title>
+
+    <rdf:value xml:lang="ca">Dissabte</rdf:value>
+    <rdf:value xml:lang="en">Saturday</rdf:value>
+    <rdf:value xml:lang="es">Sábado</rdf:value>
+  </rdf:Description>
+  <rdf:Description rdf:ID="day.sunday">
+    <dct:title xml:lang="en">Sunday day</dct:title>
+
+    <rdf:value xml:lang="ca">Diumenge</rdf:value>
+    <rdf:value xml:lang="en">Sunday</rdf:value>
+    <rdf:value xml:lang="es">Domingo</rdf:value>
+  </rdf:Description>
+
+  <rdf:Description rdf:ID="month.january">
+    <dct:title xml:lang="en">January month</dct:title>
+
+    <rdf:value xml:lang="ca">Gener</rdf:value>
+    <rdf:value xml:lang="en">January</rdf:value>
+    <rdf:value xml:lang="es">Enero</rdf:value>
+  </rdf:Description>
+  <rdf:Description rdf:ID="month.february">
+    <dct:title xml:lang="en">February month</dct:title>
+
+    <rdf:value xml:lang="ca">Febrer</rdf:value>
+    <rdf:value xml:lang="en">February</rdf:value>
+    <rdf:value xml:lang="es">Febrero</rdf:value>
+  </rdf:Description>
+  <rdf:Description rdf:ID="month.march">
+    <dct:title xml:lang="en">March month</dct:title>
+
+    <rdf:value xml:lang="ca">Març</rdf:value>
+    <rdf:value xml:lang="en">March</rdf:value>
+    <rdf:value xml:lang="es">Marzo</rdf:value>
+  </rdf:Description>
+  <rdf:Description rdf:ID="month.april">
+    <dct:title xml:lang="en">April month</dct:title>
+
+    <rdf:value xml:lang="ca">Abril</rdf:value>
+    <rdf:value xml:lang="en">April</rdf:value>
+    <rdf:value xml:lang="es">Abril</rdf:value>
+  </rdf:Description>
+  <rdf:Description rdf:ID="month.may">
+    <dct:title xml:lang="en">May month</dct:title>
+
+    <rdf:value xml:lang="ca">Maig</rdf:value>
+    <rdf:value xml:lang="en">May</rdf:value>
+    <rdf:value xml:lang="es">Mayo</rdf:value>
+  </rdf:Description>
+  <rdf:Description rdf:ID="month.june">
+    <dct:title xml:lang="en">June month</dct:title>
+
+    <rdf:value xml:lang="ca">Juny</rdf:value>
+    <rdf:value xml:lang="en">June</rdf:value>
+    <rdf:value xml:lang="es">Junio</rdf:value>
+  </rdf:Description>
+  <rdf:Description rdf:ID="month.july">
+    <dct:title xml:lang="en">July month</dct:title>
+
+    <rdf:value xml:lang="ca">Juliol</rdf:value>
+    <rdf:value xml:lang="en">July</rdf:value>
+    <rdf:value xml:lang="es">Julio</rdf:value>
+  </rdf:Description>
+  <rdf:Description rdf:ID="month.august">
+    <dct:title xml:lang="en">August month</dct:title>
+
+    <rdf:value xml:lang="ca">Agost</rdf:value>
+    <rdf:value xml:lang="en">August</rdf:value>
+    <rdf:value xml:lang="es">Agosto</rdf:value>
+  </rdf:Description>
+  <rdf:Description rdf:ID="month.september">
+    <dct:title xml:lang="en">September month</dct:title>
+
+    <rdf:value xml:lang="ca">Setembre</rdf:value>
+    <rdf:value xml:lang="en">September</rdf:value>
+    <rdf:value xml:lang="es">Septiembre</rdf:value>
+  </rdf:Description>
+  <rdf:Description rdf:ID="month.october">
+    <dct:title xml:lang="en">October month</dct:title>
+
+    <rdf:value xml:lang="ca">Octubre</rdf:value>
+    <rdf:value xml:lang="en">October</rdf:value>
+    <rdf:value xml:lang="es">Octubre</rdf:value>
+  </rdf:Description>
+  <rdf:Description rdf:ID="month.november">
+    <dct:title xml:lang="en">November month</dct:title>
+
+    <rdf:value xml:lang="ca">Novembre</rdf:value>
+    <rdf:value xml:lang="en">November</rdf:value>
+    <rdf:value xml:lang="es">Noviembre</rdf:value>
+  </rdf:Description>
+  <rdf:Description rdf:ID="month.december">
+    <dct:title xml:lang="en">December month</dct:title>
+
+    <rdf:value xml:lang="ca">Desembre</rdf:value>
+    <rdf:value xml:lang="en">December</rdf:value>
+    <rdf:value xml:lang="es">Diciembre</rdf:value>
+  </rdf:Description>
+
+  <rdf:Description rdf:ID="document.editor.label">
+    <dct:title xml:lang="en">Label for document editor</dct:title>
+
+    <rdf:value xml:lang="ca">Editor</rdf:value>
+    <rdf:value xml:lang="en">Editor</rdf:value>
+    <rdf:value xml:lang="es">Editor</rdf:value>
+  </rdf:Description>
+
+  <rdf:Description rdf:ID="document.issued.label">
+    <dct:title xml:lang="en">Label for document date issued</dct:title>
+
+    <rdf:value xml:lang="ca">Data de publicació</rdf:value>
+    <rdf:value xml:lang="en">Date issued</rdf:value>
+    <rdf:value xml:lang="es">Fecha de publicación</rdf:value>
+  </rdf:Description>
+
+  <rdf:Description rdf:ID="document.version.label">
+    <dct:title xml:lang="en">Label for document version</dct:title>
+
+    <rdf:value xml:lang="ca">Darrera versió</rdf:value>
+    <rdf:value xml:lang="en">Latest version</rdf:value>
+    <rdf:value xml:lang="es">Última versión</rdf:value>
+  </rdf:Description>
+
+  <rdf:Description rdf:ID="debug.draft">
+    <dct:title xml:lang="en">Draft status</dct:title>
+
+    <rdf:value xml:lang="ca">Esborrany</rdf:value>
+    <rdf:value xml:lang="en">Draft</rdf:value>
+    <rdf:value xml:lang="es">Borrador</rdf:value>
+  </rdf:Description>
+
+  <rdf:Description rdf:ID="debug.review">
+    <dct:title xml:lang="en">Review status</dct:title>
+
+    <rdf:value xml:lang="ca">Revisar</rdf:value>
+    <rdf:value xml:lang="en">Review</rdf:value>
+    <rdf:value xml:lang="es">Revisar</rdf:value>
+  </rdf:Description>
+
+  <rdf:Description rdf:ID="debug.added">
+    <dct:title xml:lang="en">Added status</dct:title>
+
+    <rdf:value>+++</rdf:value>
+  </rdf:Description>
+
+  <rdf:Description rdf:ID="debug.deleted">
+    <dct:title xml:lang="en">Deleted status</dct:title>
+
+    <rdf:value>---</rdf:value>
+  </rdf:Description>
+
+
+</rdf:RDF>

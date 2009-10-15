@@ -22,6 +22,10 @@
     </dml:list>
   </dml:note>
 
+  <xsl:param name="literals.path" as="xs:anyURI">../literals/literals.rdf</xsl:param>
+  <xsl:variable name="document.language" select="/*/@xml:lang"/>
+  <xsl:variable name="literals" select="document($literals.path)"/>
+
   <xsl:param name="params.path" as="xs:anyURI">../config/config.rdf</xsl:param>
   <xsl:variable name="params" select="document($params.path)"/>
 

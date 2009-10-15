@@ -89,7 +89,12 @@
       <xsl:call-template name="common.attributes.and.children">
         <xsl:with-param name="class.attribute" tunnel="yes" select="local-name()"/>
       </xsl:call-template>
-      <xsl:value-of select="if (@type eq 'optional') then concat(' (', $literals/literals/param.optional.label , ')') else ()"/>
+      <xsl:value-of select="
+        if (@type eq 'optional') then
+          concat(' (', df:literal.constructor('param.optional.label') , ')')
+        else
+        ()
+      "/>
     </var>
   </xsl:template>
 

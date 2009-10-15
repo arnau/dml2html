@@ -62,6 +62,15 @@
     <xsl:sequence select="$values"/>
   </xsl:function>
 
+  <xsl:function name="df:literal.constructor">
+    <xsl:param name="literal.name" as="xs:string"/>
+    
+    <xsl:variable name="literal" select="$literals//*[@rdf:ID eq $literal.name]/rdf:value[lang($document.language)]"/>
+    <xsl:variable name="default.literal" select="$literals//*[@rdf:ID eq $literal.name]/rdf:value[not(@xml:lang)]"/>
+    <xsl:sequence select="if ($literal) then $literal else $default.literal"/>
+  </xsl:function>
+
+
 
   <xsl:function name="df:quotes">
     <xsl:param name="context" as="item()"/>

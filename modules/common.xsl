@@ -120,26 +120,23 @@
   </xsl:template>
   
   <xsl:template name="set.status">
+    <xsl:variable name="status.values" select="('draft', 'review', 'added', 'deleted')"/>
+
     <xsl:choose>
       <xsl:when test="self::*[dml:group | dml:list | dml:summary | dml:table | dml:object]">
         <xsl:sequence select="df:message(('@status for', name(), 'element not fully implemented'), 'warning')"/>
       </xsl:when>
-      <xsl:otherwise>
+      <xsl:when test="some $i in $status.values satisfies $i eq @status">
+        <xsl:variable name="status.literal" select="concat('debug.', @status)"/>
         <xsl:choose>
-          <xsl:when test="@status eq 'draft'">
-            <small>(<xsl:value-of select="$literals/literals/debug.draft"/>)</small>
+          <xsl:when test="empty(df:literal.constructor($status.literal))">
+            <xsl:sequence select="df:message(('No literal found in', $literals.path, 'for @status', @status, 'in', $document.language, 'language.'), 'warning')"/>
           </xsl:when>
-          <xsl:when test="@status eq 'review'">
-            <small>(<xsl:value-of select="$literals/literals/debug.review"/>)</small>
-          </xsl:when>
-          <xsl:when test="@status eq 'added'">
-            <small>(<xsl:value-of select="$literals/literals/debug.added"/>)</small>
-          </xsl:when>
-          <xsl:when test="@status eq 'deleted'">
-            <small>(<xsl:value-of select="$literals/literals/debug.deleted"/>)</small>
-          </xsl:when>
+          <xsl:otherwise>
+            <small>(<xsl:value-of select="df:literal.constructor($status.literal)"/>) </small>
+          </xsl:otherwise>
         </xsl:choose>
-      </xsl:otherwise>
+      </xsl:when>
     </xsl:choose>
   </xsl:template>
   

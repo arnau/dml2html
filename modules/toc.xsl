@@ -26,7 +26,7 @@
 
   <xsl:template name="toc">
     <div id="toc">
-      <h2><xsl:value-of select="$literals/literals/toc.title"/></h2>
+      <h2><xsl:value-of select="df:literal.constructor('toc.title')"/></h2>
       <ul>
         <xsl:apply-templates select="
           if ($debug) then

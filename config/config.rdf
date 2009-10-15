@@ -14,11 +14,11 @@
     <dct:modified>2009-10-12</dct:modified>
     <dct:description rdf:parseType="Literal" xml:lang="en">
       <dml:note>
-        <p>Basic parameters and attribute set definitions for dml2html.</p>
+        <p>Basic parameter definitions for dml2html.</p>
       </dml:note>
     </dct:description>
     <dct:license>
-      (: todo :)
+      <!-- todo -->
     </dct:license>
   </rdf:Description>
   
