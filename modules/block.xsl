@@ -44,7 +44,7 @@
       <xsl:sequence select="df:message(('$toc.skipped.sections is out of range. This document has only', count(/dml:dml/dml:section), 'sections.'), 'fail')"/>
     </xsl:if>
     <xsl:if test="
-      xs:boolean($toc) and
+      $toc and
       parent::dml:dml and ($toc.position eq 0) and
       (count(preceding-sibling::dml:section) eq $toc.skipped.sections)
     ">
@@ -182,7 +182,7 @@
         <xsl:attribute name="cite" select="@about"/>
       </xsl:if>
       <xsl:choose>
-        <xsl:when test="xs:boolean($quote.marks)">
+        <xsl:when test="$quote.marks">
           <xsl:call-template name="quote.marks">
             <xsl:with-param name="quote.type" tunnel="yes" select="$element.name"/>
           </xsl:call-template>

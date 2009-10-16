@@ -87,7 +87,7 @@
               <xsl:call-template name="get.id"/>
             </xsl:attribute>
             <xsl:value-of select="
-              if ( @role='appendix' and xs:boolean( $appendix.format.number ) ) then
+              if ( @role='appendix' and $appendix.format.number ) then
                 concat( $literals/literals/appendix.prefix, ' ', $number, $appendix.separator, ' ' )
               else
                 $number
@@ -102,12 +102,12 @@
           </fo:page-number-citation>
           <xsl:if test="dml:section and ( count( ancestor::dml:section ) + 1 lt $toc.depth )">
             <xsl:choose>
-              <xsl:when test="not( xs:boolean( $debug ) ) and dml:section[not( @status = $status.hidden.values )] and dml:section[@status = $status.hidden.values]">
+              <xsl:when test="not( $debug ) and dml:section[not( @status = $status.hidden.values )] and dml:section[@status = $status.hidden.values]">
                 <fo:list-block xsl:use-attribute-sets="list.nested toc.number">
                   <xsl:apply-templates select="dml:section[not( @status = $status.hidden.values )]" mode="toc"/>
                 </fo:list-block>
               </xsl:when>
-              <xsl:when test="not( xs:boolean( $debug ) ) and dml:section[@status = $status.hidden.values]"/>
+              <xsl:when test="not( $debug ) and dml:section[@status = $status.hidden.values]"/>
               <xsl:otherwise>
                 <fo:list-block xsl:use-attribute-sets="list.nested toc.number">
                   <xsl:apply-templates select="dml:section" mode="toc"/>
