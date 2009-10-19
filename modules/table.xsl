@@ -69,11 +69,6 @@
     <xsl:if test="$header.numbers and ancestor::dml:*[parent::dml:dml and count(preceding-sibling::dml:section) ge $toc.skipped.sections]">
       <xsl:value-of select="concat(df:literal.constructor('table.label'), ' ', $number, ': ')"/>
     </xsl:if>
-    <!-- 
-    $header.numbers and 
-    ancestor::dml:*[parent::dml:dml and count(preceding-sibling::dml:section) ge $toc.skipped.sections]">
-    -->
-
   </xsl:template>
   
   <xsl:template match="dml:group">

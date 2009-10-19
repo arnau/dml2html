@@ -174,7 +174,6 @@
   </xsl:template>
 
   <xsl:template name="header.number">
-    <xsl:param name="format.number.type" tunnel="yes"/>
     <xsl:param name="appendix.format.number.type" tunnel="yes" select="$appendix.format.number.type"/>
 
     <xsl:if test="$header.numbers">
@@ -194,8 +193,10 @@
       <xsl:value-of select="
         if (parent::dml:section[@role='appendix'] and $appendix.format.number) then
           concat(df:literal.constructor('appendix.prefix'), ' ', $number, ' ', $appendix.separator, ' ')
-        else
+        else if (parent::dml:section) then
           concat($number, ' ')
+        else
+          $number
       "/>
     </xsl:if>
   </xsl:template>
