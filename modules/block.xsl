@@ -35,7 +35,11 @@
   <xsl:template match="dml:title">
     <xsl:variable name="header" select="concat('h', count(ancestor::*))"/>
     <xsl:element name="{$header}">
-      <xsl:call-template name="common.attributes.and.children"/>
+      <xsl:call-template name="common.attributes"/>
+      <xsl:if test="parent::dml:section">
+        <xsl:call-template name="header.number"/>
+      </xsl:if>
+      <xsl:call-template name="common.children"/>
     </xsl:element>
   </xsl:template>
 

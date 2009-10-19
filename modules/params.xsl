@@ -40,7 +40,12 @@
   <xsl:param name="toc.skipped.sections" select="df:param.constructor('toc.skipped.sections')" as="xs:integer"/>
   <xsl:param name="toc.position" select="df:param.constructor('toc.position')" as="xs:integer"/>
 
-  <!-- modules/block.xsl -->
+  <xsl:param name="header.numbers" select="df:param.constructor('header.numbers')" as="xs:boolean"/>
+  <xsl:param name="format.number.type" select="df:param.constructor('format.number.type')" as="xs:string"/>
+  <xsl:param name="appendix.format.number" select="df:param.constructor('appendix.format.number')" as="xs:boolean"/>
+  <xsl:param name="appendix.separator" select="df:param.constructor('appendix.separator')" as="xs:string"/>
+  <xsl:param name="appendix.format.number.type" select="df:param.constructor('appendix.format.number.type')" as="xs:string"/>
+
   <xsl:param name="quote.marks" select="df:param.constructor('quote.marks')" as="xs:boolean"/>
   <xsl:param name="fallback.pattern" select="df:param.constructor('fallback.pattern')" as="xs:string"/>
   <xsl:param name="fallback.pattern.replace" select="df:param.constructor('fallback.pattern.replace')" as="xs:string"/>

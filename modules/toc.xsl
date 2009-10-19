@@ -66,6 +66,7 @@
     <xsl:param name="href.attribute" tunnel="yes" as="xs:anyURI"/>
     <a>
       <xsl:attribute name="href" select="$href.attribute"/>
+      <span class="header-number"><xsl:call-template name="header.number"/></span>
       <xsl:call-template name="common.children"/>
     </a>
   </xsl:template>

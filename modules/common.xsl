@@ -166,5 +166,39 @@
     </xsl:variable>
     <xsl:value-of select="concat('#', $id)"/>
   </xsl:template>
+  
+
+  <xsl:template name="section.number">
+    <!-- TEMP -->
+    <xsl:call-template name="header.number"/>
+  </xsl:template>
+
+  <xsl:template name="header.number">
+    <xsl:param name="format.number.type" tunnel="yes"/>
+    <xsl:param name="appendix.format.number.type" tunnel="yes" select="$appendix.format.number.type"/>
+
+    <xsl:if test="$header.numbers">
+      <xsl:variable name="number">
+        <xsl:choose>
+          <xsl:when test="ancestor-or-self::dml:*[parent::dml:dml and @role='appendix'] and $appendix.format.number">
+            <xsl:number level="multiple" format="{$appendix.format.number.type}"
+               count="dml:section[ancestor-or-self::dml:*[parent::dml:dml and @role='appendix']]"/>
+          </xsl:when>
+          <xsl:when test="ancestor-or-self::dml:*[parent::dml:dml and count(preceding-sibling::dml:section) ge $toc.skipped.sections]">
+            <xsl:number level="multiple" format="{$format.number.type}"
+               count="dml:section[ancestor-or-self::dml:*[parent::dml:dml and count(preceding-sibling::dml:section) ge $toc.skipped.sections]]"/>
+          </xsl:when>
+        </xsl:choose>
+      </xsl:variable>
+
+      <xsl:value-of select="
+        if (parent::dml:section[@role='appendix'] and $appendix.format.number) then
+          concat(df:literal.constructor('appendix.prefix'), ' ', $number, ' ', $appendix.separator, ' ')
+        else
+          concat($number, ' ')
+      "/>
+    </xsl:if>
+  </xsl:template>
+
 
 </xsl:stylesheet>
