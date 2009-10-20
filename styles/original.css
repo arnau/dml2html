@@ -7,6 +7,10 @@
   dct:description "Basic stylesheet for dml2html HTML output" ;
 */
 
+body {
+  margin: 2em;
+}
+
 .note {
   margin: 1em;
   padding: 1em;
@@ -87,4 +91,16 @@ th {
 }
 .deleted {
   background: #FDD;
+}
+
+.example {
+  margin: 2em auto;
+}
+.example [property="dct:title"] {
+  text-align: center;
+}
+.example pre {
+  border: 3px solid #ccc;
+  border-width: 3px 0;
+  padding: 1em;
 }
