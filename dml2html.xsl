@@ -43,7 +43,7 @@
     doctype-public="-//W3C//DTD XHTML+RDFa 1.0//EN" 
     doctype-system="http://www.w3.org/MarkUp/DTD/xhtml-rdfa-1.dtd"/>
 
-  <xsl:strip-space elements="dml:*"/>
+  <!-- <xsl:strip-space elements="dml:*"/> -->
 
   <xsl:template match="/">
     <xsl:apply-templates/>
