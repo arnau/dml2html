@@ -59,6 +59,18 @@
     <rdf:value rdf:datatype="http://www.w3.org/TR/xmlschema-2/#boolean">true</rdf:value>
   </rdf:Description>
 
+  <rdf:Description rdf:ID="xref.numbers">
+    <dct:title xml:lang="en">Cross reference numbers</dct:title>
+    <dct:description rdf:parseType="Literal" xml:lang="en">
+      <dml:note>
+        <p><pml:param>xref.numbers</pml:param> param is typed as <pml:type>xs:boolean</pml:type>.</p>
+        <p>It toggles automatic cross reference numbers.</p>
+      </dml:note>
+    </dct:description>
+    
+    <rdf:value rdf:datatype="http://www.w3.org/TR/xmlschema-2/#boolean">true</rdf:value>
+  </rdf:Description>
+
   <rdf:Description rdf:ID="appendix.separator">
     <dct:title xml:lang="en">Appendix separator</dct:title>
     <dct:description rdf:parseType="Literal" xml:lang="en">

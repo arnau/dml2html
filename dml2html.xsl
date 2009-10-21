@@ -23,7 +23,7 @@
     <dml:list>
       <dml:item property="dct:creator">Arnau Siches</dml:item>
       <dml:item property="dct:issued">2009-09-28</dml:item>
-      <dml:item property="dct:modified">2009-10-12</dml:item>
+      <dml:item property="dct:modified">2009-10-20</dml:item>
       <dml:item property="dct:description">
         <p>Transforms a DML source to HTML.</p>
       </dml:item>
@@ -42,8 +42,6 @@
     omit-xml-declaration="no" 
     doctype-public="-//W3C//DTD XHTML+RDFa 1.0//EN" 
     doctype-system="http://www.w3.org/MarkUp/DTD/xhtml-rdfa-1.dtd"/>
-
-  <!-- <xsl:strip-space elements="dml:*"/> -->
 
   <xsl:template match="/">
     <xsl:apply-templates/>

@@ -14,7 +14,7 @@
     <dml:list>
       <dml:item property="dct:creator">Arnau Siches</dml:item>
       <dml:item property="dct:issued">2009-09-30</dml:item>
-      <dml:item property="dct:modified">2009-10-07</dml:item>
+      <dml:item property="dct:modified">2009-10-20</dml:item>
       <dml:item property="dct:description">
         <p>Table templates for dml2html.</p>
       </dml:item>
@@ -62,12 +62,14 @@
   </xsl:template>
   
   <xsl:template name="table.number">
-    <xsl:variable name="number">
-      <xsl:call-template name="header.number"/>
-      <xsl:number from="dml:section" count="dml:table" level="any" format="-1"/>
-    </xsl:variable>
-    <xsl:if test="$header.numbers and ancestor::dml:*[parent::dml:dml and count(preceding-sibling::dml:section) ge $toc.skipped.sections]">
-      <xsl:value-of select="concat(df:literal.constructor('table.label'), ' ', $number, ': ')"/>
+    <xsl:if test="$header.numbers">
+      <xsl:variable name="number">
+        <xsl:call-template name="header.number"/>
+        <xsl:number from="dml:section" count="dml:table" level="any" format="-1"/>
+      </xsl:variable>
+      <xsl:if test="ancestor::dml:*[parent::dml:dml and count(preceding-sibling::dml:section) ge $toc.skipped.sections]">
+        <xsl:value-of select="concat(df:literal.constructor('table.label'), ' ', $number, ': ')"/>
+      </xsl:if>
     </xsl:if>
   </xsl:template>
   

@@ -14,7 +14,7 @@
     <dml:list>
       <dml:item property="dct:creator">Arnau Siches</dml:item>
       <dml:item property="dct:issued">2009-09-29</dml:item>
-      <dml:item property="dct:modified">2009-10-06</dml:item>
+      <dml:item property="dct:modified">2009-10-20</dml:item>
       <dml:item property="dct:description">
         <p>Table of Contents for dml2fo.xsl.</p>
       </dml:item>
@@ -66,60 +66,8 @@
     <xsl:param name="href.attribute" tunnel="yes" as="xs:anyURI"/>
     <a>
       <xsl:attribute name="href" select="$href.attribute"/>
-      <span class="header-number"><xsl:call-template name="header.number"/></span>
+      <span class="header-number"><xsl:call-template name="section.number"/></span>
       <xsl:call-template name="common.children"/>
     </a>
   </xsl:template>
-  
-<!--
-
-  <xsl:template match="dml:section" mode="toc">
-    <xsl:variable name="number">
-      <xsl:call-template name="header.number">
-        <xsl:with-param name="format.number.type">1. </xsl:with-param>
-        <xsl:with-param name="appendix.format.number.type" select="concat($appendix.format.number.type, ' ' )"/>
-      </xsl:call-template>
-    </xsl:variable>
-    <fo:list-item xsl:use-attribute-sets="item">
-      <fo:list-item-body>
-        <fo:block text-align-last="justify">
-          <fo:basic-link xsl:use-attribute-sets="toc.xref">
-            <xsl:attribute name="internal-destination">
-              <xsl:call-template name="get.id"/>
-            </xsl:attribute>
-            <xsl:value-of select="
-              if ( @role='appendix' and $appendix.format.number ) then
-                concat( $literals/literals/appendix.prefix, ' ', $number, $appendix.separator, ' ' )
-              else
-                $number
-            "/>
-            <xsl:apply-templates select="dml:title" mode="toc"/>
-          </fo:basic-link>
-          <fo:leader leader-pattern="use-content">. </fo:leader>
-          <fo:page-number-citation>
-            <xsl:attribute name="ref-id">
-              <xsl:call-template name="get.id"/>
-            </xsl:attribute>
-          </fo:page-number-citation>
-          <xsl:if test="dml:section and ( count( ancestor::dml:section ) + 1 lt $toc.depth )">
-            <xsl:choose>
-              <xsl:when test="not( $debug ) and dml:section[not( @status = $status.hidden.values )] and dml:section[@status = $status.hidden.values]">
-                <fo:list-block xsl:use-attribute-sets="list.nested toc.number">
-                  <xsl:apply-templates select="dml:section[not( @status = $status.hidden.values )]" mode="toc"/>
-                </fo:list-block>
-              </xsl:when>
-              <xsl:when test="not( $debug ) and dml:section[@status = $status.hidden.values]"/>
-              <xsl:otherwise>
-                <fo:list-block xsl:use-attribute-sets="list.nested toc.number">
-                  <xsl:apply-templates select="dml:section" mode="toc"/>
-                </fo:list-block>
-              </xsl:otherwise>
-            </xsl:choose>
-          </xsl:if>
-        </fo:block>
-      </fo:list-item-body>
-    </fo:list-item>
-  </xsl:template>
- -->
-
 </xsl:stylesheet>

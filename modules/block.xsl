@@ -14,7 +14,7 @@
     <dml:list>
       <dml:item property="dct:creator">Arnau Siches</dml:item>
       <dml:item property="dct:issued">2009-10-01</dml:item>
-      <dml:item property="dct:modified">2009-10-13</dml:item>
+      <dml:item property="dct:modified">2009-10-20</dml:item>
       <dml:item property="dct:description">
         <p>Block templates for dml2html.</p>
       </dml:item>
@@ -39,7 +39,7 @@
     <xsl:element name="{$header}">
       <xsl:call-template name="common.attributes"/>
       <xsl:if test="parent::dml:section">
-        <xsl:call-template name="header.number"/>
+        <xsl:call-template name="section.number"/>
       </xsl:if>
       <xsl:call-template name="common.children"/>
     </xsl:element>
@@ -112,20 +112,24 @@
   </xsl:template>
 
   <xsl:template name="example.and.figure.number">
-    <xsl:variable name="number">
-      <xsl:call-template name="header.number"/>
-      <xsl:choose>
-        <xsl:when test="parent::dml:example">
-          <xsl:number from="dml:section" count="dml:example" level="any" format="-1"/>
-        </xsl:when>
-        <xsl:when test="parent::dml:figure">
-          <xsl:number from="dml:section" count="dml:figure" level="any" format="-1"/>
-        </xsl:when>
-      </xsl:choose>
-    </xsl:variable>
-    <xsl:if test="$header.numbers and ancestor::dml:*[parent::dml:dml and count(preceding-sibling::dml:section) ge $toc.skipped.sections]">
-      <xsl:value-of select="
-        concat(df:literal.constructor(concat(parent::*/local-name(), '.label')), ' ', $number, ': ')"/>
+    <xsl:if test="$header.numbers">
+      <xsl:variable name="number">
+        <xsl:call-template name="header.number"/>
+        <xsl:choose>
+          <xsl:when test="parent::dml:example">
+            <xsl:number from="dml:section" count="dml:example" level="any" format="-1"/>
+          </xsl:when>
+          <xsl:when test="parent::dml:figure">
+            <xsl:number from="dml:section" count="dml:figure" level="any" format="-1"/>
+          </xsl:when>
+        </xsl:choose>
+      </xsl:variable>
+      <xsl:if test="ancestor::dml:*[parent::dml:dml and count(preceding-sibling::dml:section) ge $toc.skipped.sections]">
+        <strong>
+          <xsl:value-of select="
+            concat(df:literal.constructor(concat(parent::*/local-name(), '.label')), ' ', $number, ': ')"/>
+        </strong>
+      </xsl:if>
     </xsl:if>
   </xsl:template>
 

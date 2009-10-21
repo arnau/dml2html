@@ -41,6 +41,7 @@
   <xsl:param name="toc.position" select="df:param.constructor('toc.position')" as="xs:integer"/>
 
   <xsl:param name="header.numbers" select="df:param.constructor('header.numbers')" as="xs:boolean"/>
+  <xsl:param name="xref.numbers" select="df:param.constructor('xref.numbers')" as="xs:boolean"/>
   <xsl:param name="format.number.type" select="df:param.constructor('format.number.type')" as="xs:string"/>
   <xsl:param name="appendix.format.number" select="df:param.constructor('appendix.format.number')" as="xs:boolean"/>
   <xsl:param name="appendix.separator" select="df:param.constructor('appendix.separator')" as="xs:string"/>
