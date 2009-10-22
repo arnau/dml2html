@@ -90,6 +90,14 @@
     <rdf:value xml:lang="es">Tabla de contenidos</rdf:value>
   </rdf:Description>
 
+  <rdf:Description rdf:ID="footnotes.title">
+    <dct:title xml:lang="en">Footnotes title</dct:title>
+
+    <rdf:value xml:lang="ca">Notes</rdf:value>
+    <rdf:value xml:lang="en">Footnotes</rdf:value>
+    <rdf:value xml:lang="es">Notas</rdf:value>
+  </rdf:Description>
+
   <rdf:Description rdf:ID="day.monday">
     <dct:title xml:lang="en">Monday day</dct:title>
 

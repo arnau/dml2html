@@ -138,9 +138,7 @@
 
     <!-- <xsl:if test="generate-id(ancestor::dml:section[parent::dml:dml]) eq $section.id"> -->
       <li>
-        <xsl:call-template name="common.attributes">
-          <xsl:with-param name="class.attribute" tunnel="yes" select="$role"/>
-        </xsl:call-template>
+        <xsl:call-template name="common.attributes"/>
         <xsl:call-template name="footnote.number"/>
         <xsl:call-template name="common.children"/>
       </li>
@@ -158,7 +156,10 @@
   <xsl:template name="set.footnotes">
     <!-- <xsl:if test="parent::dml:dml and descendant::dml:note[@role eq 'footnote']"> -->
       <div class="footnotes">
-        <h2>notes</h2>
+        <!-- <xsl:variable name="header" select="concat('h', count(ancestor::*) + 2)"/> -->
+        <!-- <xsl:element name="{$header}">
+          <xsl:sequence select="df:literal.constructor('footnotes.title')"/>
+        </xsl:element> -->
         <ul>
           <xsl:apply-templates select="//dml:note[@role eq 'footnote']" mode="footnote">
             <xsl:with-param name="section.id" tunnel="yes" select="generate-id()"/>
