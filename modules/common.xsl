@@ -14,7 +14,7 @@
     <dml:list>
       <dml:item property="dct:creator">Arnau Siches</dml:item>
       <dml:item property="dct:issued">2009-09-28</dml:item>
-      <dml:item property="dct:modified">2009-10-20</dml:item>
+      <dml:item property="dct:modified">2009-10-22</dml:item>
       <dml:item property="dct:description">
         <p>Common templates library for dml2html.</p>
       </dml:item>
@@ -65,14 +65,23 @@
         <a href="{$href.attribute}">
           <xsl:apply-templates mode="self"/>
         </a>
-        <xsl:if test="
-          ($first.char eq '#') and id($idref) and $header.numbers and
-          id($idref)[ancestor-or-self::dml:*[parent::dml:dml and count(preceding-sibling::dml:section) ge $toc.skipped.sections]]
-        ">
-          <xsl:call-template name="xref.number">
-            <xsl:with-param name="idref" tunnel="yes" select="$idref"/>
-          </xsl:call-template>
-        </xsl:if>
+        <xsl:choose>
+          <xsl:when test="
+            ($first.char eq '#') and id($idref) and $idref = //dml:note[@role eq 'footnote']/@xml:id
+          ">
+            <xsl:call-template name="footnote.number">
+              <xsl:with-param name="idref" tunnel="yes" select="$idref"/>
+            </xsl:call-template>
+          </xsl:when>
+          <xsl:when test="
+            ($first.char eq '#') and id($idref) and $header.numbers and
+            id($idref)[ancestor-or-self::dml:*[parent::dml:dml and count(preceding-sibling::dml:section) ge $toc.skipped.sections]]
+          ">
+            <xsl:call-template name="xref.number">
+              <xsl:with-param name="idref" tunnel="yes" select="$idref"/>
+            </xsl:call-template>
+          </xsl:when>
+        </xsl:choose>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
@@ -262,6 +271,5 @@
       </xsl:for-each>
     </xsl:if>
   </xsl:template>
-
 
 </xsl:stylesheet>

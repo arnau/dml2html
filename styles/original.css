@@ -18,6 +18,13 @@ body {
 .sidebar {
   border: 3px solid #000;
 }
+.footnote {
+  margin: 1em 0;
+  padding: 0;
+}
+.footnotes {
+  border: 2px solid green;
+}
 
 q {
   quotes: none;

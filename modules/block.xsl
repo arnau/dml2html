@@ -14,7 +14,7 @@
     <dml:list>
       <dml:item property="dct:creator">Arnau Siches</dml:item>
       <dml:item property="dct:issued">2009-10-01</dml:item>
-      <dml:item property="dct:modified">2009-10-20</dml:item>
+      <dml:item property="dct:modified">2009-10-22</dml:item>
       <dml:item property="dct:description">
         <p>Block templates for dml2html.</p>
       </dml:item>
@@ -58,8 +58,10 @@
     </xsl:if>
     <div>
       <xsl:call-template name="common.attributes.and.children"/>
+      <!-- <xsl:call-template name="set.footnotes"/> -->
     </div>
   </xsl:template>
+
   <xsl:template match="dml:p">
     <p><xsl:call-template name="common.attributes.and.children"/></p>
   </xsl:template>
@@ -100,8 +102,6 @@
     <dt><xsl:call-template name="common.attributes.and.children"/></dt>
   </xsl:template>
 
-
-
   <xsl:template match="dml:example | dml:figure">
     <div>
       <xsl:call-template name="common.attributes">
@@ -125,6 +125,47 @@
       </xsl:call-template>
       <xsl:call-template name="common.children"/>
     </div>
+  </xsl:template>
+
+  <xsl:template match="dml:note[@role eq 'footnote']" mode="footnote">
+    <xsl:param name="section.id" tunnel="yes"/>
+    <xsl:variable name="role" select="
+      if (@role) then 
+        string-join((local-name(), @role), ' ') 
+      else 
+        string-join(local-name(), ' ')
+    "/>
+
+    <!-- <xsl:if test="generate-id(ancestor::dml:section[parent::dml:dml]) eq $section.id"> -->
+      <li>
+        <xsl:call-template name="common.attributes">
+          <xsl:with-param name="class.attribute" tunnel="yes" select="$role"/>
+        </xsl:call-template>
+        <xsl:call-template name="footnote.number"/>
+        <xsl:call-template name="common.children"/>
+      </li>
+    <!-- </xsl:if> -->
+  </xsl:template>
+
+  <xsl:template match="dml:note[@role eq 'footnote']"/>
+
+  <xsl:template name="footnote.number">
+    <sup>
+      <xsl:number count="dml:*[substring-after(@href, '#') = //dml:note[@role eq 'footnote']/@xml:id]" level="any" format="[1]"/>
+    </sup>
+  </xsl:template>
+
+  <xsl:template name="set.footnotes">
+    <!-- <xsl:if test="parent::dml:dml and descendant::dml:note[@role eq 'footnote']"> -->
+      <div class="footnotes">
+        <h2>notes</h2>
+        <ul>
+          <xsl:apply-templates select="//dml:note[@role eq 'footnote']" mode="footnote">
+            <xsl:with-param name="section.id" tunnel="yes" select="generate-id()"/>
+          </xsl:apply-templates>
+        </ul>
+      </div>
+    <!-- </xsl:if> -->
   </xsl:template>
 
   <xsl:template match="dml:object">
