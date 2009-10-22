@@ -67,7 +67,9 @@
     <a>
       <xsl:attribute name="href" select="$href.attribute"/>
       <span class="header-number"><xsl:call-template name="section.number"/></span>
-      <xsl:call-template name="common.children"/>
+      <xsl:call-template name="common.children">
+        <xsl:with-param name="strip.links" tunnel="yes">true</xsl:with-param>
+      </xsl:call-template>
     </a>
   </xsl:template>
 </xsl:stylesheet>

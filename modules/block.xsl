@@ -30,7 +30,7 @@
   <xsl:template match="dml:example/dml:title | dml:figure/dml:title">
     <p property="dct:title">
       <xsl:call-template name="common.attributes"/>
-      <xsl:call-template name="example.and.figure.number"/>
+      <xsl:call-template name="element.number"/>
       <xsl:call-template name="common.children"/>
     </p>
   </xsl:template>
@@ -109,28 +109,6 @@
       </xsl:call-template>
       <xsl:call-template name="common.children"/>
     </div>
-  </xsl:template>
-
-  <xsl:template name="example.and.figure.number">
-    <xsl:if test="$header.numbers">
-      <xsl:variable name="number">
-        <xsl:call-template name="header.number"/>
-        <xsl:choose>
-          <xsl:when test="parent::dml:example">
-            <xsl:number from="dml:section" count="dml:example" level="any" format="-1"/>
-          </xsl:when>
-          <xsl:when test="parent::dml:figure">
-            <xsl:number from="dml:section" count="dml:figure" level="any" format="-1"/>
-          </xsl:when>
-        </xsl:choose>
-      </xsl:variable>
-      <xsl:if test="ancestor::dml:*[parent::dml:dml and count(preceding-sibling::dml:section) ge $toc.skipped.sections]">
-        <strong>
-          <xsl:value-of select="
-            concat(df:literal.constructor(concat(parent::*/local-name(), '.label')), ' ', $number, ': ')"/>
-        </strong>
-      </xsl:if>
-    </xsl:if>
   </xsl:template>
 
   

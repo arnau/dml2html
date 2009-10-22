@@ -56,21 +56,9 @@
   <xsl:template match="dml:table/dml:title">
     <caption>
       <xsl:call-template name="common.attributes"/>
-      <xsl:call-template name="table.number"/>
+      <xsl:call-template name="element.number"/>
       <xsl:call-template name="common.children"/>
     </caption>
-  </xsl:template>
-  
-  <xsl:template name="table.number">
-    <xsl:if test="$header.numbers">
-      <xsl:variable name="number">
-        <xsl:call-template name="header.number"/>
-        <xsl:number from="dml:section" count="dml:table" level="any" format="-1"/>
-      </xsl:variable>
-      <xsl:if test="ancestor::dml:*[parent::dml:dml and count(preceding-sibling::dml:section) ge $toc.skipped.sections]">
-        <xsl:value-of select="concat(df:literal.constructor('table.label'), ' ', $number, ': ')"/>
-      </xsl:if>
-    </xsl:if>
   </xsl:template>
   
   <xsl:template match="dml:group">

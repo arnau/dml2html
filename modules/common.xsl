@@ -34,12 +34,13 @@
   </xsl:template>
 
   <xsl:template name="common.children">
+    <xsl:param name="strip.links" tunnel="yes" as="xs:boolean?"/>
     <xsl:variable name="href.attribute" select="@href"/>
     <xsl:variable name="first.char" select="substring($href.attribute, 1, 1)"/>
     <xsl:variable name="idref" select="substring-after($href.attribute, '#')"/>
 
     <xsl:choose>
-      <xsl:when test="not(boolean($href.attribute))">
+      <xsl:when test="not(boolean($href.attribute)) or $strip.links">
         <xsl:apply-templates mode="self"/>
       </xsl:when>
       <xsl:when test="*[@href]">
@@ -205,6 +206,33 @@
     </xsl:if>
   </xsl:template>
 
+  <xsl:template name="element.number">
+    <xsl:if test="$header.numbers">
+      <xsl:variable name="number">
+        <xsl:call-template name="header.number"/>
+        <!-- <xsl:number from="dml:section" count="dml:*[some $i in $numbered.elements satisfies $i eq parent::dml:*/local-name()]" level="any" format="-1"/> -->
+        <xsl:choose>
+          <xsl:when test="parent::dml:example">
+            <xsl:number from="dml:section" count="dml:example" level="any" format="-1"/>
+          </xsl:when>
+          <xsl:when test="parent::dml:figure">
+            <xsl:number from="dml:section" count="dml:figure" level="any" format="-1"/>
+          </xsl:when>
+          <xsl:when test="parent::dml:table">
+            <xsl:number from="dml:section" count="dml:table" level="any" format="-1"/>
+          </xsl:when>
+        </xsl:choose>
+      </xsl:variable>
+      <xsl:if test="ancestor::dml:*[parent::dml:dml and count(preceding-sibling::dml:section) ge $toc.skipped.sections]">
+        <strong>
+          <xsl:value-of select="
+            concat(df:literal.constructor(concat(parent::dml:*/local-name(), '.label')), ' ', $number, ': ')"/>
+        </strong>
+      </xsl:if>
+    </xsl:if>
+  </xsl:template>
+
+
   <xsl:template name="xref.number">
     <xsl:param name="idref" tunnel="yes"/>
     <xsl:if test="$xref.numbers and not(ancestor::dml:title)">
@@ -216,17 +244,9 @@
 
         <xsl:variable name="set.number">
           <xsl:choose>
-            <xsl:when test="$element.name eq 'table'">
+            <xsl:when test="some $i in $numbered.elements satisfies $i eq $element.name">
               <xsl:value-of select="concat(df:literal.constructor(concat($element.name, '.label')), ' ', $number)"/>
-              <xsl:number from="dml:section" count="dml:table" level="any" format="-1"/>
-            </xsl:when>
-            <xsl:when test="$element.name eq 'figure'">
-              <xsl:value-of select="concat(df:literal.constructor(concat($element.name, '.label')), ' ', $number)"/>
-              <xsl:number from="dml:section" count="dml:figure" level="any" format="-1"/>
-            </xsl:when>
-            <xsl:when test="$element.name eq 'example'">
-              <xsl:value-of select="concat(df:literal.constructor(concat($element.name, '.label')), ' ', $number)"/>
-              <xsl:number from="dml:section" count="dml:example" level="any" format="-1"/>
+              <xsl:number from="dml:section" count="dml:*[local-name() eq $element.name]" level="any" format="-1"/>
             </xsl:when>
             <xsl:when test="id($idref)/ancestor-or-self::*[@role='appendix']">
               <xsl:value-of select="concat(df:literal.constructor('appendix.prefix'), ' ', $number)"/>
