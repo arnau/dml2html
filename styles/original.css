@@ -77,6 +77,10 @@ th {
   color: #590;
 }
 
+.xml .comment {
+  color: #555;
+  font-style: italic;
+}
 .xml .tag {
   color: blue;
 }
