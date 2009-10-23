@@ -3,8 +3,9 @@
 @prefix dct: <http://purl.org/dc/terms/> .
 <> dct:creator "Arnau Siches" ;
   dct:issued "2009-09-28" ;
-  dct:modified "2009-10-20" ;
+  dct:modified "2009-10-23" ;
   dct:description "Basic stylesheet for dml2html HTML output" ;
+  dct:license <http://www.gnu.org/licenses/lgpl.html> .
 */
 
 body {

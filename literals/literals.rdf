@@ -11,15 +11,13 @@
     <dct:title xml:lang="en">Literals for dml2html</dct:title>
     <dct:creator>Arnau Siches</dct:creator>
     <dct:issued>2009-10-15</dct:issued>
-    <dct:modified>2009-10-15</dct:modified>
+    <dct:modified>2009-10-23</dct:modified>
     <dct:description rdf:parseType="Literal" xml:lang="en">
       <dml:note>
         <p>Literal strings for dml2html.</p>
       </dml:note>
     </dct:description>
-    <dct:license>
-      <!-- todo -->
-    </dct:license>
+    <dct:license rdf:resource="http://www.gnu.org/licenses/lgpl.html"/>
   </rdf:Description>
 
   <!--

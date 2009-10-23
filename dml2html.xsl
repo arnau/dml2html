@@ -23,13 +23,11 @@
     <dml:list>
       <dml:item property="dct:creator">Arnau Siches</dml:item>
       <dml:item property="dct:issued">2009-09-28</dml:item>
-      <dml:item property="dct:modified">2009-10-22</dml:item>
+      <dml:item property="dct:modified">2009-10-23</dml:item>
       <dml:item property="dct:description">
         <p>Transforms a DML source to HTML.</p>
       </dml:item>
-      <dml:item property="dct:license">
-        <!-- todo -->
-      </dml:item>
+      <dml:item property="dct:license" about="http://www.gnu.org/licenses/lgpl.html"/>
     </dml:list>
   </dml:note>
 
