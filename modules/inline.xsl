@@ -18,7 +18,25 @@
       <dml:item property="dct:description">
         <p>Inline templates for dml2html.</p>
       </dml:item>
-      <dml:item property="dct:license" about="http://www.gnu.org/licenses/gpl-3.0.html">Copyright 2009 Arnau Siches</dml:item>
+      <dml:item property="dct:rights">
+        Copyright 2009 Arnau Siches
+      </dml:item>
+      <dml:item property="dct:license">
+        This file is part of dml2html.
+
+        dml2html is free software: you can redistribute it and/or modify
+        it under the terms of the GNU General Public License as published by
+        the Free Software Foundation, either version 3 of the License, or
+        (at your option) any later version.
+
+        dml2html is distributed in the hope that it will be useful,
+        but WITHOUT ANY WARRANTY; without even the implied warranty of
+        MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+        GNU General Public License for more details.
+
+        You should have received a copy of the GNU General Public License
+        along with dml2html.  If not, see http://www.gnu.org/licenses/.
+      </dml:item>
     </dml:list>
   </dml:note>
   
