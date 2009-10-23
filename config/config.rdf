@@ -17,7 +17,7 @@
         <p>Basic parameter definitions for dml2html.</p>
       </dml:note>
     </dct:description>
-    <dct:license rdf:resource="http://www.gnu.org/licenses/lgpl.html"/>
+    <dct:license rdf:resource="http://www.gnu.org/licenses/gpl-3.0.html"/>
   </rdf:Description>
   
   <rdf:Description rdf:ID="debug">

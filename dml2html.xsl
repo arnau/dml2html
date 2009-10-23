@@ -27,7 +27,7 @@
       <dml:item property="dct:description">
         <p>Transforms a DML source to HTML.</p>
       </dml:item>
-      <dml:item property="dct:license" about="http://www.gnu.org/licenses/lgpl.html"/>
+      <dml:item property="dct:license" about="http://www.gnu.org/licenses/gpl-3.0.html"/>
     </dml:list>
   </dml:note>
 

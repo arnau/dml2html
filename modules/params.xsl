@@ -16,7 +16,7 @@
       <dml:item property="dct:description">
         <p>Basic parameters and attribute set definitions for dml2html.xsl</p>
       </dml:item>
-      <dml:item property="dct:license" about="http://www.gnu.org/licenses/lgpl.html"/>
+      <dml:item property="dct:license" about="http://www.gnu.org/licenses/gpl-3.0.html"/>
     </dml:list>
   </dml:note>
 
