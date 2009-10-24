@@ -4,15 +4,14 @@
   xmlns:xs="http://www.w3.org/2001/XMLSchema"
   xmlns:dml="http://purl.oclc.org/NET/dml/1.0/"
   xmlns:dct="http://purl.org/dc/terms/"
-  xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
   xmlns:df="dml:functions"
-  exclude-result-prefixes="xs dml rdf df">
+  exclude-result-prefixes="xs dml df">
 
   <dml:note>
     <dml:list>
       <dml:item property="dct:creator">Arnau Siches</dml:item>
-      <dml:item property="dct:issued">2009-09-28</dml:item>
-      <dml:item property="dct:issued">2009-10-14</dml:item>
+      <dml:item property="dct:created">2009-09-28</dml:item>
+      <dml:item property="dct:created">2009-10-24</dml:item>
       <dml:item property="dct:description">
         <p>Basic parameters and attribute set definitions for dml2html.xsl</p>
       </dml:item>
@@ -77,5 +76,23 @@
   <xsl:param name="en.quote.variant" select="df:param.constructor('quote.variant', 'en')" as="xs:string"/>
   <xsl:param name="es.quote.variant" select="df:param.constructor('quote.variant', 'es')" as="xs:string"/>
   <xsl:param name="ja.quote.variant" select="df:param.constructor('quote.variant', 'ja')" as="xs:string"/>
+
+  <xsl:param name="metadata.ns" select="df:param.constructor('metadata.ns')" as="item()+"/>
+
+  <xsl:param name="document.metadata" select="/(dml:dml, dml:note)/dml:metadata"/>
+  <xsl:param name="document.title" select="/(dml:dml, dml:note)/dml:title"/>
+  <xsl:param name="document.description" select="df:get.metadata($document.metadata, 'description')"/>
+  <xsl:param name="document.rights" select="df:get.metadata($document.metadata, 'rights')"/>
+  <xsl:param name="document.creator" select="df:get.metadata($document.metadata, 'creator')"/>
+  <xsl:param name="document.subject" select="df:get.metadata($document.metadata, 'subject')"/>
+  <xsl:param name="document.publisher" select="df:get.metadata($document.metadata, 'publisher')"/>
+  <xsl:param name="document.identifier" select="df:get.metadata($document.metadata, 'identifier')"/>
+  <xsl:param name="document.issued" select="
+    if (df:get.metadata($document.metadata, 'issued')) then
+      df:get.metadata($document.metadata, 'issued')
+    else
+      df:get.metadata($document.metadata, 'modified')
+  "/>
+
 
 </xsl:stylesheet>

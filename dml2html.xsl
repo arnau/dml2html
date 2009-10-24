@@ -8,7 +8,7 @@
   xmlns:dct="http://purl.org/dc/terms/"
   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
   xmlns:df="dml:functions"
-  exclude-result-prefixes="xs dml pml df">
+  exclude-result-prefixes="xs dml pml df rdf">
   
   <xsl:import href="functions/common.xsl"/>
   <xsl:import href="modules/params.xsl"/>
@@ -17,19 +17,18 @@
   <xsl:import href="modules/block.xsl"/>
   <xsl:import href="modules/table.xsl"/>
   <xsl:import href="modules/toc.xsl"/>
+  <xsl:import href="modules/metadata.xsl"/>
   <xsl:import href="modules/pml2html.xsl"/>
 
   <dml:note>
     <dml:list>
       <dml:item property="dct:creator">Arnau Siches</dml:item>
-      <dml:item property="dct:issued">2009-09-28</dml:item>
+      <dml:item property="dct:created">2009-09-28</dml:item>
       <dml:item property="dct:modified">2009-10-23</dml:item>
       <dml:item property="dct:description">
         <p>Transforms a DML source to HTML.</p>
       </dml:item>
-      <dml:item property="dct:rights">
-        Copyright 2009 Arnau Siches
-      </dml:item>
+      <dml:item property="dct:rights">Copyright 2009 Arnau Siches</dml:item>
       <dml:item property="dct:license">
         This file is part of dml2html.
 
@@ -59,6 +58,9 @@
     doctype-public="-//W3C//DTD XHTML+RDFa 1.0//EN" 
     doctype-system="http://www.w3.org/MarkUp/DTD/xhtml-rdfa-1.dtd"/>
 
+  <xsl:variable name="program.name">dml2html</xsl:variable>
+  <xsl:variable name="program.version">0.9</xsl:variable>
+
   <xsl:template match="/">
     <xsl:apply-templates/>
   </xsl:template>
@@ -72,8 +74,8 @@
   </xsl:template>
   
   <xsl:template name="head">
-    <head>
-      <xsl:apply-templates select="dml:title" mode="metadata"/>
+    <head profile="http://dublincore.org/documents/2008/08/04/dc-html/">
+      <xsl:call-template name="metadata"/>
       <xsl:call-template name="link.stylesheet"/>
     </head>
   </xsl:template>

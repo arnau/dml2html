@@ -13,11 +13,25 @@
   <dml:note>
     <dml:list>
       <dml:item property="dct:creator">Arnau Siches</dml:item>
-      <dml:item property="dct:issued">2008-10-20</dml:item>
+      <dml:item property="dct:created">2008-10-20</dml:item>
       <dml:item property="dct:modified">2009-09-30</dml:item>
       <dml:item property="dct:description">Highlighting funcions for code</dml:item>
+      <dml:item property="dct:rights">Copyright 2009 Arnau Siches</dml:item>
       <dml:item property="dct:license">
-        <!-- todo -->
+        This file is part of dml2html.
+
+        dml2html is free software: you can redistribute it and/or modify
+        it under the terms of the GNU General Public License as published by
+        the Free Software Foundation, either version 3 of the License, or
+        (at your option) any later version.
+
+        dml2html is distributed in the hope that it will be useful,
+        but WITHOUT ANY WARRANTY; without even the implied warranty of
+        MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+        GNU General Public License for more details.
+
+        You should have received a copy of the GNU General Public License
+        along with dml2html.  If not, see http://www.gnu.org/licenses/.
       </dml:item>
     </dml:list>
   </dml:note>
@@ -26,7 +40,7 @@
   <dml:note about="#highlight.xml">
     <dml:list>
       <dml:item property="dct:creator">Arnau Siches</dml:item>
-      <dml:item property="dct:issued">2009-10-04</dml:item>
+      <dml:item property="dct:created">2009-10-04</dml:item>
       <dml:item property="dct:modified">2009-10-05</dml:item>
       <dml:item property="dct:description">Highlighting XML code</dml:item>
     </dml:list>

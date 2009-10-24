@@ -10,7 +10,7 @@
   <rdf:Description rdf:about="">
     <dct:title xml:lang="en">Params for dml2html</dct:title>
     <dct:creator>Arnau Siches</dct:creator>
-    <dct:issued>2009-10-09</dct:issued>
+    <dct:created>2009-10-09</dct:created>
     <dct:modified>2009-10-23</dct:modified>
     <dct:description rdf:parseType="Literal" xml:lang="en">
       <dml:note>
@@ -329,6 +329,19 @@
     <rdf:value rdf:datatype="http://www.w3.org/TR/xmlschema-2/#token" xml:lang="en">“,”,‘,’</rdf:value>
     <rdf:value rdf:datatype="http://www.w3.org/TR/xmlschema-2/#token" xml:lang="es">«,»,“,”</rdf:value>
     <rdf:value rdf:datatype="http://www.w3.org/TR/xmlschema-2/#token" xml:lang="ja">「,」,『,』</rdf:value>
+  </rdf:Description>
+
+  <rdf:Description rdf:ID="metadata.ns">
+    <dct:title xml:lang="en">Metadata namespaces</dct:title>
+    <dct:description rdf:parseType="Literal" xml:lang="en">
+      <dml:note>
+        <p><pml:param>metadata.ns</pml:param> param is typed as <pml:type>item()+</pml:type>.</p>
+
+      </dml:note>
+    </dct:description>
+
+    <rdf:value rdf:datatype="http://www.w3.org/TR/xmlschema-2/#anyURI">http://purl.org/dc/elements/1.1/</rdf:value>
+    <rdf:value rdf:datatype="http://www.w3.org/TR/xmlschema-2/#anyURI">http://purl.org/dc/terms/</rdf:value>
   </rdf:Description>
 
 </rdf:RDF>

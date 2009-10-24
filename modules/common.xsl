@@ -6,21 +6,18 @@
   xmlns:dml="http://purl.oclc.org/NET/dml/1.0/"
   xmlns:pml="http://purl.oclc.org/NET/pml/1.0/"
   xmlns:dct="http://purl.org/dc/terms/"
-  xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
   xmlns:df="dml:functions"
   exclude-result-prefixes="xs dml pml df">
   
   <dml:note>
     <dml:list>
       <dml:item property="dct:creator">Arnau Siches</dml:item>
-      <dml:item property="dct:issued">2009-09-28</dml:item>
+      <dml:item property="dct:created">2009-09-28</dml:item>
       <dml:item property="dct:modified">2009-10-23</dml:item>
       <dml:item property="dct:description">
         <p>Common templates library for dml2html.</p>
       </dml:item>
-      <dml:item property="dct:rights">
-        Copyright 2009 Arnau Siches
-      </dml:item>
+      <dml:item property="dct:rights">Copyright 2009 Arnau Siches</dml:item>
       <dml:item property="dct:license">
         This file is part of dml2html.
 
