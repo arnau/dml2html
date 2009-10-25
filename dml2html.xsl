@@ -24,7 +24,7 @@
     <dml:list>
       <dml:item property="dct:creator">Arnau Siches</dml:item>
       <dml:item property="dct:created">2009-09-28</dml:item>
-      <dml:item property="dct:modified">2009-10-23</dml:item>
+      <dml:item property="dct:modified">2009-10-25</dml:item>
       <dml:item property="dct:description">
         <p>Transforms a DML source to HTML.</p>
       </dml:item>
@@ -99,6 +99,16 @@
   </xsl:template>
   
   
-  <xsl:template match="dml:metadata"/>
+  <xsl:template match="dml:metadata">
+    <xsl:if test="$metadata.section">
+      <!-- <xsl:call-template name="common.attributes.and.children"/> -->
+      <dl class="metadata">
+        <xsl:sequence select="df:set.metadata(df:literal.constructor('document.issued.label'), $document.issued, 'dct:issued')"/>
+        <xsl:sequence select="df:set.metadata(df:literal.constructor('document.editor.label'), $document.creator, 'dct:creator')"/>
+        <!-- <xsl:sequence select="df:set.metadata(df:literal.constructor('document.editor.label'), string-join(($document.creator, $document.publisher), ', '))"/> -->
+        <xsl:sequence select="df:set.metadata(df:literal.constructor('document.version.label'), $document.identifier, 'dct:identifier')"/>
+      </dl>
+    </xsl:if>
+  </xsl:template>
   
 </xsl:stylesheet>

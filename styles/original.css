@@ -144,3 +144,11 @@ th {
 #toc .header-number {
   background: #FFF;
 }
+
+.metadata {
+  background: #FFC;
+  padding: 1em;
+}
+.metadata dt {
+  font-weight: bold;
+}

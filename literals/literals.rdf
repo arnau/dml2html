@@ -250,9 +250,9 @@
   <rdf:Description rdf:ID="document.editor.label">
     <dct:title xml:lang="en">Label for document editor</dct:title>
 
-    <rdf:value xml:lang="ca">Editor</rdf:value>
-    <rdf:value xml:lang="en">Editor</rdf:value>
-    <rdf:value xml:lang="es">Editor</rdf:value>
+    <rdf:value xml:lang="ca">Editors</rdf:value>
+    <rdf:value xml:lang="en">Editors</rdf:value>
+    <rdf:value xml:lang="es">Editors</rdf:value>
   </rdf:Description>
 
   <rdf:Description rdf:ID="document.issued.label">
@@ -269,6 +269,14 @@
     <rdf:value xml:lang="ca">Darrera versió</rdf:value>
     <rdf:value xml:lang="en">Latest version</rdf:value>
     <rdf:value xml:lang="es">Última versión</rdf:value>
+  </rdf:Description>
+
+  <rdf:Description rdf:ID="debug.draft">
+    <dct:title xml:lang="en">Draft status</dct:title>
+
+    <rdf:value xml:lang="ca">Esborrany</rdf:value>
+    <rdf:value xml:lang="en">Draft</rdf:value>
+    <rdf:value xml:lang="es">Borrador</rdf:value>
   </rdf:Description>
 
   <rdf:Description rdf:ID="debug.draft">

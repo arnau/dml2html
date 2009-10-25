@@ -11,7 +11,7 @@
     <dct:title xml:lang="en">Params for dml2html</dct:title>
     <dct:creator>Arnau Siches</dct:creator>
     <dct:created>2009-10-09</dct:created>
-    <dct:modified>2009-10-23</dct:modified>
+    <dct:modified>2009-10-25</dct:modified>
     <dct:description rdf:parseType="Literal" xml:lang="en">
       <dml:note>
         <p>Basic parameter definitions for dml2html.</p>
@@ -145,7 +145,6 @@
     
     <rdf:value rdf:datatype="http://www.w3.org/TR/xmlschema-2/#string">A.1</rdf:value>
   </rdf:Description>
-
 
   <rdf:Description rdf:ID="link.stylesheet.all">
     <dct:title xml:lang="en">Cascading Style Sheet for all media</dct:title>
@@ -342,6 +341,18 @@
 
     <rdf:value rdf:datatype="http://www.w3.org/TR/xmlschema-2/#anyURI">http://purl.org/dc/elements/1.1/</rdf:value>
     <rdf:value rdf:datatype="http://www.w3.org/TR/xmlschema-2/#anyURI">http://purl.org/dc/terms/</rdf:value>
+  </rdf:Description>
+
+  <rdf:Description rdf:ID="metadata.section">
+    <dct:title xml:lang="en">Metadata section</dct:title>
+    <dct:description rdf:parseType="Literal" xml:lang="en">
+      <dml:note>
+        <p><pml:param>metadata.section</pml:param> param is typed as <pml:type>xs:boolean</pml:type>.</p>
+        <p>It toggles metadata section.</p>
+      </dml:note>
+    </dct:description>
+    
+    <rdf:value rdf:datatype="http://www.w3.org/TR/xmlschema-2/#boolean">true</rdf:value>
   </rdf:Description>
 
 </rdf:RDF>

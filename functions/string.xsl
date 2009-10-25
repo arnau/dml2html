@@ -14,7 +14,7 @@
     <dml:list>
       <dml:item property="dct:creator">Arnau Siches</dml:item>
       <dml:item property="dct:created">2008-10-20</dml:item>
-      <dml:item property="dct:modified">2009-09-30</dml:item>
+      <dml:item property="dct:modified">2009-10-25</dml:item>
       <dml:item property="dct:description">String functions</dml:item>
       <dml:item property="dct:rights">Copyright 2009 Arnau Siches</dml:item>
       <dml:item property="dct:license">
@@ -107,6 +107,12 @@
     </xsl:choose>
   </xsl:function>
 
+  <xsl:function name="df:join.values">
+    <xsl:param name="context"/>
+    <xsl:param name="separator" as="xs:string"/>
+    <xsl:variable name="items" select="for $i in $context return normalize-space($i)"/>
+    <xsl:sequence select="string-join($items, ',')"/>
+  </xsl:function>
 
   <!-- count chars -->
   <!-- sum(for $i in preceding-sibling::text() return string-length($i)) -->

@@ -17,7 +17,7 @@
     <dml:list>
       <dml:item property="dct:creator">Arnau Siches</dml:item>
       <dml:item property="dct:created">2009-09-30</dml:item>
-      <dml:item property="dct:modified">2009-10-01</dml:item>
+      <dml:item property="dct:modified">2009-10-25</dml:item>
       <dml:item property="dct:description">Common functions</dml:item>
       <dml:item property="dct:rights">Copyright 2009 Arnau Siches</dml:item>
       <dml:item property="dct:license">
@@ -85,7 +85,6 @@
   </xsl:function>
 
 
-
   <xsl:function name="df:quotes">
     <xsl:param name="context" as="item()"/>
     <xsl:param name="type" as="xs:string"/>
@@ -116,6 +115,18 @@
           $quote.variant[$position[1]]
       else
         $quote.variant[$position[2]]
+    "/>
+  </xsl:function>
+
+
+  <xsl:function name="df:get.metadata">
+    <xsl:param name="context"/>
+    <xsl:param name="type" as="xs:string"/>
+    <xsl:sequence select="
+      $context//*[
+        (replace(@property, '.+:(.+)', '$1') eq $type) and
+        (some $i in $metadata.ns satisfies $i eq namespace-uri-for-prefix(replace(@property, '(.+):.+', '$1'), /*))
+      ]/node()
     "/>
   </xsl:function>
 

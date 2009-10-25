@@ -11,7 +11,7 @@
     <dml:list>
       <dml:item property="dct:creator">Arnau Siches</dml:item>
       <dml:item property="dct:created">2009-09-28</dml:item>
-      <dml:item property="dct:created">2009-10-24</dml:item>
+      <dml:item property="dct:created">2009-10-25</dml:item>
       <dml:item property="dct:description">
         <p>Basic parameters and attribute set definitions for dml2html.xsl</p>
       </dml:item>
@@ -78,6 +78,7 @@
   <xsl:param name="ja.quote.variant" select="df:param.constructor('quote.variant', 'ja')" as="xs:string"/>
 
   <xsl:param name="metadata.ns" select="df:param.constructor('metadata.ns')" as="item()+"/>
+  <xsl:param name="metadata.section" select="df:param.constructor('metadata.section')" as="xs:boolean"/>
 
   <xsl:param name="document.metadata" select="/(dml:dml, dml:note)/dml:metadata"/>
   <xsl:param name="document.title" select="/(dml:dml, dml:note)/dml:title"/>
