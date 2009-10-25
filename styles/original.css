@@ -152,3 +152,9 @@ th {
 .metadata dt {
   font-weight: bold;
 }
+
+#footer {
+  border-top: 3px solid #000;
+  margin: 2em 0;
+  font-size: 0.9em;
+}

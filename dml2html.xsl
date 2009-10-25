@@ -91,6 +91,8 @@
       <xsl:if test="$toc and ($toc.position eq 1)">
         <xsl:call-template name="toc"/>
       </xsl:if>
+      
+      <xsl:call-template name="license"/>
     </body>
   </xsl:template>
   
@@ -108,6 +110,14 @@
         <!-- <xsl:sequence select="df:set.metadata(df:literal.constructor('document.editor.label'), string-join(($document.creator, $document.publisher), ', '))"/> -->
         <xsl:sequence select="df:set.metadata(df:literal.constructor('document.version.label'), $document.identifier, 'dct:identifier')"/>
       </dl>
+    </xsl:if>
+  </xsl:template>
+  
+  <xsl:template name="license">
+    <xsl:if test="$license.section and exists($document.rights)">
+      <div id="footer" property="dct:rights">
+        <xsl:apply-templates select="$document.rights"/>
+      </div>
     </xsl:if>
   </xsl:template>
   

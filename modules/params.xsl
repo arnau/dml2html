@@ -80,6 +80,8 @@
   <xsl:param name="metadata.ns" select="df:param.constructor('metadata.ns')" as="item()+"/>
   <xsl:param name="metadata.section" select="df:param.constructor('metadata.section')" as="xs:boolean"/>
 
+  <xsl:param name="license.section" select="df:param.constructor('license.section')" as="xs:boolean"/>
+
   <xsl:param name="document.metadata" select="/(dml:dml, dml:note)/dml:metadata"/>
   <xsl:param name="document.title" select="/(dml:dml, dml:note)/dml:title"/>
   <xsl:param name="document.description" select="df:get.metadata($document.metadata, 'description')"/>

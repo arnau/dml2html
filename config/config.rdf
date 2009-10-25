@@ -355,4 +355,16 @@
     <rdf:value rdf:datatype="http://www.w3.org/TR/xmlschema-2/#boolean">true</rdf:value>
   </rdf:Description>
 
+  <rdf:Description rdf:ID="license.section">
+    <dct:title xml:lang="en">License section</dct:title>
+    <dct:description rdf:parseType="Literal" xml:lang="en">
+      <dml:note>
+        <p><pml:param>license.section</pml:param> param is typed as <pml:type>xs:boolean</pml:type>.</p>
+        <p>It toggles license section.</p>
+      </dml:note>
+    </dct:description>
+    
+    <rdf:value rdf:datatype="http://www.w3.org/TR/xmlschema-2/#boolean">true</rdf:value>
+  </rdf:Description>
+
 </rdf:RDF>
