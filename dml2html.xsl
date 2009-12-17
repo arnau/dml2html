@@ -88,7 +88,7 @@
       </xsl:if>
       <xsl:apply-templates mode="self"/>
 
-      <xsl:sequence select="df:message('footnotes are experimental and only visibles with $debug = true')"/>
+      <xsl:sequence select="df:message('Footnotes are experimental and only visibles with $debug = true', 'warning')"/>
       <xsl:if test="$debug">
         <xsl:call-template name="set.footnotes"/>
       </xsl:if>
