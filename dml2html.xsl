@@ -61,6 +61,8 @@
   <xsl:variable name="program.name">dml2html</xsl:variable>
   <xsl:variable name="program.version">0.9</xsl:variable>
 
+  <xsl:strip-space elements="dml:dml dml:section"/>
+
   <xsl:template match="/">
     <xsl:apply-templates/>
   </xsl:template>
