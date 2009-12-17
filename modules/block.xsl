@@ -48,7 +48,7 @@
     <xsl:variable name="header" select="concat('h', count(ancestor::*))"/>
     <xsl:element name="{$header}">
       <xsl:call-template name="common.attributes"/>
-      <xsl:if test="parent::dml:section">
+      <xsl:if test="parent::dml:section and count(parent::dml:section/preceding-sibling::dml:section) ge $toc.skipped.sections">
         <xsl:call-template name="section.number"/>
       </xsl:if>
       <xsl:call-template name="common.children"/>
