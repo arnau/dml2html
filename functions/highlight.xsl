@@ -8,7 +8,7 @@
   xmlns:dct="http://purl.org/dc/terms/"
   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
   xmlns:df="dml:functions"
-  exclude-result-prefixes="xs dml pml df">
+  exclude-result-prefixes="xs dml pml df rdf">
 
   <dml:note>
     <dml:list>
@@ -217,6 +217,7 @@
   <xsl:function name="df:css">
     <xsl:param name="context"/>
     <xsl:param name="limit" as="xs:integer"/>
+    <xsl:variable name="comment" as="xs:string">/\*.+\*/</xsl:variable>
     <xsl:variable name="rule" as="xs:string">(\s*[\w\W-[\{]]+\s+?)(\{)([\w\W-[\}]]+)*(\})?</xsl:variable>
     <xsl:variable name="property" as="xs:string">([\w\W-[:]]+:)([\w\W-[;]]+)(\s?!important)?(;\s*)</xsl:variable>
     <xsl:variable name="arroba-rule" as="xs:string">(\s*@[\w\W-[""\n]]+\s+?)([\w\W]+?)(;\s*)</xsl:variable>
@@ -268,7 +269,16 @@
             </span>
           </xsl:matching-substring>
           <xsl:non-matching-substring>
-            <xsl:copy-of select="."/>
+            <xsl:analyze-string select="." regex="{$comment}">
+              <xsl:matching-substring>
+                <span class="comment">
+                  <xsl:value-of select="."/>
+                </span>
+              </xsl:matching-substring>
+              <xsl:non-matching-substring>
+                <xsl:value-of select="."/>
+              </xsl:non-matching-substring>
+            </xsl:analyze-string>
           </xsl:non-matching-substring>
         </xsl:analyze-string>
       </xsl:non-matching-substring>
