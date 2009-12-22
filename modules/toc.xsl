@@ -13,7 +13,7 @@
     <dml:list>
       <dml:item property="dct:creator">Arnau Siches</dml:item>
       <dml:item property="dct:created">2009-09-29</dml:item>
-      <dml:item property="dct:modified">2009-10-23</dml:item>
+      <dml:item property="dct:modified">2009-12-22</dml:item>
       <dml:item property="dct:description">
         <p>Table of Contents for dml2fo.xsl.</p>
       </dml:item>
@@ -77,8 +77,7 @@
   
   <xsl:template match="dml:title" mode="toc">
     <xsl:param name="href.attribute" tunnel="yes" as="xs:anyURI"/>
-    <a>
-      <xsl:attribute name="href" select="$href.attribute"/>
+    <a href="{$href.attribute}" property="dct:title">
       <span class="header-number"><xsl:call-template name="section.number"/></span>
       <xsl:call-template name="common.children">
         <xsl:with-param name="strip.links" tunnel="yes">true</xsl:with-param>
