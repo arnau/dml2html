@@ -13,7 +13,7 @@
     <dml:list>
       <dml:item property="dct:creator">Arnau Siches</dml:item>
       <dml:item property="dct:created">2009-10-01</dml:item>
-      <dml:item property="dct:modified">2009-10-25</dml:item>
+      <dml:item property="dct:modified">2009-12-22</dml:item>
       <dml:item property="dct:description">
         <p>Block templates for dml2html.</p>
       </dml:item>
@@ -38,7 +38,7 @@
   </dml:note>
   
   <xsl:template match="dml:example/dml:title | dml:figure/dml:title">
-    <p property="dct:title">
+    <p property="dct:title" about="#{../@xml:id}">
       <xsl:call-template name="common.attributes"/>
       <xsl:call-template name="element.number"/>
       <xsl:call-template name="common.children"/>

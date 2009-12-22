@@ -13,7 +13,7 @@
     <dml:list>
       <dml:item property="dct:creator">Arnau Siches</dml:item>
       <dml:item property="dct:created">2009-09-29</dml:item>
-      <dml:item property="dct:modified">2009-10-23</dml:item>
+      <dml:item property="dct:modified">2009-12-22</dml:item>
       <dml:item property="dct:description">
         <p>Inline templates for dml2html.</p>
       </dml:item>
@@ -66,7 +66,6 @@
   <xsl:template match="dml:span">
     <xsl:choose>
       <xsl:when test="@href">
-        <!-- <xsl:call-template name="common.attributes.and.children"/> -->
         <xsl:call-template name="common.children"/>
       </xsl:when>
       <xsl:otherwise>

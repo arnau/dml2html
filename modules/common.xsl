@@ -13,7 +13,7 @@
     <dml:list>
       <dml:item property="dct:creator">Arnau Siches</dml:item>
       <dml:item property="dct:created">2009-09-28</dml:item>
-      <dml:item property="dct:modified">2009-10-23</dml:item>
+      <dml:item property="dct:modified">2009-12-22</dml:item>
       <dml:item property="dct:description">
         <p>Common templates library for dml2html.</p>
       </dml:item>
@@ -54,6 +54,7 @@
 
     <xsl:choose>
       <xsl:when test="not(boolean($href.attribute)) or $strip.links">
+        <xsl:call-template name="common.attributes"/>
         <xsl:apply-templates mode="self"/>
       </xsl:when>
       <xsl:when test="*[@href]">
@@ -66,20 +67,19 @@
         <xsl:choose>
           <xsl:when test="$debug">
             <span class="xref.error">
+              <xsl:call-template name="common.attributes"/>
               <xsl:apply-templates mode="self"/> (xref error)
             </span>
           </xsl:when>
           <xsl:otherwise>
+            <xsl:call-template name="common.attributes"/>
             <xsl:apply-templates mode="self"/>
           </xsl:otherwise>
         </xsl:choose>
       </xsl:when>
       <xsl:otherwise>
         <a href="{$href.attribute}">
-          <xsl:if test="self::dml:span">
-            <!-- process attributes for dml:span at correct time -->
-            <xsl:call-template name="common.attributes"/>
-          </xsl:if>
+          <xsl:call-template name="common.attributes"/>
           <xsl:apply-templates mode="self"/>
         </a>
         <xsl:choose>
@@ -152,6 +152,23 @@
     <xsl:if test="@status and $debug">
       <xsl:call-template name="set.status"/>
     </xsl:if>
+    
+    <xsl:apply-templates select="@property"/>
+    <xsl:apply-templates select="@about"/>
+    <xsl:apply-templates select="@typeof"/>
+  </xsl:template>
+  
+  <xsl:template match="@property">
+    <xsl:attribute name="property" select="."/>
+  </xsl:template>
+  <xsl:template match="@about">
+    <xsl:attribute name="about" select="."/>
+  </xsl:template>
+  <xsl:template match="@typeof">
+    <xsl:attribute name="typeof" select="."/>
+  </xsl:template>
+  <xsl:template match="@resource">
+    <xsl:attribute name="resource" select="."/>
   </xsl:template>
   
   <xsl:template name="set.status">
@@ -176,7 +193,7 @@
   </xsl:template>
   
   <xsl:template name="common.attributes.and.children">
-    <xsl:call-template name="common.attributes"/>
+    <!-- <xsl:call-template name="common.attributes"/> -->
     <xsl:call-template name="common.children"/>
   </xsl:template>
 
