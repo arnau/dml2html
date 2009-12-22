@@ -66,7 +66,8 @@
   <xsl:template match="dml:span">
     <xsl:choose>
       <xsl:when test="@href">
-        <xsl:call-template name="common.attributes.and.children"/>
+        <!-- <xsl:call-template name="common.attributes.and.children"/> -->
+        <xsl:call-template name="common.children"/>
       </xsl:when>
       <xsl:otherwise>
         <span>

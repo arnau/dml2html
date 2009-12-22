@@ -76,6 +76,10 @@
       </xsl:when>
       <xsl:otherwise>
         <a href="{$href.attribute}">
+          <xsl:if test="self::dml:span">
+            <!-- process attributes for dml:span at correct time -->
+            <xsl:call-template name="common.attributes"/>
+          </xsl:if>
           <xsl:apply-templates mode="self"/>
         </a>
         <xsl:choose>
@@ -235,10 +239,10 @@
         <!-- <xsl:number from="dml:section" count="dml:*[some $i in $numbered.elements satisfies $i eq parent::dml:*/local-name()]" level="any" format="-1"/> -->
         <xsl:choose>
           <xsl:when test="parent::dml:example">
-            <xsl:number from="dml:section" count="dml:example" level="any" format="-1"/>
+            <xsl:number from="dml:section" count="dml:example[dml:title]" level="any" format="-1"/>
           </xsl:when>
           <xsl:when test="parent::dml:figure">
-            <xsl:number from="dml:section" count="dml:figure" level="any" format="-1"/>
+            <xsl:number from="dml:section" count="dml:figure[dml:title]" level="any" format="-1"/>
           </xsl:when>
           <xsl:when test="parent::dml:table">
             <xsl:number from="dml:section" count="dml:table" level="any" format="-1"/>
