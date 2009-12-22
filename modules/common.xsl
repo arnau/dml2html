@@ -47,6 +47,9 @@
   </xsl:template>
 
   <xsl:template name="common.children">
+    <xsl:apply-templates mode="self"/>
+  </xsl:template>
+  <xsl:template name="common.children.with.href">
     <xsl:param name="strip.links" tunnel="yes" as="xs:boolean?"/>
     <xsl:variable name="href.attribute" select="@href"/>
     <xsl:variable name="first.char" select="substring($href.attribute, 1, 1)"/>
@@ -193,8 +196,15 @@
   </xsl:template>
   
   <xsl:template name="common.attributes.and.children">
-    <!-- <xsl:call-template name="common.attributes"/> -->
-    <xsl:call-template name="common.children"/>
+    <xsl:choose>
+      <xsl:when test="@href">
+        <xsl:call-template name="common.children.with.href"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:call-template name="common.attributes"/>
+        <xsl:call-template name="common.children"/>
+      </xsl:otherwise>
+    </xsl:choose>
   </xsl:template>
 
 
