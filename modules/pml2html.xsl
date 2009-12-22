@@ -129,9 +129,9 @@
       <xsl:when test="@language eq 'xml'">
         <xsl:copy-of select="df:xml(., $code.linelength)"/>
       </xsl:when>
-      <!-- <xsl:when test="@language eq 'css'">
+      <xsl:when test="@language eq 'css'">
         <xsl:copy-of select="df:css(., $code.linelength)"/>
-      </xsl:when> -->
+      </xsl:when>
       <xsl:otherwise>
         <xsl:if test="@language">
           <xsl:sequence select="df:message(('highlighting for', @language , 'code not yet implemented.'), 'warning')"/>

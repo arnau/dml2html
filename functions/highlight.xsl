@@ -14,7 +14,7 @@
     <dml:list>
       <dml:item property="dct:creator">Arnau Siches</dml:item>
       <dml:item property="dct:created">2008-10-20</dml:item>
-      <dml:item property="dct:modified">2009-09-30</dml:item>
+      <dml:item property="dct:modified">2009-12-22</dml:item>
       <dml:item property="dct:description">Highlighting funcions for code</dml:item>
       <dml:item property="dct:rights">Copyright 2009 Arnau Siches</dml:item>
       <dml:item property="dct:license">
@@ -231,48 +231,48 @@
         (: strip last &#xA; :)
         replace($context.formatted, '(.+)\s*$', '$1')
       else $context
-    " regex="{$rule}">
+    " regex="{$comment}">
       <xsl:matching-substring>
-        <span class="rule">
-          <span class="selector">
-            <xsl:value-of select="regex-group(1)"/>
-          </span>
-          <xsl:value-of select="regex-group(2)"/>
-          <xsl:analyze-string select="regex-group(3)" regex="{$property}">
-            <xsl:matching-substring>
-              <span class="property">
-                <xsl:value-of select="regex-group(1)"/>
-              </span>
-              <span class="value">
-                <xsl:value-of select="regex-group(2)"/>
-              </span>
-              <xsl:if test="regex-group(3)">
-                <span class="important">
-                  <xsl:value-of select="regex-group(3)"/>
-                </span>
-              </xsl:if>
-              <xsl:value-of select="regex-group(4)"/>
-            </xsl:matching-substring>
-          </xsl:analyze-string>
-          <xsl:value-of select="regex-group(4)"/>
+        <span class="comment">
+          <xsl:value-of select="."/>
         </span>
       </xsl:matching-substring>
       <xsl:non-matching-substring>
-        <xsl:analyze-string select="." regex="{$arroba-rule}">
+        <xsl:analyze-string select="." regex="{$rule}">
           <xsl:matching-substring>
-            <span class="selector">
-              <xsl:value-of select="regex-group(1)"/>
-              <span class="value">
-                <xsl:value-of select="regex-group(2)"/>
+            <span class="rule">
+              <span class="selector">
+                <xsl:value-of select="regex-group(1)"/>
               </span>
-              <xsl:value-of select="regex-group(3)"/>
+              <xsl:value-of select="regex-group(2)"/>
+              <xsl:analyze-string select="regex-group(3)" regex="{$property}">
+                <xsl:matching-substring>
+                  <span class="property">
+                    <xsl:value-of select="regex-group(1)"/>
+                  </span>
+                  <span class="value">
+                    <xsl:value-of select="regex-group(2)"/>
+                  </span>
+                  <xsl:if test="regex-group(3)">
+                    <span class="important">
+                      <xsl:value-of select="regex-group(3)"/>
+                    </span>
+                  </xsl:if>
+                  <xsl:value-of select="regex-group(4)"/>
+                </xsl:matching-substring>
+              </xsl:analyze-string>
+              <xsl:value-of select="regex-group(4)"/>
             </span>
           </xsl:matching-substring>
           <xsl:non-matching-substring>
-            <xsl:analyze-string select="." regex="{$comment}">
+            <xsl:analyze-string select="." regex="{$arroba-rule}">
               <xsl:matching-substring>
-                <span class="comment">
-                  <xsl:value-of select="."/>
+                <span class="selector">
+                  <xsl:value-of select="regex-group(1)"/>
+                  <span class="value">
+                    <xsl:value-of select="regex-group(2)"/>
+                  </span>
+                  <xsl:value-of select="regex-group(3)"/>
                 </span>
               </xsl:matching-substring>
               <xsl:non-matching-substring>
@@ -283,6 +283,7 @@
         </xsl:analyze-string>
       </xsl:non-matching-substring>
     </xsl:analyze-string>
+
   </xsl:function>
 <!--
   <xsl:function name="df:ebnf">
