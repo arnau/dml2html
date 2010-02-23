@@ -93,14 +93,14 @@
               <xsl:with-param name="idref" tunnel="yes" select="$idref"/>
             </xsl:call-template>
           </xsl:when>
-          <xsl:when test="
+          <!-- <xsl:when test="
             ($first.char eq '#') and id($idref) and $header.numbers and
             id($idref)[ancestor-or-self::dml:*[parent::dml:dml and count(preceding-sibling::dml:section) ge $toc.skipped.sections]]
           ">
             <xsl:call-template name="xref.number">
               <xsl:with-param name="idref" tunnel="yes" select="$idref"/>
             </xsl:call-template>
-          </xsl:when>
+          </xsl:when> -->
         </xsl:choose>
       </xsl:otherwise>
     </xsl:choose>

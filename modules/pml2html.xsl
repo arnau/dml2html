@@ -79,7 +79,7 @@
         else
           ()
       "/>
-      <xsl:call-template name="common.children"/>
+      <xsl:call-template name="common.children.with.href"/>
     </span>
   </xsl:template>
   
