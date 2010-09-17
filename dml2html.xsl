@@ -102,7 +102,7 @@
   </xsl:template>
   
   <xsl:template name="link.stylesheet">
-    <link rel="stylesheet" type="text/css" href="{$link.stylesheet.all}" media="all"/>
+    <link href="{$link.stylesheet.all}" media="all" rel="stylesheet" type="text/css" />
   </xsl:template>
   
   
