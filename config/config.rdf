@@ -264,7 +264,7 @@
       </dml:note>
     </dct:description>
     
-    <rdf:value rdf:datatype="http://www.w3.org/TR/xmlschema-2/#string">/png$1.png</rdf:value>
+    <rdf:value rdf:datatype="http://www.w3.org/TR/xmlschema-2/#string">$1.png</rdf:value>
   </rdf:Description>
 
   <rdf:Description rdf:ID="node.element.prefix">
